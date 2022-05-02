@@ -1,0 +1,6 @@
+@import "antd/dist/antd.css";
+
+th.column-money,
+td.column-money {
+  text-align: right !important;
+}
