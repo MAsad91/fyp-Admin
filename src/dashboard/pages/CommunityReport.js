@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
-import DataTable from '../components/table/CrimeTable';
+import DataTable from '../components/table/communityServicesTable';
 function CommunityReport() {
   const[communityData, setCommunityData] = useState([]);
   useEffect(() => {
@@ -13,7 +13,7 @@ function CommunityReport() {
   }, [])
   return (
     <React.Fragment>
-      <DataTable props={communityData}/>
+      <DataTable {...communityData}/>
     </React.Fragment>
   )
 }

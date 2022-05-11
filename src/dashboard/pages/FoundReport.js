@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
-import DataTable from '../components/table/CrimeTable';
+import DataTable from '../components/table/FoundItemTable';
 function FoundReport() {
   const[foundData, setFoundData] = useState([]);
   useEffect(() => {
@@ -14,7 +14,7 @@ function FoundReport() {
 
   return (
     <React.Fragment>
-      <DataTable props={foundData}/>
+      <DataTable {...foundData}/>
     </React.Fragment>
   )
 }

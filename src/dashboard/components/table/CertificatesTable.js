@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Table } from "antd";
 
 const CertificateTable = (props) => {
+  console.log(props);
   const columns = [
     {
       title: "Name",

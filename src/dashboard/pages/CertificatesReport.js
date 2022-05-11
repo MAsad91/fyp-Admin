@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
-import DataTable from '../components/table/CrimeTable';
+import DataTable from '../components/table/CertificatesTable';
 function CertificatesReport() {
   const [certificateData, setCertificateData] = useState([]);
 
@@ -16,7 +16,7 @@ function CertificatesReport() {
   console.log(certificateData);
   return (
     <React.Fragment>
-      <DataTable props={certificateData}/>
+      <DataTable {...certificateData}/>
     </React.Fragment>
   )
 }

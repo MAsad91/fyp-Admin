@@ -5,7 +5,7 @@ function CrimeReport() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch('http://localhost:5000/home');
+      const data = await fetch('http://localhost:5000/crime-report');
       const jsonData = data.json();
 
       setCrimeData(jsonData);
@@ -16,7 +16,7 @@ function CrimeReport() {
 
   return (
     <React.Fragment>
-      <DataTable props={crimeData}/>
+      <DataTable {...crimeData}/>
     </React.Fragment>
   )
 }

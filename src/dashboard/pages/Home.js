@@ -18,8 +18,8 @@ function Home() {
   console.log(count);
   return (
     <React.Fragment>
-      <Cards />
-      <LineChart props={count}/>
+      <Cards {...count}/>
+      <LineChart />
     </React.Fragment>
   )
 }
