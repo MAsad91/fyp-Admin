@@ -1,5 +1,5 @@
 import React from 'react'
-import DataTable from '../components/table/Table';
+import DataTable from '../components/table/CrimeTable';
 
 function SaveLifeReport() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import DataTable from '../components/table/CrimeTable';
-function UserList() {
+function LostReport() {
   return (
     <React.Fragment>
       <DataTable />
@@ -8,4 +8,4 @@ function UserList() {
   )
 }
 
-export default UserList
+export default LostReport;

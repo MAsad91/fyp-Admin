@@ -1,13 +1,19 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext} from 'react';
 import { Layout, Menu } from 'antd';
-import {Link, Route, Router} from 'react-router-dom';
-// import './Navbar.css';
-import { MenuItem } from '@material-ui/core';
+import {Link, useNavigate} from 'react-router-dom';
+import { AuthContext } from '../shared/auth-context';
+
 const {Sider } = Layout;
-//show sidebar
 
 
 function Navbar() {
+  const Navigate = useNavigate();
+  const auth = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    auth.logout();
+    Navigate("/login");
+  };
     return (
       <Fragment>
         <Sider
@@ -28,33 +34,33 @@ function Navbar() {
                 <Link to="/">Home</Link>
             </Menu.Item>
             <Menu.Item key='2'>
-                <Link to="/userlist">UserList</Link>
+                <Link to={`/userlist/`}>UserList</Link>
             </Menu.Item>
             <Menu.Item key='3'>
-
-                <Link to="/crimereport">Crime Report</Link>
-              
+                <Link to={`/crimereport`}>Crime Report</Link>
             </Menu.Item >
             <Menu.Item key='4'>
-                <Link to="/safelifereport">Safe Life Report</Link>
+                <Link to={`/safelifereport`}>Safe Life Report</Link>
               
             </Menu.Item>
             <Menu.Item key='5'>
-
-                <Link to="/lostfoundreport">Lost Found Item Report</Link>
+                <Link to={`/lostreport`}>Lost Item Report</Link>
             </Menu.Item>
             <Menu.Item key='6'>
-                <Link to="/communityservices">
+                <Link to={`/foundreport`}>Found Item Report</Link>
+            </Menu.Item>
+            <Menu.Item key='7'>
+                <Link to={`/communityservices`}>
                 Community Services
                 </Link>
             </Menu.Item>
-            <Menu.Item key='7'>
-                <Link to="/certificatepermits">
+            <Menu.Item key='8'>
+                <Link to={`/certificatepermits`}>
                 Certificate And Permits
                 </Link>
             </Menu.Item>
-            <Menu.Item>
-             LogOut
+            <Menu.Item key='9'>
+              <Link to onClick={logoutHandler}>LogOut</Link>
             </Menu.Item>
           </Menu>
         </Sider>

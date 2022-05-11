@@ -1,25 +1,92 @@
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+const url = 'http://localhost:5000/';
 
-const url = 'https://covid19.mathdro.id/api';
+export function FetchCardsData() {
+    const [data, setData] = useState({})
 
-export const fetchData = async() => {
-    try {
-        const {data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(url); 
-        return {confirmed, recovered, deaths, lastUpdate};
-    } catch(error){
+    useEffect(() => {
 
-    }
+        fetch('/home')
+        .then(res => res.json())
+        .then(data => setData(data))
+    }, [])
+
+    return data;
 }
-export const fetchDailyData = async () => {
+
+
+
+export const FetchChartData = async () => {
     try {
-        const {data} = await axios.get(`${url}/daily`);
-        const modifiedData = data.map((dailyData) => ({
-            confirmed:dailyData.confirmed.total,
-            deaths: dailyData.deaths.total,
-            date: dailyData.reportDate,
-        }) );
-        return modifiedData;
+        const {data} = await axios.get(`${url}/home`);
+        
+        return data;
+  
     } catch (error) {
         
     }
 }
+
+export const FetchCrimeReport = async () => {
+    const data = await fetch(`${url}crimereport`);
+    const jsonData = data.json();
+
+
+    return jsonData;
+};
+
+
+export const FetchSafeLifeReport = async () => {
+    try {
+        const data = await axios.get(`${url}/safe-life`);
+
+        return data;
+    } catch (error) {
+
+    }
+};
+
+
+export const FetchLostItemReport = async () => {
+    try {
+        const data = await axios.get(`${url}/lostitem`);
+
+        return data;
+    } catch (error) {
+
+    }
+};
+
+
+export const FetchFoundItemReport = async () => {
+    try {
+        const data = await axios.get(`${url}/founditem`);
+
+        return data;
+    } catch (error) {
+
+    }
+};
+
+
+export const FetchCommunityServices = async () => {
+    try {
+        const data = await axios.get(`${url}/community-service`);
+
+        return data;
+    } catch (error) {
+
+    }
+};
+
+
+export const FetchCertificatePermits = async () => {
+    try {
+        const data = await axios.get(`${url}/certificate-permt`);
+
+        return data;
+    } catch (error) {
+
+    }
+};

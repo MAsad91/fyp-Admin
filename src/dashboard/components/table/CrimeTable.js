@@ -1,11 +1,13 @@
 import React, { Fragment } from "react";
 import { Table } from "antd";
 
-const DataTable = (props) => {
+const CrimeTable = (props) => {
+
+  console.log(props);
   const columns = [
     {
       title: "Name",
-      dataIndex: "name",
+      dataIndex: Object.PromiseResult,
       render: (text) => <a>{text}</a>,
     },
     {
@@ -28,4 +30,4 @@ const DataTable = (props) => {
   );
 };
 
-export default DataTable;
+export default CrimeTable;

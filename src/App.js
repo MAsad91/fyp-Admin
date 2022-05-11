@@ -1,4 +1,6 @@
 import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
+
+
 import { BrowserRouter as Router, Routes, Route, Redirect } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Layout} from "antd";
@@ -8,7 +10,8 @@ import  './App.css';
 import Home from './dashboard/pages/Home';
 import Crime from './dashboard/pages/CrimeReport';
 import SafeLife from './dashboard/pages/SaveLifeReport';
-import LostFound from './dashboard/pages/LostFoundReport';
+import Lost from './dashboard/pages/LostReport';
+import Found from './dashboard/pages/FoundReport';
 import Community from './dashboard/pages/CommunityReport';
 import CertificatesPermits from './dashboard/pages/CertificatesReport';
 import UserList from './dashboard/pages/UserList';
@@ -16,6 +19,14 @@ import Navbar from './dashboard/shared/Navbar';
 import LoggedIn from './dashboard/pages/LoggedIn';
 import SignUp from './dashboard/pages/SignedUp';
 import { AuthContext } from './dashboard/shared/auth-context';
+
+import {FetchChartData} from './dashboard/components/api/index';
+import {FetchCrimeReport} from './dashboard/components/api/index';
+import {FetchSafeLifeReport} from './dashboard/components/api/index';
+import {FetchLostItemReport} from './dashboard/components/api/index';
+import {FetchFoundItemReport} from './dashboard/components/api/index';
+import {FetchCommunityServices} from './dashboard/components/api/index';
+import {FetchCertificatePermits} from './dashboard/components/api/index';
 
 let logoutTimer;
 const {Content, Footer} = Layout; 
@@ -27,7 +38,21 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const[userId, setUserId] = useState(null);
 
-  const login = useCallback((uid, token, expirationDate) => {
+// const chartData = FetchChartData();
+// console.log(chartData);
+// const crimeData = FetchCrimeReport();
+// console.log(crimeData);
+// const safeLifeData = FetchSafeLifeReport();
+// console.log(safeLifeData);
+// const lostItemData = FetchLostItemReport();
+// console.log(lostItemData);
+// const founditemData = FetchFoundItemReport();
+// console.log(founditemData);
+// const communityData = FetchCommunityServices();
+// console.log(communityData);
+// const certificateData = FetchCertificatePermits();
+// console.log(certificateData); 
+const login = useCallback((uid, token, expirationDate) => {
     setIsLoggedIn(true);
     setToken(token);
     setUserId(uid);
@@ -77,6 +102,21 @@ function App() {
     }
   }, [login]);
 
+  
+
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await fetch('http://localhost:5000/lost-report');
+  //     const jsonData = data.json();
+
+  //     setCrimeData(jsonData);
+  //   }
+  //   fetchData();
+  // },[])
+
+  // console.log(crimeData);
+
 
     return (
       <AuthContext.Provider
@@ -113,7 +153,9 @@ function App() {
 
                       <Route path="/safelifereport" exact element={<SafeLife />} />
 
-                      <Route path="/lostfoundreport" exact element={<LostFound />} />
+                      <Route path="/lostreport" exact element={<Lost />} />
+
+                      <Route path="/foundreport" exact element={<Found />} />
 
                       <Route path="/communityservices" exact element={<Community />} />
 
