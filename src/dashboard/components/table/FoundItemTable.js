@@ -1,28 +1,52 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import { Table } from "antd";
 
 const FoundItemTable = (props) => {
   console.log(props);
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      render: (text) => <a>{text}</a>,
+      title: "ID",
+      dataIndex: "id",
+      render: (text) => <Link to='/singledata'>{text}</Link>,
     },
     {
-      title: "Type",
-      dataIndex: props.type,
+      title: "Name",
+      dataIndex: "name",
+    },
+    {
+      title: "State",
+      dataIndex: "state",
+    },
+    {
+      title: "Item Type",
+      dataIndex: "founditemtype",
+
+    },
+    {
+      title: "Color",
+      dataIndex: "color",
+      
+    },
+    {
+      title: "Discription",
+      dataIndex: "description",
     },
     {
       title: "Details",
       dataIndex: "details",
     },
+    {
+      title: "Location",
+      dataIndex: "location",
+    },
+    
   ];
   return (
     <Fragment>
       <Table
         columns={columns}
-        dataSource={props.data}
+        dataSource={props.foundData}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>

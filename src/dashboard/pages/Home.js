@@ -1,43 +1,53 @@
+import axios from 'axios';
 import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
 import Cards from '../components/cards/Cards';
-import LineChart from '../components/charts/LineChart'; 
+import DoughnutChart from '../components/charts/DoughnutChart'; 
 function Home() {
-  const[count, setCount] = useState([]);
 
-  useEffect(() =>{
-    const fetchData = async () => {
-      const data = await fetch('http://localhost:5000/home');
-      const jsonData = data.json();
-  
-      setCount(jsonData);
-    }
-    fetchData();
-  }, [])
-  
+  const [crimeCount, setCrimeCount] = useState();
+    const [saveLifeCount, setSaveLifeCount] = useState();
+    const [foundItemCount, setFoundItemCount] = useState();
+    const [lostItemCount, setLostItemCount] = useState();
+    const [communityServicesCount, setCommunityServicesCount] = useState();
+    const [certificateCount, setCertificateCount] = useState();
 
-  console.log(count);
+
+    useEffect(() =>{
+        const fetchData = async () => {
+          const {data} = await axios.get('http://localhost:5000/home');
+          
+          setCrimeCount(data.crimeReportCount);
+          setSaveLifeCount(data.safelifeReportCount);
+          setFoundItemCount(data.foundItemsReportCount);
+          setLostItemCount(data.lostItemsReportCount);
+          setCertificateCount(data.certificatesPermitsReportCount);
+          setCommunityServicesCount(data.communityServicesReportCount);
+         
+      
+          
+        }
+        fetchData();
+      }, [])
+
+
   return (
     <React.Fragment>
-      <Cards {...count}/>
-      <LineChart />
+      <Cards 
+        crimeCount={crimeCount}
+        saveLifeCount={saveLifeCount}
+        lostCount={lostItemCount}
+        foundCount={foundItemCount}
+        communityCount={communityServicesCount}
+        certificateCount={certificateCount}/>
+      <DoughnutChart 
+        crimeCount={crimeCount}
+        saveLifeCount={saveLifeCount}
+        lostCount={lostItemCount}
+        foundCount={foundItemCount}
+        communityCount={communityServicesCount}
+        certificateCount={certificateCount}/>
     </React.Fragment>
   )
 }
 
 export default Home
-
-
-
-// export const fetchDailyData = async () => {
-//   try {
-//       const {data} = await axios.get(`${url}/daily`);
-//       const modifiedData = data.map((dailyData) => ({
-//           confirmed:dailyData.confirmed.total,
-//           deaths: dailyData.deaths.total,
-//           date: dailyData.reportDate,
-//       }) );
-//       return modifiedData;
-//   } catch (error) {
-      
-// }
-// }

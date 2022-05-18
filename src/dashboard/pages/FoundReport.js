@@ -1,20 +1,27 @@
-import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
+import axios from "axios";
+import React, { useEffect, useState} from 'react';
 import DataTable from '../components/table/FoundItemTable';
 function FoundReport() {
   const[foundData, setFoundData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch('http://localhost:5000/found-report');
-      const jsonData = data.json();
+      try{
+        const {data} = await axios.get('http://localhost:5000/found-report');
+        
 
-      setFoundData(jsonData);
+        setFoundData(data);
+      } catch (err) {
+
+      }
+      
     }
     fetchData();
   },[])
 
   return (
     <React.Fragment>
-      <DataTable {...foundData}/>
+      <h1>Found Reports</h1>
+      <DataTable foundData = {foundData}/>
     </React.Fragment>
   )
 }

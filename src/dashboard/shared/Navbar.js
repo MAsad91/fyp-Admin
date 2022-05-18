@@ -37,29 +37,34 @@ function Navbar() {
                 <Link to={`/userlist/`}>UserList</Link>
             </Menu.Item>
             <Menu.Item key='3'>
-                <Link to={`/crimereport`}>Crime Report</Link>
+                <Link to={`/crimereport`}>Crime Reports</Link>
             </Menu.Item >
             <Menu.Item key='4'>
-                <Link to={`/safelifereport`}>Safe Life Report</Link>
+                <Link to={`/safelifereport`}>Save Life Reports</Link>
               
             </Menu.Item>
             <Menu.Item key='5'>
-                <Link to={`/lostreport`}>Lost Item Report</Link>
+                <Link to={`/lostreport`}>Lost Item Reports</Link>
             </Menu.Item>
             <Menu.Item key='6'>
-                <Link to={`/foundreport`}>Found Item Report</Link>
+                <Link to={`/foundreport`}>Found Item Reports</Link>
             </Menu.Item>
             <Menu.Item key='7'>
-                <Link to={`/communityservices`}>
+              <Link to={`/communityservices`}>
                 Community Services
-                </Link>
+              </Link>
             </Menu.Item>
             <Menu.Item key='8'>
-                <Link to={`/certificatepermits`}>
-                Certificate And Permits
-                </Link>
+              <Link to={`/certificatepermits`}>
+                Certificate & Permits
+              </Link>
             </Menu.Item>
             <Menu.Item key='9'>
+              <Link to={'/activity'}>
+                Activity
+              </Link>
+            </Menu.Item>
+            <Menu.Item key='10'>
               <Link to onClick={logoutHandler}>LogOut</Link>
             </Menu.Item>
           </Menu>

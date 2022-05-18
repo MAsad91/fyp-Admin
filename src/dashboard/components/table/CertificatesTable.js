@@ -1,17 +1,23 @@
 import React, { Fragment } from "react";
 import { Table } from "antd";
+import { Link } from "react-router-dom";
 
 const CertificateTable = (props) => {
   console.log(props);
   const columns = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      render: (text) =><Link to='/singledata'>{text}</Link>
+    },
     {
       title: "Name",
       dataIndex: "name",
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Type",
-      dataIndex: props.type,
+      title: "Request Type",
+      dataIndex: "requesttype",
     },
     {
       title: "Details",
@@ -22,7 +28,7 @@ const CertificateTable = (props) => {
     <Fragment>
       <Table
         columns={columns}
-        dataSource={props.data}
+        dataSource={props.certificateData}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>

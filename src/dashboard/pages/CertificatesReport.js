@@ -1,14 +1,19 @@
-import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
+import axios from 'axios';
+import React, { useEffect, useState} from 'react';
 import DataTable from '../components/table/CertificatesTable';
 function CertificatesReport() {
   const [certificateData, setCertificateData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch('http://localhost:5000//request-certificatepermits');
-      const jsonData = data.json();
+      try{
+        const {data}= await axios.get('http://localhost:5000/request-certificatepermits');
+        
+      setCertificateData(data);
+      } catch (err) {
 
-      setCertificateData(jsonData);
+      }
+      
     }
     fetchData();
   },[])
@@ -16,7 +21,8 @@ function CertificatesReport() {
   console.log(certificateData);
   return (
     <React.Fragment>
-      <DataTable {...certificateData}/>
+      <h1>Certificate & Permits</h1>
+      <DataTable certificateData = {certificateData}/>
     </React.Fragment>
   )
 }

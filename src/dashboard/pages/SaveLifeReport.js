@@ -1,4 +1,6 @@
-import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
+import axios
+ from 'axios';
+import React, { useEffect, useState} from 'react';
 import DataTable from '../components/table/SaveLifeTable';
 
 function SaveLifeReport() {
@@ -6,17 +8,22 @@ function SaveLifeReport() {
 
   useEffect(() => {
     const fetchData = async() => {
-      const data = await fetch('http://localhost:5000/safelife-report');
-      const jsonData = data.json();
+      try{
+        const {data} = await axios.get('http://localhost:5000/safelife-report');
 
-      setSaveLife(jsonData);
+      setSaveLife(data);
+      } catch (err) {
+
+      }
+      
     }
     fetchData();
   }, [])
-  console.log(saveLife);
+  
   return (
     <React.Fragment>
-      <DataTable {...saveLife}/>
+      <h1>Save Life Report</h1>
+      <DataTable saveLife = {saveLife}/>
     </React.Fragment>
   )
 }

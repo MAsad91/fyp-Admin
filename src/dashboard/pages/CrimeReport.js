@@ -1,22 +1,30 @@
-import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
+import axios from 'axios';
+import React, { useEffect, useState} from 'react';
 import DataTable from '../components/table/CrimeTable';
+
 function CrimeReport() {
-  const[crimeData, setCrimeData] = useState([]);
+  const [crimeData, setCrimeData] = useState([]);
   
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch('http://localhost:5000/crime-report');
-      const jsonData = data.json();
+      try{
+        const {data} = await axios.get('http://localhost:5000/crime-report');
 
-      setCrimeData(jsonData);
-    }
+        setCrimeData(data);
+      } catch (err) {
+
+      }
+      
+    }  
     fetchData();
   },[])
-
+  
+  
 
   return (
     <React.Fragment>
-      <DataTable {...crimeData}/>
+      <h1>Crime Report</h1>
+      <DataTable crimeData={crimeData}/>
     </React.Fragment>
   )
 }

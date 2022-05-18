@@ -17,6 +17,8 @@ import Navbar from './dashboard/shared/Navbar';
 import LoggedIn from './dashboard/pages/LoggedIn';
 import SignUp from './dashboard/pages/SignedUp';
 import { AuthContext } from './dashboard/shared/auth-context';
+import SingleData from './dashboard/components/table/SingleData';
+import Activity from './dashboard/pages/Activity';
 
 let logoutTimer;
 const {Content, Footer} = Layout; 
@@ -96,7 +98,9 @@ const login = useCallback((uid, token, expirationDate) => {
                 <Content style={{ margin: "24px 16px 0" }}>
                   <div
                     className="site-layout-background"
-                    style={{ padding: 24, minHeight: 360 }}
+                    style={{ padding: 24, minHeight: 580 }}
+                    //before minHeight: 360
+                    //minWidth: 1360
                   >
                     
                     <Routes>
@@ -120,6 +124,10 @@ const login = useCallback((uid, token, expirationDate) => {
                       <Route path="/communityservices" exact element={<Community />} />
 
                       <Route path="/certificatepermits" exact element={<CertificatesPermits />} />
+                      
+                      <Route path='/activity' exact element={<Activity />} />
+
+                      <Route path='/singledata' exact element={<SingleData />} />
 
                       {/* <Route path="*" exact>
                         <Redirect to="/login" />
