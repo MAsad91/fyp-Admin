@@ -27,7 +27,7 @@ function Navbar() {
           }}
         >
           <div className="logo">
-            <h5>Save City Services</h5>
+            <h5>Safe City Services</h5>
           </div>
           <Menu theme="dark" mode="inline">
             <Menu.Item key='1'>
@@ -60,8 +60,8 @@ function Navbar() {
               </Link>
             </Menu.Item>
             <Menu.Item key='9'>
-              <Link to={'/activity'}>
-                Activity
+              <Link to={'/events'}>
+                Events
               </Link>
             </Menu.Item>
             <Menu.Item key='10'>

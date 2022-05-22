@@ -18,7 +18,8 @@ import LoggedIn from './dashboard/pages/LoggedIn';
 import SignUp from './dashboard/pages/SignedUp';
 import { AuthContext } from './dashboard/shared/auth-context';
 import SingleData from './dashboard/components/table/SingleData';
-import Activity from './dashboard/pages/Activity';
+import Events from './dashboard/pages/Events/Events';
+import EventsForm from './dashboard/pages/Events/EventsForm';
 
 let logoutTimer;
 const {Content, Footer} = Layout; 
@@ -125,7 +126,9 @@ const login = useCallback((uid, token, expirationDate) => {
 
                       <Route path="/certificatepermits" exact element={<CertificatesPermits />} />
                       
-                      <Route path='/activity' exact element={<Activity />} />
+                      <Route path='/events' exact element={<Events />} />
+
+                      <Route path='/events/eventform' exact element={<EventsForm />} />
 
                       <Route path='/singledata' exact element={<SingleData />} />
 
