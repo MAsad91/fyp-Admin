@@ -6,11 +6,15 @@ import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
 
-const CrimeReportForm = () => {
+const EventsForm = () => {
   const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
   const auth = useContext(AuthContext);
   const navigation = useNavigate();
+
+  const uploadHandle = ({ fileList }) => {
+    setImages(fileList);
+  };
 
   const errorHandler = () => {
     setError(null);
@@ -37,9 +41,10 @@ const CrimeReportForm = () => {
             try {
               let formData = new FormData();
               formData.append("name", value.name);
-              formData.append("EventType", value.crimetype);
+              formData.append("eventtype", value.eventtype);
               formData.append("details", value.details);
               formData.append("location", value.location);
+              formData.append("images", images[0].originFileObj);
               formData.append("creator", auth.userId);
               const response = await axios({
                 method: "post",
@@ -76,17 +81,13 @@ const CrimeReportForm = () => {
               ]}
               hasFeedback
             >
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter Event Name"
-              />
+              <input type="text" id="name" placeholder="Enter Event Name" />
             </Form.Item>
           </div>
 
           <div className={styles["form-control"]}>
             <Form.Item
-              name="Eventtype"
+              name="eventtype"
               label="Event Type"
               rules={[
                 {
@@ -151,6 +152,28 @@ const CrimeReportForm = () => {
               />
             </Form.Item>
           </div>
+          <div className={styles["form-control"]}>
+            <Form.Item
+              name="image"
+              rules={[
+                {
+                  required: true,
+                  message: "Please upload image",
+                },
+              ]}
+            >
+              <Upload.Dragger
+                accept=".png,.jpg,.jpeg"
+                onChange={uploadHandle}
+                beforeUpload={() => false}
+              >
+                Drag file here OR
+                <br />
+                <Button>Click Upload </Button>
+              </Upload.Dragger>
+            </Form.Item>
+          </div>
+
           <div className={styles["form-actions"]}>
             <Form.Item>
               <button style={{ color: "white" }}>Submit</button>
@@ -162,4 +185,4 @@ const CrimeReportForm = () => {
   );
 };
 
-export default CrimeReportForm;
+export default EventsForm;
