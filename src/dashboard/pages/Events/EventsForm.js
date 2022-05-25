@@ -99,13 +99,13 @@ const EventsForm = () => {
             >
               <select placeholder="Choose Event Type">
                 <option value="">Select</option>
-                <option value="robbery">Concert</option>
-                <option value="snatching">Seminar</option>
-                <option value="harassment">Speaker Session</option>
-                <option value="kidnapping">Confrence</option>
-                <option value="cybercrime">Trade Show</option>
-                <option value="fraud">Expo</option>
-                <option value="murder">Sponsorship</option>
+                <option value="concert">Concert</option>
+                <option value="seminar">Seminar</option>
+                <option value="speakersession">Speaker Session</option>
+                <option value="conference">Conference</option>
+                <option value="tradeshow">Trade Show</option>
+                <option value="expo">Expo</option>
+                <option value="sponsorship">Sponsorship</option>
                 <option value="others">Others</option>
               </select>
             </Form.Item>
