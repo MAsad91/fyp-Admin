@@ -8,12 +8,12 @@ const CommunityServicesTable = (props) => {
     {
       title: 'ID',
       dataIndex: 'id',
-      render: (text) => <Link to='/singledata'>{text}</Link>,
+      // render: (text) => <Link to='/singledata'>{text}</Link>,
     },
     {
       title: "Name",
       dataIndex: "name",
-      render: (text) => <a>{text}</a>,
+      // render: (text) => <a>{text}</a>,
     },
     {
       title: "ServiceType",
@@ -29,6 +29,7 @@ const CommunityServicesTable = (props) => {
       <Table
         columns={columns}
         dataSource={props.communityData}
+        pagination={true}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>

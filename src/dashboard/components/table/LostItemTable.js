@@ -8,7 +8,7 @@ const LostItemTable = (props) => {
     {
       title: "ID",
       dataIndex: "id",
-      render: (text) => <Link to='/singledata'>{text}</Link>,
+      // render: (text) => <Link to='/singledata'>{text}</Link>,
     },
     {
       title: "Name",
@@ -46,6 +46,7 @@ const LostItemTable = (props) => {
       <Table
         columns={columns}
         dataSource={props.lostData}
+        pagination={true}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>

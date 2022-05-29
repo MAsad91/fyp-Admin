@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, UseContext, useEffect, useState} from 'react';
-import { BrowserRouter as Router, Routes, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Layout} from "antd";
 import  './App.css';
@@ -16,10 +16,12 @@ import UserList from './dashboard/pages/UserList';
 import Navbar from './dashboard/shared/Navbar';
 import LoggedIn from './dashboard/pages/LoggedIn';
 import SignUp from './dashboard/pages/SignedUp';
-import { AuthContext } from './dashboard/shared/auth-context';
-import SingleData from './dashboard/components/table/SingleData';
+
+import UserDetail from './dashboard/pages/UserDetail';
 import Events from './dashboard/pages/Events/Events';
 import EventsForm from './dashboard/pages/Events/EventsForm';
+
+import { AuthContext } from './dashboard/shared/auth-context';
 
 let logoutTimer;
 const {Content, Footer} = Layout; 
@@ -92,7 +94,7 @@ const login = useCallback((uid, token, expirationDate) => {
         }}
       >
         <React.Fragment>
-          {/* {isLoggedIn ? ( */}
+          {isLoggedIn ? (
             <Layout>
               <Navbar />
               <Layout>
@@ -105,36 +107,35 @@ const login = useCallback((uid, token, expirationDate) => {
                   >
                     
                     <Routes>
-                      {/* <Route path="/login" exact element={<LoggedIn />} />
+                      <Route path="/login" exact element={<LoggedIn />} />
 
-                      <Route path="/signup" exact element={<SignUp />} /> */}
+                      <Route path="/signup" exact element={<SignUp />} />
 
                       <Route path="/" exact element={<Home />} />
 
-                      <Route path="/userlist" exact element={<UserList />} />
+                      <Route path={`/userlist`} exact element={<UserList />}/>
 
 
-                      <Route path="/crimereport" exact element={<Crime />} />
+                      <Route path={`/crimereport`} exact element={<Crime />} />
 
-                      <Route path="/safelifereport" exact element={<SafeLife />} />
+                      <Route path={`/safelifereport`} exact element={<SafeLife />} />
 
-                      <Route path="/lostreport" exact element={<Lost />} />
+                      <Route path={`/lostreport`} exact element={<Lost />} />
 
-                      <Route path="/foundreport" exact element={<Found />} />
+                      <Route path={`/foundreport`} exact element={<Found />} />
 
-                      <Route path="/communityservices" exact element={<Community />} />
+                      <Route path={`/communityservices`} exact element={<Community />} />
 
-                      <Route path="/certificatepermits" exact element={<CertificatesPermits />} />
+                      <Route path={`/certificatepermits`} exact element={<CertificatesPermits />} />
                       
-                      <Route path='/events' exact element={<Events />} />
+                      <Route path={`/events`} exact element={<Events />} />
 
-                      <Route path='/events/eventform' exact element={<EventsForm />} />
+                      <Route path={`/events/eventform`} exact element={<EventsForm />} />
 
-                      <Route path='/singledata' exact element={<SingleData />} />
+                      {/* <Route path='/userdetail/:id' exact element={<UserDetail />} /> */}
 
-                      {/* <Route path="*" exact>
-                        <Redirect to="/login" />
-                    </Route> */}
+                      <Route path="*" exact
+                      element={<Navigate to="/login" />}/>
                     </Routes> 
                   </div>
                 </Content>
@@ -144,10 +145,25 @@ const login = useCallback((uid, token, expirationDate) => {
               </Layout>
             </Layout>
 
-          {/* ):(
-            <LoggedIn />
-          )} */}
-            
+          ):(
+            // 
+            <>
+            <Routes>
+              <Route path="/login" exact
+              element={<LoggedIn />}/>
+
+              <Route path="/signup" exact
+              element={<SignUp />}/>
+
+              <Route path="/" exact
+              element={<Navigate to="/login" />}/> 
+
+              {/* <Route path="*" exact>
+                <Redirect to="/login" />
+              </Route> */}
+            </Routes>
+          </>
+          )}
         </React.Fragment>
       </AuthContext.Provider >
     );

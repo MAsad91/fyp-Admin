@@ -8,7 +8,7 @@ const SaveLifeTable = (props) => {
     {
       title: "ID",
       dataIndex: "id",
-      render: (text) => <Link to='/singledata'>{text}</Link>,
+      // render: (text) => <Link to='/singledata'>{text}</Link>,
     },
     {
       title: "Name",
@@ -32,6 +32,7 @@ const SaveLifeTable = (props) => {
       <Table
         columns={columns}
         dataSource={props.saveLife}
+        pagination={true}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>

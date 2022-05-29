@@ -8,7 +8,7 @@ const FoundItemTable = (props) => {
     {
       title: "ID",
       dataIndex: "id",
-      render: (text) => <Link to='/singledata'>{text}</Link>,
+      // render: (text) => <Link to='/singledata'>{text}</Link>,
     },
     {
       title: "Name",
@@ -47,6 +47,7 @@ const FoundItemTable = (props) => {
       <Table
         columns={columns}
         dataSource={props.foundData}
+        pagination={true}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>

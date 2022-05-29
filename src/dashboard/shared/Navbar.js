@@ -31,17 +31,16 @@ function Navbar() {
           </div>
           <Menu theme="dark" mode="inline">
             <Menu.Item key='1'>
-                <Link to="/">Home</Link>
+                <Link to={`/`}>Home</Link>
             </Menu.Item>
             <Menu.Item key='2'>
-                <Link to={`/userlist/`}>UserList</Link>
+                <Link to={`/userlist`}>UserList</Link>
             </Menu.Item>
             <Menu.Item key='3'>
                 <Link to={`/crimereport`}>Crime Reports</Link>
             </Menu.Item >
             <Menu.Item key='4'>
                 <Link to={`/safelifereport`}>Save Life Reports</Link>
-              
             </Menu.Item>
             <Menu.Item key='5'>
                 <Link to={`/lostreport`}>Lost Item Reports</Link>
@@ -60,7 +59,7 @@ function Navbar() {
               </Link>
             </Menu.Item>
             <Menu.Item key='9'>
-              <Link to={'/events'}>
+              <Link to={`/events`}>
                 Events
               </Link>
             </Menu.Item>

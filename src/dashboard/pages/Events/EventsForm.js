@@ -163,6 +163,8 @@ const EventsForm = () => {
               ]}
             >
               <Upload.Dragger
+                maxCount={1}
+                //multiple="false"
                 accept=".png,.jpg,.jpeg"
                 onChange={uploadHandle}
                 beforeUpload={() => false}

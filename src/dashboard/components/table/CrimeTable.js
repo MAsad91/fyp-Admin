@@ -1,15 +1,16 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-
 import { Table } from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
-const CrimeTable = (props) => {
+
+const CrimeTable = (props) => { 
   console.log(props);
 let columns = [
   {
     title: "ID",
     dataIndex: 'id',
-    render: (text) => <Link to='/singledata'>{text}</Link>,
+    // render: (text) => <Link to={'/singledata'}>{text}</Link>,
   },
   {
     title: "Name",
@@ -26,8 +27,20 @@ let columns = [
   {
     title: "Location",
     dataIndex: "location",
+  },
+  {
+    title: "Actions",
+    render:(props) =>{
+      return (
+        <>
+          <EditOutlined style={{ color:"blue"}}/>
+          <DeleteOutlined style={{ color:"red", marginLeft: 12 }}/>
+        </>
+      );
+    }
   }
 ];
+
 
    
   return (
@@ -35,6 +48,7 @@ let columns = [
       <Table
         columns={columns}
         dataSource={props.crimeData}
+        pagination={true}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>

@@ -53,7 +53,7 @@ const Login = () => {
               console.log(response);
               const statusCode = response.status;
               if (statusCode === 200) {
-                navigate("/home");
+                navigate("/");
               }
               auth.login(response.data.userId, response.data.token);
             } catch (err) {

@@ -1,6 +1,9 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Table } from "antd";
+
+import UserDetail from '../../pages/UserDetail';
+
 
 const UserListTable = (props) => {
   console.log(props);
@@ -8,12 +11,39 @@ const UserListTable = (props) => {
     {
       title: "ID",
       dataIndex: "id",
-      render: (text) => <Link to='/singledata'>{text}</Link>,
+      // render: (text) => <Link to={`/userdetail`}>{text}</Link>,
+      // render: (text) => <Link to='/singledata'>{text}</Link>,
+      // onRow: (record, rowIndex) => {
+      //   return {
+      //     onClick: (ev) => {
+
+      //       // <Link onClick={<SingleData record={record} />} to='/singledata'> </Link>
+      //       <>
+      //       <p>{record.id}</p>
+      //       </>
+      //       console.log(record);
+      //   }, // click row
+      //   };
+      // },
+    //   onCell: (record) => {
+    //     return {
+    //         onClick: (ev) => {
+
+    //             // <Link onClick={<SingleData record={record} />} to='/singledata'> </Link>
+    //             <>
+    //             <p>{record.id}</p>
+    //             </>
+    //             console.log(record);
+    //         },
+            
+    //     };
+    // },
+      
     },
     {
       title: "Name",
       dataIndex: "name",
-      render: (text) => <a>{text}</a>,
+      // render: (text) => <a>{text}</a>,
     },
     {
       title: "Email",
@@ -34,6 +64,19 @@ const UserListTable = (props) => {
       <Table
         columns={columns}
         dataSource={props.userListData}
+        pagination={true}
+        
+        onRow={(record) => {
+          return {
+            onClick: () => {
+              
+              <UserDetail record={record} />
+              console.log(record);
+              
+            }, // click row
+            
+          };
+        }}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>

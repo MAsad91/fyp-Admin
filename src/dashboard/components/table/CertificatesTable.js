@@ -8,7 +8,7 @@ const CertificateTable = (props) => {
     {
       title: "ID",
       dataIndex: "id",
-      render: (text) =><Link to='/singledata'>{text}</Link>
+      // render: (text) =><Link to='/singledata'>{text}</Link>
     },
     {
       title: "Name",
@@ -29,6 +29,7 @@ const CertificateTable = (props) => {
       <Table
         columns={columns}
         dataSource={props.certificateData}
+        pagination={true}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>
