@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import { AuthContext } from '../../shared/auth-context';
-import NoDataCard from '../../shared/NoCardData';
+// import NoDataCard from '../../shared/NoCardData';
+import EventsTable from '../../components/table/EventsTable';
 import styles from '../../user-components/ReportForm.module.css';
 function Events() {
   const [show, setShow] = useState(true);
@@ -42,7 +43,9 @@ function Events() {
         </Link>
       </div>
       <div>
-        {show && <NoDataCard title="Upcoming Events" text={message} />}
+        <h1>Upcoming Events</h1>
+        {/* {show && <NoDataCard title="Upcoming Events" text={message} />} */}
+        <EventsTable EventData={EventData} />
       </div>
     </div>
   );
