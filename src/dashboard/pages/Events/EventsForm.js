@@ -1,16 +1,16 @@
 import React, { Fragment, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Upload } from "antd";
 import { AuthContext } from "../../shared/auth-context";
 import ErrorModal from "../../shared/ErrorModal";
-import styles from "../../user-components/FormStyling.module.css";
+import { Form, Button, Upload } from "antd";
 import axios from "axios";
+import styles from "../../user-components/FormStyling.module.css";
 
 const EventsForm = () => {
   const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
   const auth = useContext(AuthContext);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   const uploadHandle = ({ fileList }) => {
     setImages(fileList);
@@ -57,7 +57,7 @@ const EventsForm = () => {
               });
               console.log(response);
               if (response.status === 201) {
-                navigation(`/events`);
+                navigate(`/events`);
               }
             } catch (err) {
               const message = err.response.data.message;
@@ -163,6 +163,8 @@ const EventsForm = () => {
               ]}
             >
               <Upload.Dragger
+                maxCount={1}
+                //multiple="false"
                 accept=".png,.jpg,.jpeg"
                 onChange={uploadHandle}
                 beforeUpload={() => false}
