@@ -131,9 +131,6 @@ const login = useCallback((uid, token, expirationDate) => {
                       <Route path={`/events`} exact element={<Events />} />
 
                       <Route path={`/events/eventform`} exact element={<EventsForm />} />
-
-                      {/* <Route path='/userdetail/:id' exact element={<UserDetail />} /> */}
-
                       <Route path="*" exact
                       element={<Navigate to="/login" />}/>
                     </Routes> 

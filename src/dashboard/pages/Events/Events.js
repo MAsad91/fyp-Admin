@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../shared/auth-context';
+// import { AuthContext } from '../../shared/auth-context';
 import NoDataCard from '../../shared/NoCardData';
 import styles from '../../user-components/ReportForm.module.css';
 function Events() {
   const [show, setShow] = useState(true);
   const [message, setMessage] = useState("");
   const [EventData, setEventData] = useState([]);
-  const auth = useContext(AuthContext);
+  // const auth = useContext(AuthContext);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +35,7 @@ function Events() {
       </div>
       <div className={styles.actions}>
         <Link
-          to={`/events/eventform`}
+          to="/events/eventform"
           className={styles.button}
         >
           Add Event

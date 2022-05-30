@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Table } from "antd";
@@ -30,17 +31,28 @@ let columns = [
   },
   {
     title: "Actions",
-    render:(props) =>{
+    render:(record) =>{
       return (
         <>
           <EditOutlined style={{ color:"blue"}}/>
-          <DeleteOutlined style={{ color:"red", marginLeft: 12 }}/>
+          <DeleteOutlined onClick={()=>{
+            onDeleteUsers(record.id)
+          }} style={{ color:"red", marginLeft: 12 }}/>
         </>
       );
     }
   }
 ];
-
+const onDeleteUsers=(id) => {
+  let data={"id":id}
+  axios.post('http://localhost:5000/crime-report/deletedata',data)
+ .then((res) => {
+     console.log('response',res);
+ })
+ .catch((error) => {
+     console.log('error block called',error);
+ })
+}
 
    
   return (
