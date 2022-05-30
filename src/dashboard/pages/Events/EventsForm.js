@@ -169,7 +169,7 @@ const EventsForm = () => {
               >
                 Drag file here OR
                 <br />
-                <Button>Click Upload </Button>
+                <Button>Click Upload (Max 1 image)</Button>
               </Upload.Dragger>
             </Form.Item>
           </div>
