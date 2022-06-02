@@ -7,11 +7,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from '../../components/cards/Cards.module.css';
 
 const ViewUser = () => {
-    const [userData, setUserData]=useState({
+    const [userData, setUserData]= useState({
         name:"",
-        type:"",
-        detail:"",
-        location:""
+        itemname:"",
+        state:"",
+        lostitemtype:"",
+        color:"",
+        description:"",
+        details:"",
+        location:"",
+        
     });
     const {id} = useParams();
     alert(id);
@@ -21,7 +26,7 @@ const ViewUser = () => {
     
     useEffect(() =>{
         const LoadUserData = async() => {
-          const result = await axios.get(`http://localhost:5000/crime-report/${id}`);
+          const result = await axios.get(`http://localhost:5000/lostitems-report/report/${id}`);
           setUserData(result.data[0]);
           console.log(result.data);
           // setUser(data);
@@ -36,16 +41,26 @@ const ViewUser = () => {
             <Grid item component={Card}  
             className={cx(styles.card,styles.crime)}>
                         <CardContent className='card-content'>
-                            <Typography variant='h4' gutterBottom> User Data </Typography>
+                            <Typography variant='h4' gutterBottom> Lost Item Data </Typography>
                             <Typography variant='h5' color="text.secondary">ID:  {userData.id}   
                             </Typography>
                             <Typography variant='h5' color="text.secondary">Name:  {userData.name}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Type: {userData.crimetype}   
+                            <Typography variant='h5' color="text.secondary">Item Name:  {userData.itemname}   
+                            </Typography>
+                            <Typography variant='h5' color="text.secondary">State:  {userData.state}   
+                            </Typography>
+                            <Typography variant='h5' color="text.secondary">Item Type:  {userData.lostitemtype}   
+                            </Typography>
+                            <Typography variant='h5' color="text.secondary">color: {userData.color}   
+                            </Typography>
+                            <Typography variant='h5' color="text.secondary">Description: {userData.discription}   
                             </Typography>
                             <Typography variant='h5' color="text.secondary">Detail: {userData.detail}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Location: {userData.location}</Typography>   
+                            <Typography variant='h5' color="text.secondary">Location: {userData.location}</Typography>
+                            <Typography variant='h5' color="text.secondary">Images</Typography> 
+                              
                             
                         </CardContent>    
             </Grid>

@@ -50,7 +50,7 @@ let columns = [
 ];
 const onDeleteUsers=(id) => {
   let data={"id":id}
-  axios.post('http://localhost:5000/crime-report/deletedata',data)
+  axios.delete(`http://localhost:5000/crime-report/${id}`)
  .then((res) => {
      console.log('response',res);
  })

@@ -21,7 +21,7 @@ const ViewUser = () => {
     
     useEffect(() =>{
         const LoadUserData = async() => {
-          const result = await axios.get(`http://localhost:5000/crime-report/${id}`);
+          const result = await axios.get(`http://localhost:5000/certificatespermits-request/report/${id}`);
           setUserData(result.data[0]);
           console.log(result.data);
           // setUser(data);

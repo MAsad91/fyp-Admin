@@ -21,7 +21,7 @@ const ViewUser = () => {
     
     useEffect(() =>{
         const LoadUserData = async() => {
-          const result = await axios.get(`http://localhost:5000/crime-report/${id}`);
+          const result = await axios.get(`http://localhost:5000/safelife-reports/report/${id}`);
           setUserData(result.data[0]);
           console.log(result.data);
           // setUser(data);
@@ -41,7 +41,7 @@ const ViewUser = () => {
                             </Typography>
                             <Typography variant='h5' color="text.secondary">Name:  {userData.name}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Type: {userData.crimetype}   
+                            <Typography variant='h5' color="text.secondary">Report Type: {userData.crimetype}   
                             </Typography>
                             <Typography variant='h5' color="text.secondary">Detail: {userData.detail}   
                             </Typography>

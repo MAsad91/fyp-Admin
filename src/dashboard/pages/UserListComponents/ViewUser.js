@@ -43,7 +43,7 @@ const ViewUser = () => {
                             </Typography>
                             <Typography variant='h5' color="text.secondary">Address: {userData.address}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Crime Reports: {userData.crimereports.length}  
+                            <Typography variant='h5' color="text.secondary">Crime Reports: {userData.crimereports?.length}  
                             </Typography>
                             <Typography variant='h5' color="text.secondary">safe life Reports: {userData.safelifereports?.length}  
                             </Typography>

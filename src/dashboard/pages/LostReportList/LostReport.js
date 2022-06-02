@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState} from 'react';
-import DataTable from '../components/table/LostItemTable';
+import DataTable from '../../components/table/LostItemTable';
 function LostReport() {
   const[lostData, setLostData] = useState([]);
   useEffect(() => {

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Table } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 
 const CommunityServicesTable = (props) => {
   console.log(props);
@@ -30,7 +30,12 @@ const CommunityServicesTable = (props) => {
       render:(record) =>{
         return (
           <>
-            <EditOutlined style={{ color:"blue"}}/>
+            <Link to={`/communityservices/${record.id}`}>
+              <EyeOutlined style={{ color:"green", marginRight: 12}} />
+            </Link>
+            <Link to={`/communityservices/communityeditform/${record.id}`}>
+              <EditOutlined style={{ color:"blue"}}/>
+            </Link>
             <DeleteOutlined onClick={()=>{
               onDeleteUsers(record.id)
             }} style={{ color:"red", marginLeft: 12 }}/>
@@ -42,7 +47,7 @@ const CommunityServicesTable = (props) => {
 
   const onDeleteUsers=(id) => {
     let data={"id":id}
-    axios.post('http://localhost:5000/request-communityservices/deletedata',data)
+    axios.delete(`http://localhost:5000/request-communityservices/${id}`)
    .then((res) => {
        console.log('response',res);
    })

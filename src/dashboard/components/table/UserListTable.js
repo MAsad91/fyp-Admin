@@ -87,9 +87,7 @@ const UserListTable = (props) => {
 
   const onDeleteUsers=async(id) => {
     await axios.delete(`http://localhost:5000/userlist/${id}`)
-    let data={"id":id}
-    axios.post('http://localhost:5000/userlist/deletedata',data)
-   .then((res) => {
+    .then((res) => {
        console.log('response',res);
    })
    .catch((error) => {

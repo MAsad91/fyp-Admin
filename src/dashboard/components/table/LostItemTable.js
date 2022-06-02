@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Table } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 
 const LostItemTable = (props) => {
   console.log(props);
@@ -47,7 +47,13 @@ const LostItemTable = (props) => {
       render:(record) =>{
         return (
           <>
-            <EditOutlined style={{ color:"blue"}}/>
+            <Link to={`/lostreport/${record.id}`}>
+              <EyeOutlined style={{ color:"green", marginRight: 12}} />
+            </Link>
+            <Link to={`/lostreport/losteditform/${record.id}`}>
+              <EditOutlined style={{ color:"blue"}}/>
+            </Link>
+            
             <DeleteOutlined onClick={()=>{
               onDeleteUsers(record.id)
             }} style={{ color:"red", marginLeft: 12 }}/>
@@ -59,7 +65,7 @@ const LostItemTable = (props) => {
 
   const onDeleteUsers=(id) => {
     let data={"id":id}
-    axios.post('http://localhost:5000/lost-report/deletedata',data)
+    axios.delete(`http://localhost:5000/lost-report/${id}`)
    .then((res) => {
        console.log('response',res);
    })

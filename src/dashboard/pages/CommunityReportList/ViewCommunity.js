@@ -7,11 +7,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from '../../components/cards/Cards.module.css';
 
 const ViewUser = () => {
-    const [userData, setUserData]=useState({
+    const [userData, setUserData]= useState({
         name:"",
         type:"",
         detail:"",
-        location:""
+        
     });
     const {id} = useParams();
     alert(id);
@@ -21,7 +21,7 @@ const ViewUser = () => {
     
     useEffect(() =>{
         const LoadUserData = async() => {
-          const result = await axios.get(`http://localhost:5000/crime-report/${id}`);
+          const result = await axios.get(`http://localhost:5000/communityservices-request/report/${id}`);
           setUserData(result.data[0]);
           console.log(result.data);
           // setUser(data);

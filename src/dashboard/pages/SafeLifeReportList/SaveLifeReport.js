@@ -1,7 +1,7 @@
 import axios
  from 'axios';
 import React, { useEffect, useState} from 'react';
-import DataTable from '../components/table/SaveLifeTable';
+import DataTable from '../../components/table/SaveLifeTable';
 
 function SaveLifeReport() {
   const[saveLife, setSaveLife] = useState([]);

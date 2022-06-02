@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Table } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 
 const SaveLifeTable = (props) => {
   console.log(props);
@@ -33,7 +33,13 @@ const SaveLifeTable = (props) => {
       render:(record) =>{
         return (
           <>
-            <EditOutlined style={{ color:"blue"}}/>
+            <Link to={`/safelifereport/${record.id}`}>
+              <EyeOutlined style={{ color:"green", marginRight: 12 }} />
+            </Link>
+            <Link to={`/safelifereport/safelifeeditform/${record.id}`}>
+              <EditOutlined style={{ color:"blue"}}/>
+            </Link>
+            
             <DeleteOutlined onClick={()=>{
               onDeleteUsers(record.id)
             }} style={{ color:"red", marginLeft: 12 }}/>
@@ -45,7 +51,7 @@ const SaveLifeTable = (props) => {
 
   const onDeleteUsers=(id) => {
     let data={"id":id}
-    axios.post('http://localhost:5000/safelife-report/deletedata',data)
+    axios.delete(`http://localhost:5000/safelife-report/${id}`)
    .then((res) => {
        console.log('response',res);
    })
