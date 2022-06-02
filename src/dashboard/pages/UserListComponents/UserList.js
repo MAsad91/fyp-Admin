@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState} from 'react';
-import DataTable from '../components/table/UserListTable';
+import DataTable from '../../components/table/UserListTable';
 function UserList() {
   const [userListData, setUserListData] = useState([]);
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Table } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 
 
 const EventsTable = (props) => { 
@@ -25,19 +25,21 @@ let columns = [
     title: "Details",
     dataIndex: "details",
   },
-  {
-    title: "Location",
-    dataIndex: "location",
-  },
+  // {
+  //   title: "Location",
+  //   dataIndex: "location",
+  // },
   {
     title: "Actions",
     render:(record) =>{
       return (
         <>
-          <EditOutlined style={{ color:"blue"}}/>
+          <EyeOutlined style={{ color:"green", marginRight: 12 }}/>
+          <EditOutlined style={{ color:"blue"}} Link to='/userlist/edit'/>
           <DeleteOutlined onClick={()=>{
             onDeleteUsers(record.id)
           }} style={{ color:"red", marginLeft: 12 }}/>
+          
         </>
       );
     }

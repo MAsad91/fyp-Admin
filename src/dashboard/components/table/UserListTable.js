@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Table } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, EyeOutlined} from "@ant-design/icons";
 
-import UserDetail from '../../pages/UserDetail';
 
 
 const UserListTable = (props) => {
@@ -64,18 +64,29 @@ const UserListTable = (props) => {
       render:(record) =>{
         return (
           <>
-            <EditOutlined style={{ color:"blue"}}/>
+            <Link to={`/userlist/${record.id}`}>
+              <EyeOutlined style={{ color:"green", marginRight: 12 }}/>
+            </Link>
+            
+            <Link to={`/userlist/userform/${record.id}`}>
+              <EditOutlined  style={{ color:"blue"}} />
+            </Link>
+            
+            
             <DeleteOutlined onClick={()=>{
               onDeleteUsers(record.id)
             }} style={{ color:"red", marginLeft: 12 }}/>
+            
           </>
         );
       }
     }
     
   ];
+  
 
-  const onDeleteUsers=(id) => {
+  const onDeleteUsers=async(id) => {
+    await axios.delete(`http://localhost:5000/userlist/${id}`)
     let data={"id":id}
     axios.post('http://localhost:5000/userlist/deletedata',data)
    .then((res) => {
@@ -92,17 +103,17 @@ const UserListTable = (props) => {
         dataSource={props.userListData}
         pagination={true}
         
-        onRow={(record) => {
-          return {
-            onClick: () => {
+        // onRow={(record) => {
+        //   return {
+        //     onClick: () => {
               
               
-              console.log(record);
+        //       console.log(record);
               
-            }, // click row
+        //     }, // click row
             
-          };
-        }}
+        //   };
+        // }}
         style={{ marginTop: "1rem" }}
       />
     </Fragment>

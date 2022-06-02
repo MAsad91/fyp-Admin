@@ -12,12 +12,13 @@ import Lost from './dashboard/pages/LostReport';
 import Found from './dashboard/pages/FoundReport';
 import Community from './dashboard/pages/CommunityReport';
 import CertificatesPermits from './dashboard/pages/CertificatesReport';
-import UserList from './dashboard/pages/UserList';
+import UserList from './dashboard/pages/UserListComponents/UserList';
 import Navbar from './dashboard/shared/Navbar';
 import LoggedIn from './dashboard/pages/LoggedIn';
 import SignUp from './dashboard/pages/SignedUp';
 
-import UserDetail from './dashboard/pages/UserDetail';
+import EditUserList from './dashboard/pages/UserListComponents/UserForm';
+import ViewUser from './dashboard/pages/UserListComponents/ViewUser';
 import Events from './dashboard/pages/Events/Events';
 import EventsForm from './dashboard/pages/Events/EventsForm';
 
@@ -115,6 +116,8 @@ const login = useCallback((uid, token, expirationDate) => {
 
                       <Route path={`/userlist`} exact element={<UserList />}/>
 
+                      <Route path='/userlist/userform/:id' exact element={<EditUserList />} />
+                      <Route path='/userlist/:id' exact element={<ViewUser />} />
 
                       <Route path={`/crimereport`} exact element={<Crime />} />
 
@@ -152,8 +155,8 @@ const login = useCallback((uid, token, expirationDate) => {
               <Route path="/signup" exact
               element={<SignUp />}/>
 
-              {/* <Route path="/" exact
-              element={<Navigate to="/login" />}/>  */}
+              <Route path="/" exact
+              element={<Navigate to="/login" />}/> 
 
               {/* <Route path="*" exact>
                 <Redirect to="/login" />
