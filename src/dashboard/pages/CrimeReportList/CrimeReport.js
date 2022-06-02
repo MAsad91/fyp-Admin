@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState} from 'react';
-import DataTable from '../components/table/CrimeTable';
+import DataTable from '../../components/table/CrimeTable';
 
 function CrimeReport() {
   const [crimeData, setCrimeData] = useState([]);

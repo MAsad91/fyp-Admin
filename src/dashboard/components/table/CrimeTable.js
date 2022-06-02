@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Table } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 
 
 const CrimeTable = (props) => { 
@@ -34,7 +34,12 @@ let columns = [
     render:(record) =>{
       return (
         <>
-          <EditOutlined style={{ color:"blue"}}/>
+          <Link to={`/crimereport/${record.id}`}>
+            <EyeOutlined style={{ color:"green", marginRight: 12}}/>
+          </Link>
+          <Link to={`/crimereport/editcrimeform/${record.id}`}>
+            <EditOutlined style={{ color:"blue"}}/>
+          </Link>
           <DeleteOutlined onClick={()=>{
             onDeleteUsers(record.id)
           }} style={{ color:"red", marginLeft: 12 }}/>

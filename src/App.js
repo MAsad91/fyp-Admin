@@ -6,17 +6,21 @@ import  './App.css';
 
 
 import Home from './dashboard/pages/Home';
-import Crime from './dashboard/pages/CrimeReport';
+import Crime from './dashboard/pages/CrimeReportList/CrimeReport';
+import EditCrimeForm from './dashboard/pages/CrimeReportList/CrimeEditForm';
+import ViewCrime from './dashboard/pages/CrimeReportList/ViewCrime';
+
 import SafeLife from './dashboard/pages/SaveLifeReport';
 import Lost from './dashboard/pages/LostReport';
 import Found from './dashboard/pages/FoundReport';
 import Community from './dashboard/pages/CommunityReport';
 import CertificatesPermits from './dashboard/pages/CertificatesReport';
-import UserList from './dashboard/pages/UserListComponents/UserList';
+
 import Navbar from './dashboard/shared/Navbar';
 import LoggedIn from './dashboard/pages/LoggedIn';
 import SignUp from './dashboard/pages/SignedUp';
 
+import UserList from './dashboard/pages/UserListComponents/UserList';
 import EditUserList from './dashboard/pages/UserListComponents/UserForm';
 import ViewUser from './dashboard/pages/UserListComponents/ViewUser';
 import Events from './dashboard/pages/Events/Events';
@@ -115,11 +119,12 @@ const login = useCallback((uid, token, expirationDate) => {
                       <Route path="/" exact element={<Home />} />
 
                       <Route path={`/userlist`} exact element={<UserList />}/>
-
                       <Route path='/userlist/userform/:id' exact element={<EditUserList />} />
                       <Route path='/userlist/:id' exact element={<ViewUser />} />
 
                       <Route path={`/crimereport`} exact element={<Crime />} />
+                      <Route path='/crimereport/editcrimeform/:id' exact element={<EditCrimeForm />} />
+                      <Route path='/crimereport/:id' exact element={<ViewCrime />} />
 
                       <Route path={`/safelifereport`} exact element={<SafeLife />} />
 
