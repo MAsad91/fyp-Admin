@@ -21,7 +21,7 @@ const ViewUser = () => {
         const LoadUserData = async() => {
           const result = await axios.get(`http://localhost:5000/userlist/${id}`);
           setUserData(result.data[0]);
-          console.log(result.data);
+          console.log(result);
           // setUser(data);
         }
         LoadUserData();
@@ -43,17 +43,17 @@ const ViewUser = () => {
                             </Typography>
                             <Typography variant='h5' color="text.secondary">Address: {userData.address}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Crime Reports: {userData.crimereports+' ,'}  
+                            <Typography variant='h5' color="text.secondary">Crime Reports: {userData.crimereports.length}  
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">safe life Reports: {userData.safelifereports+' ,'}  
+                            <Typography variant='h5' color="text.secondary">safe life Reports: {userData.safelifereports?.length}  
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Lost Reports: {userData.lostitemsreports+' ,'}   
+                            <Typography variant='h5' color="text.secondary">Lost Reports: {userData.lostitemsreports?.length}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Found Reports: {userData.founditemsreports+' ,'} 
+                            <Typography variant='h5' color="text.secondary">Found Reports: {userData.founditemsreports?.length} 
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Certificates & Permits: {userData.certificatespermitsrequests+' ,'}   
+                            <Typography variant='h5' color="text.secondary">Certificates & Permits: {userData.certificatespermitsrequests?.length}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Community Services: {userData.communityservicesrequests+' ,'}   
+                            <Typography variant='h5' color="text.secondary">Community Services: {userData.communityservicesrequests?.length}   
                             </Typography>
                         </CardContent>    
             </Grid>
