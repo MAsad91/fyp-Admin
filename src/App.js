@@ -7,21 +7,36 @@ import  './App.css';
 
 import Home from './dashboard/pages/Home';
 import Crime from './dashboard/pages/CrimeReportList/CrimeReport';
-import EditCrimeForm from './dashboard/pages/CrimeReportList/CrimeEditForm';
+import CrimeEditForm from './dashboard/pages/CrimeReportList/CrimeEditForm';
 import ViewCrime from './dashboard/pages/CrimeReportList/ViewCrime';
 
-import SafeLife from './dashboard/pages/SaveLifeReport';
-import Lost from './dashboard/pages/LostReport';
-import Found from './dashboard/pages/FoundReport';
-import Community from './dashboard/pages/CommunityReport';
-import CertificatesPermits from './dashboard/pages/CertificatesReport';
+import SafeLife from './dashboard/pages/SafeLifeReportList/SaveLifeReport';
+import SafeLifeEditForm from './dashboard/pages/SafeLifeReportList/SafeLifeEditForm';
+import ViewSafeLife from './dashboard/pages/SafeLifeReportList/ViewSafeLife';
+
+import Lost from './dashboard/pages/LostReportList/LostReport';
+import LostEditForm from './dashboard/pages/LostReportList/LostEditForm';
+import ViewLost from './dashboard/pages/LostReportList/ViewLost';
+
+import Found from './dashboard/pages/FoundReportList/FoundReport';
+import FoundEditForm from './dashboard/pages/FoundReportList/FoundEditForm';
+import ViewFound from './dashboard/pages/FoundReportList/ViewFound';
+
+
+import CommunityReport from './dashboard/pages/CommunityReportList/CommunityReport';
+import CommunityEditForm from './dashboard/pages/CommunityReportList/CommunityEditForm';
+import ViewCommunity from './dashboard/pages/CommunityReportList/ViewCommunity';
+
+import CertificatesPermits from './dashboard/pages/CertificateReportList/CertificatesReport';
+import CertificatesEditForm from './dashboard/pages/CertificateReportList/CertificateEditForm';
+import ViewCertificate from './dashboard/pages/CertificateReportList/ViewCertificate';
 
 import Navbar from './dashboard/shared/Navbar';
 import LoggedIn from './dashboard/pages/LoggedIn';
 import SignUp from './dashboard/pages/SignedUp';
 
 import UserList from './dashboard/pages/UserListComponents/UserList';
-import EditUserList from './dashboard/pages/UserListComponents/UserForm';
+import UserListEditForm from './dashboard/pages/UserListComponents/UserForm';
 import ViewUser from './dashboard/pages/UserListComponents/ViewUser';
 import Events from './dashboard/pages/Events/Events';
 import EventsForm from './dashboard/pages/Events/EventsForm';
@@ -119,22 +134,32 @@ const login = useCallback((uid, token, expirationDate) => {
                       <Route path="/" exact element={<Home />} />
 
                       <Route path={`/userlist`} exact element={<UserList />}/>
-                      <Route path='/userlist/userform/:id' exact element={<EditUserList />} />
+                      <Route path='/userlist/userform/:id' exact element={<UserListEditForm />} />
                       <Route path='/userlist/:id' exact element={<ViewUser />} />
 
                       <Route path={`/crimereport`} exact element={<Crime />} />
-                      <Route path='/crimereport/editcrimeform/:id' exact element={<EditCrimeForm />} />
+                      <Route path='/crimereport/editcrimeform/:id' exact element={<CrimeEditForm />}/>
                       <Route path='/crimereport/:id' exact element={<ViewCrime />} />
 
                       <Route path={`/safelifereport`} exact element={<SafeLife />} />
+                      <Route path='/safelifereport/safelifeeditform/:id' exact element={<SafeLifeEditForm />} />
+                      <Route path='/safelifereport/:id' exact element={<ViewSafeLife />} />
 
                       <Route path={`/lostreport`} exact element={<Lost />} />
+                      <Route path='/lostreport/losteditform/:id' exact element={<LostEditForm />} />
+                      <Route path='/lostreport/:id' exact element={<ViewLost />} />
 
                       <Route path={`/foundreport`} exact element={<Found />} />
+                      <Route path='/foundreport/foundeditform/:id' exact element={<FoundEditForm />}/>
+                      <Route path='/foundreport/:id' exact element={<ViewFound />} />
 
-                      <Route path={`/communityservices`} exact element={<Community />} />
+                      <Route path={`/communityservices`} exact element={<CommunityReport />} />
+                      <Route path='/communityservices/communityeditform/:id' exact element={<CommunityEditForm />} />
+                      <Route path='/communityservices/:id' exact element={<ViewCommunity />} />
 
                       <Route path={`/certificatepermits`} exact element={<CertificatesPermits />} />
+                      <Route path='/certificatepermits/requesteditform/:id' exact element={<CertificatesEditForm />} />
+                      <Route path='/certificatepermits/:id' exact element={<ViewCertificate />} />
                       
                       <Route path={`/events`} exact element={<Events />} />
 

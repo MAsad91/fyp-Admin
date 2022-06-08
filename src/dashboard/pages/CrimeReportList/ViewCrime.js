@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "../../components/cards/Cards.module.css";
 
 const ViewUser = () => {
+<<<<<<< HEAD
   const [userData, setUserData] = useState({
     name: "",
     type: "",
@@ -31,6 +32,31 @@ const ViewUser = () => {
     LoadUserData();
   }, []);
   console.log(userData);
+=======
+    const [userData, setUserData]=useState({
+        name:"",
+        type:"",
+        detail:"",
+        location:""
+    });
+    const {id} = useParams();
+    alert(id);
+    console.log(id);
+    // const [userData, setUserData] = useState([]);
+    const navigate = useNavigate();
+    
+    useEffect(() =>{
+        const LoadUserData = async() => {
+          const result = await axios.get(`http://localhost:5000/crime-report/${id}`);
+          setUserData(result.data[0]);
+          console.log(result.data);
+          // setUser(data);
+        }
+        LoadUserData();
+        
+      },[])
+      console.log(userData);
+>>>>>>> 4dbad662ff446623b4d0f9b58acf335deca0ca4c
   return (
     <div className={styles.container}>
       <Grid container spacing={10} justify="center">

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState} from 'react';
-import DataTable from '../components/table/CertificatesTable';
+import DataTable from '../../components/table/CertificatesTable';
 function CertificatesReport() {
   const [certificateData, setCertificateData] = useState([]);
 

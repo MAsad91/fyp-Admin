@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState} from 'react';
-import DataTable from '../components/table/FoundItemTable';
+import DataTable from '../../components/table/FoundItemTable';
 function FoundReport() {
   const[foundData, setFoundData] = useState([]);
   useEffect(() => {

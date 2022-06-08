@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState} from 'react';
-import DataTable from '../components/table/communityServicesTable';
+import DataTable from '../../components/table/communityServicesTable';
 function CommunityReport() {
   const[communityData, setCommunityData] = useState([]);
   useEffect(() => {
