@@ -44,7 +44,10 @@ const EventsForm = () => {
               formData.append("eventtype", value.eventtype);
               formData.append("details", value.details);
               formData.append("location", value.location);
-              formData.append("images", images[0].originFileObj);
+              images.map((image) => {
+                formData.append("images", image.originFileObj);
+              });
+              // formData.append("images", images[0].originFileObj);
               formData.append("creator", auth.userId);
               const response = await axios({
                 method: "post",
@@ -163,15 +166,16 @@ const EventsForm = () => {
               ]}
             >
               <Upload.Dragger
-                maxCount={1}
-                //multiple="false"
+                // maxCount={1}
+                // multiple="false"
+                multiple
                 accept=".png,.jpg,.jpeg"
                 onChange={uploadHandle}
                 beforeUpload={() => false}
               >
                 Drag file here OR
                 <br />
-                <Button>Click Upload (Max 1 image)</Button>
+                <Button>Click Upload</Button>
               </Upload.Dragger>
             </Form.Item>
           </div>
