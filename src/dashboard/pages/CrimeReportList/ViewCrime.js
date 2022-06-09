@@ -7,13 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "../../components/cards/Cards.module.css";
 
 const ViewUser = () => {
-<<<<<<< HEAD
-  const [userData, setUserData] = useState({
-    name: "",
-    type: "",
-    detail: "",
-    location: "",
-  });
+// <<<<<<< HEAD
+const [userData, setUserData]=useState({});
   const { id } = useParams();
   // alert(id);
   console.log(id);
@@ -25,38 +20,38 @@ const ViewUser = () => {
       const result = await axios.get(
         `http://localhost:5000/crime-report/report/${id}`
       );
-      setUserData(result.data[0]);
-      console.log(result.data);
+      setUserData(result.data.report);
+      console.log(result.data.report);
       // setUser(data);
     };
     LoadUserData();
   }, []);
   console.log(userData);
-=======
-    const [userData, setUserData]=useState({
-        name:"",
-        type:"",
-        detail:"",
-        location:""
-    });
-    const {id} = useParams();
-    alert(id);
-    console.log(id);
-    // const [userData, setUserData] = useState([]);
-    const navigate = useNavigate();
+// =======
+    // const [userData, setUserData]=useState({
+    //     name:"",
+    //     type:"",
+    //     detail:"",
+    //     location:""
+    // });
+    // const {id} = useParams();
+    // alert(id);
+    // console.log(id);
+    // // const [userData, setUserData] = useState([]);
+    // const navigate = useNavigate();
     
-    useEffect(() =>{
-        const LoadUserData = async() => {
-          const result = await axios.get(`http://localhost:5000/crime-report/${id}`);
-          setUserData(result.data[0]);
-          console.log(result.data);
-          // setUser(data);
-        }
-        LoadUserData();
+    // useEffect(() =>{
+    //     const LoadUserData = async() => {
+    //       const result = await axios.get(`http://localhost:5000/crime-report/${id}`);
+    //       setUserData(result.data[0]);
+    //       console.log(result.data);
+    //       // setUser(data);
+    //     }
+    //     LoadUserData();
         
-      },[])
-      console.log(userData);
->>>>>>> 4dbad662ff446623b4d0f9b58acf335deca0ca4c
+    //   },[])
+    //   console.log(userData);
+// >>>>>>> 4dbad662ff446623b4d0f9b58acf335deca0ca4c
   return (
     <div className={styles.container}>
       <Grid container spacing={10} justify="center">
@@ -67,19 +62,19 @@ const ViewUser = () => {
               User Data{" "}
             </Typography>
             <Typography variant="h5" color="text.secondary">
-              ID: {userData.id}
+              ID: {userData?._id}
             </Typography>
             <Typography variant="h5" color="text.secondary">
-              Name: {userData.name}
+              Name: {userData?.name}
             </Typography>
             <Typography variant="h5" color="text.secondary">
-              Type: {userData.crimetype}
+              Type: {userData?.crimetype}
             </Typography>
             <Typography variant="h5" color="text.secondary">
-              Detail: {userData.detail}
+              Detail: {userData?.details}
             </Typography>
             <Typography variant="h5" color="text.secondary">
-              Location: {userData.location}
+              Location: {userData?.location}
             </Typography>
           </CardContent>
         </Grid>

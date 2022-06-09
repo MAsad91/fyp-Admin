@@ -48,7 +48,7 @@ const CertificateTable = (props) => {
 
   const onDeleteUsers=(id) => {
     let data={"id":id}
-    axios.delete(`http://localhost:5000/crime-report/${id}`)
+    axios.delete(`http://localhost:5000/request-certificatepermits/${id}`)
    .then((res) => {
        console.log('response',res);
    })

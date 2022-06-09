@@ -58,6 +58,7 @@ const Login = () => {
               auth.login(response.data.userId, response.data.token);
             } catch (err) {
               const message = err.response.data.message;
+              console.log(message);
               setError(message || "Something went wrong,Please try again!");
               console.log(err.response.data.message, err.response.status);
             }

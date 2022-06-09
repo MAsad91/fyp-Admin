@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Table } from "antd";
+import { Table, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 
 
@@ -49,14 +49,22 @@ let columns = [
   }
 ];
 const onDeleteUsers=(id) => {
-  let data={"id":id}
-  axios.delete(`http://localhost:5000/crime-report/${id}`)
- .then((res) => {
-     console.log('response',res);
- })
- .catch((error) => {
-     console.log('error block called',error);
- })
+  Modal.confirm({
+    title:'Are you sure to delete ?',
+    cancelText:'No',
+    okText:'Yes',
+    okType:'danger',
+    onOk:() => {
+      axios.delete(`http://localhost:5000/crime-report/${id}`)
+      .then((res) => {
+          console.log('response',res);
+      })
+      .catch((error) => {
+          console.log('error block called',error);
+      })
+    }
+  })
+  
 }
 
    

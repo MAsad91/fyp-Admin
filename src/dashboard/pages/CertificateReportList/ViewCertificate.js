@@ -7,12 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from '../../components/cards/Cards.module.css';
 
 const ViewUser = () => {
-    const [userData, setUserData]=useState({
-        name:"",
-        type:"",
-        detail:"",
-        location:""
-    });
+    const [userData, setUserData]=useState({});
     const {id} = useParams();
     alert(id);
     console.log(id);
@@ -21,9 +16,9 @@ const ViewUser = () => {
     
     useEffect(() =>{
         const LoadUserData = async() => {
-          const result = await axios.get(`http://localhost:5000/certificatespermits-request/report/${id}`);
-          setUserData(result.data[0]);
-          console.log(result.data);
+          const result = await axios.get(`http://localhost:5000/request-certificatepermits/report/${id}`);
+          setUserData(result.data.report);
+          console.log(result.data.report);
           // setUser(data);
         }
         LoadUserData();
@@ -37,16 +32,14 @@ const ViewUser = () => {
             className={cx(styles.card,styles.crime)}>
                         <CardContent className='card-content'>
                             <Typography variant='h4' gutterBottom> User Data </Typography>
-                            <Typography variant='h5' color="text.secondary">ID:  {userData.id}   
+                            <Typography variant='h5' color="text.secondary">ID:  {userData?._id}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Name:  {userData.name}   
+                            <Typography variant='h5' color="text.secondary">Name:  {userData?.name}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Type: {userData.crimetype}   
+                            <Typography variant='h5' color="text.secondary">Type: {userData?.requesttype}   
                             </Typography>
-                            <Typography variant='h5' color="text.secondary">Detail: {userData.detail}   
-                            </Typography>
-                            <Typography variant='h5' color="text.secondary">Location: {userData.location}</Typography>   
-                            
+                            <Typography variant='h5' color="text.secondary">Detail: {userData?.details}   
+                            </Typography>  
                         </CardContent>    
             </Grid>
         </Grid>
