@@ -10,15 +10,15 @@ const Cards = (props) => {
 
     return(
         <div className={styles.container}>
-            <Grid container spacing={3} justify='center'>
+            <Grid container spacing={3} justifyContent='center'>
                 <Grid item component={Card} xs={12} sm={6} md={4} 
                 className={cx(styles.card,styles.crime)}>
                     <CardContent className='card-content'>
                         <Typography variant='h5' gutterBottom> Crime </Typography>
-                        <Typography variant='h5' color="text.secondary">
+                        <Typography variant='h5' /*color="text.secondary"*/>
                             <CountUp start={0} end={props.crimeCount} duration={2.5} separator="," />   
                         </Typography>
-                        <Typography variant='body2' color="text.secondary">Number of Cases Report</Typography>
+                        <Typography variant='body2' /*color="text.secondary"*/>Number of Cases Report</Typography>
                     </CardContent>    
                 </Grid>
                 <Grid item component={Card} 
@@ -68,7 +68,7 @@ const Cards = (props) => {
                     <CardContent className='card-content'>
                         <Typography variant='h5' gutterBottom> Community Services </Typography>
                         <Typography variant='h5'>
-                            <CountUp start={0} end={props.communityCount} duration={1} separator="," />
+                            <CountUp start={0} end={props.communityCount} duration={1} separator=","/>
                         </Typography>
                         <Typography variant='body2'>Number of Cases Report</Typography>
                     </CardContent>

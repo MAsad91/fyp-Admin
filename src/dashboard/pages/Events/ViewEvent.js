@@ -13,6 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "../../components/cards/Cards.module.css";
 
 const ViewUser = () => {
+  // <<<<<<< HEAD
   const [userData, setUserData] = useState({});
   const { id } = useParams();
   // alert(id);
@@ -22,11 +23,9 @@ const ViewUser = () => {
 
   useEffect(() => {
     const LoadUserData = async () => {
-      const result = await axios.get(
-        `http://localhost:5000/found-report/report/${id}`
-      );
-      setUserData(result.data.report);
-      console.log(result.data.report);
+      const result = await axios.get(`http://localhost:5000/events/${id}`);
+      setUserData(result.data.event);
+      console.log(result.data.event);
       // setUser(data);
     };
     LoadUserData();
@@ -38,8 +37,7 @@ const ViewUser = () => {
         <Grid item component={Card} className={cx(styles.card, styles.crime)}>
           <CardContent className="card-content">
             <Typography variant="h4" gutterBottom>
-              {" "}
-              found Item Data{" "}
+              User Data
             </Typography>
             <Typography variant="h5" color="text.secondary">
               ID: {userData?._id}
@@ -48,19 +46,7 @@ const ViewUser = () => {
               Name: {userData?.name}
             </Typography>
             <Typography variant="h5" color="text.secondary">
-              Item Name: {userData?.itemname}
-            </Typography>
-            <Typography variant="h5" color="text.secondary">
-              State: {userData?.state}
-            </Typography>
-            <Typography variant="h5" color="text.secondary">
-              Item Type: {userData?.founditemtype}
-            </Typography>
-            <Typography variant="h5" color="text.secondary">
-              color: {userData?.color}
-            </Typography>
-            <Typography variant="h5" color="text.secondary">
-              Description: {userData?.description}
+              Type: {userData?.eventtype}
             </Typography>
             <Typography variant="h5" color="text.secondary">
               Detail: {userData?.details}
@@ -68,15 +54,12 @@ const ViewUser = () => {
             <Typography variant="h5" color="text.secondary">
               Location: {userData?.location}
             </Typography>
-            <Typography variant="h5" color="text.secondary">
-              Images
-            </Typography>
           </CardContent>
           <CardMedia
             component="img"
             height="194"
-            image={userData.images}
-            alt="Found Images"
+            image={userData.images[0]}
+            alt="Event Images"
           />
         </Grid>
       </Grid>

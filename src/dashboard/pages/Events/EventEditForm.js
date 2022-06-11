@@ -5,22 +5,22 @@ import { AuthContext } from "../../shared/auth-context";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
+import EventsForm from "./EventsForm";
 
-const CrimeEditForm = () => {
+const EventEditForm = () => {
   const {id} = useParams();
-  const [images, setImages] = useState([]);
-  const [error, setError] = useState(false);
-  const auth = useContext(AuthContext);
-  const navigate = useNavigate();
-  const [crimeName, setCrimeName] = useState('hello');
   const [userData, setUserData]=useState({
     defaultValues: {
       name:'',
       crimetype:'',
       details:'',
       location:''
-    }
-  });
+    }});
+  const [images, setImages] = useState([]);
+  const [error, setError] = useState(false);
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const uploadHandle = ({ fileList }) => {
     setImages(fileList);
   };
@@ -28,18 +28,14 @@ const CrimeEditForm = () => {
   const errorHandler = () => {
     setError(null);
   };
+
   useEffect(() => {
     const LoadUserData = async () => {
       const result = await axios.get(
-        `http://localhost:5000/crime-report/report/${id}`
+        `http://localhost:5000/events/${id}`
       );
-      setUserData({
-        name : result.data.report.name,
-        crimetype: result.data.report.crimetype,
-        details: result.data.report.details,
-        location: result.data.report.location
-      });
-      console.log(result.data.report);
+      setUserData(result.data.event);
+      console.log(result.data.event);
       // setUser(data);
     };
     LoadUserData();
@@ -56,7 +52,7 @@ const CrimeEditForm = () => {
       )}
       <div className={styles.container}>
         <div className={styles.title}>
-          <h2>Crime Edit Form</h2>
+          <h2>Event</h2>
         </div>
         <Form
           autoComplete="off"
@@ -66,16 +62,17 @@ const CrimeEditForm = () => {
             try {
               let formData = new FormData();
               formData.append("name", value.name);
-              formData.append("crimetype", value.crimetype);
+              formData.append("eventtype", value.eventtype);
               formData.append("details", value.details);
               formData.append("location", value.location);
               images.map((image) => {
                 formData.append("images", image.originFileObj);
               });
-              formData.append("creator", id);
+              // formData.append("images", images[0].originFileObj);
+              formData.append("creator", auth.userId);
               const response = await axios({
                 method: "post",
-                url: "http://localhost:5000/crime-report/reportform",
+                url: "http://localhost:5000/events/eventform",
                 data: formData,
                 headers: {
                   "Content-Type": "multipart/form-data",
@@ -84,7 +81,7 @@ const CrimeEditForm = () => {
               });
               console.log(response);
               if (response.status === 201) {
-                navigate(`/crime-report/${id}`);
+                navigate(`/events`);
               }
             } catch (err) {
               const message = err.response.data.message;
@@ -96,54 +93,44 @@ const CrimeEditForm = () => {
           <div className={styles["form-control"]}>
             <Form.Item
               name="name"
-              label="Reporter Name"
-              // initialValue={userData.name}
+              label="Event Name"
               rules={[
                 {
                   required: true,
-                  message: "Please enter your Name",
+                  message: "Please enter Event Name",
                 },
                 {
-                  min: 3,
+                  min: 5,
                 },
               ]}
               hasFeedback
             >
-              <input
-                type="text"
-                id="name"
-                value={crimeName}
-
-                // defaultValue={userData? userData.name: ''}
-                // initialvalue={userData.name}
-                // defaultValue={userData.name}
-              />
+              <input type="text" id="name" defaultValue={userData.name} />
             </Form.Item>
           </div>
 
           <div className={styles["form-control"]}>
             <Form.Item
-              name="crimetype"
-              label="Crime Type"
+              name="eventtype"
+              label="Event Type"
               rules={[
                 {
                   required: true,
-                  message: "Please enter crime type",
+                  message: "Please enter Event type",
                 },
               ]}
               hasFeedback
             >
-              <select defaultValue={'crimetype'}>
+              <select defaultValue={userData.eventtype}>
                 <option value="">Select</option>
-                <option defaultValue={'crimetype'}></option>
-                <option value="Robbery">Robbery</option>
-                <option defaultValue="Snatching">Snatching</option>
-                <option value="Harassment">Harassment</option>
-                <option value="Kidnapping">Kidnapping</option>
-                <option value="CyberCrime">CyberCrime</option>
-                <option value="Fraud">Fraud</option>
-                <option value="Murder">Murder</option>
-                <option value="Others">Others</option>
+                <option value="concert">Concert</option>
+                <option value="seminar">Seminar</option>
+                <option value="speakersession">Speaker Session</option>
+                <option value="conference">Conference</option>
+                <option value="tradeshow">Trade Show</option>
+                <option value="expo">Expo</option>
+                <option value="sponsorship">Sponsorship</option>
+                <option value="others">Others</option>
               </select>
             </Form.Item>
           </div>
@@ -151,11 +138,11 @@ const CrimeEditForm = () => {
           <div className={styles["form-control"]}>
             <Form.Item
               name="details"
-              label="Crime Details"
+              label="Event Details"
               rules={[
                 {
                   required: true,
-                  message: "Please Enter Crime Details",
+                  message: "Please Enter Event Details",
                 },
                 {
                   min: 20,
@@ -170,11 +157,11 @@ const CrimeEditForm = () => {
           <div className={styles["form-control"]}>
             <Form.Item
               name="location"
-              label="Crime Location"
+              label="Event Location"
               rules={[
                 {
                   required: true,
-                  message: "Please enter crime location",
+                  message: "Please enter Event location",
                 },
                 {
                   min: 3,
@@ -185,11 +172,10 @@ const CrimeEditForm = () => {
               <input
                 type="text"
                 id="location"
-                defaultValue={'location'}
+                defaultValue={userData.location}
               />
             </Form.Item>
           </div>
-
           <div className={styles["form-control"]}>
             <Form.Item
               name="image"
@@ -201,6 +187,8 @@ const CrimeEditForm = () => {
               ]}
             >
               <Upload.Dragger
+                // maxCount={1}
+                // multiple="false"
                 multiple
                 accept=".png,.jpg,.jpeg"
                 onChange={uploadHandle}
@@ -208,7 +196,7 @@ const CrimeEditForm = () => {
               >
                 Drag file here OR
                 <br />
-                <Button>Click Upload </Button>
+                <Button>Click Upload</Button>
               </Upload.Dragger>
             </Form.Item>
           </div>
@@ -222,6 +210,5 @@ const CrimeEditForm = () => {
       </div>
     </Fragment>
   );
-};
-
-export default CrimeEditForm;
+}
+export default EventEditForm;

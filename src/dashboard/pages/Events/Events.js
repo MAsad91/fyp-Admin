@@ -43,7 +43,6 @@ function Events() {
         </Link>
       </div>
       <div>
-        <h1>Upcoming Events</h1>
         {/* {show && <NoDataCard title="Upcoming Events" text={message} />} */}
         <EventsTable EventData={EventData} />
       </div>

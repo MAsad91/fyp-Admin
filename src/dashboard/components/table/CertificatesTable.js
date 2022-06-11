@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Fragment } from "react";
-import { Table } from "antd";
+import { Table, Modal } from "antd";
 import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 
@@ -22,40 +22,47 @@ const CertificateTable = (props) => {
       dataIndex: "requesttype",
     },
     {
-      title: "Details",
-      dataIndex: "details",
-    },
-    {
       title: "Actions",
-      render:(record) =>{
+      render: (record) => {
         return (
-          <> 
+          <>
             <Link to={`/certificatepermits/${record.id}`}>
-              <EyeOutlined style={{ color:"green", marginRight: 12 }} />
+              <EyeOutlined style={{ color: "green", marginRight: 12 }} />
             </Link>
             <Link to={`/certificatepermits/requesteditform/${record.id}`}>
-              <EditOutlined style={{ color:"blue"}}/>
+              <EditOutlined style={{ color: "blue" }} />
             </Link>
-            
-            <DeleteOutlined onClick={()=>{
-              onDeleteUsers(record.id)
-            }} style={{ color:"red", marginLeft: 12 }}/>
+
+            <DeleteOutlined
+              onClick={() => {
+                onDeleteUsers(record.id);
+              }}
+              style={{ color: "red", marginLeft: 12 }}
+            />
           </>
         );
-      }
+      },
     },
   ];
 
-  const onDeleteUsers=(id) => {
-    let data={"id":id}
-    axios.delete(`http://localhost:5000/request-certificatepermits/${id}`)
-   .then((res) => {
-       console.log('response',res);
-   })
-   .catch((error) => {
-       console.log('error block called',error);
-   })
-  }
+  const onDeleteUsers = (id) => {
+    Modal.confirm({
+      title: "Are you sure, you want to delete ?",
+      cancelText: "No",
+      okText: "Yes",
+      okType: "danger",
+      onOk: () => {
+        axios
+          .delete(`http://localhost:5000/request-certificatepermits/${id}`)
+          .then((res) => {
+            console.log("response", res);
+          })
+          .catch((error) => {
+            console.log("error block called", error);
+          });
+      },
+    });
+  };
   return (
     <Fragment>
       <Table

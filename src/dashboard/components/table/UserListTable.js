@@ -2,10 +2,8 @@ import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Table } from "antd";
-import { EditOutlined, DeleteOutlined, EyeOutlined} from "@ant-design/icons";
-
-
+import { Table, Modal } from "antd";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 
 const UserListTable = (props) => {
   console.log(props);
@@ -27,20 +25,19 @@ const UserListTable = (props) => {
       //   }, // click row
       //   };
       // },
-    //   onCell: (record) => {
-    //     return {
-    //         onClick: (ev) => {
+      //   onCell: (record) => {
+      //     return {
+      //         onClick: (ev) => {
 
-    //             // <Link onClick={<SingleData record={record} />} to='/singledata'> </Link>
-    //             <>
-    //             <p>{record.id}</p>
-    //             </>
-    //             console.log(record);
-    //         },
-            
-    //     };
-    // },
-      
+      //             // <Link onClick={<SingleData record={record} />} to='/singledata'> </Link>
+      //             <>
+      //             <p>{record.id}</p>
+      //             </>
+      //             console.log(record);
+      //         },
+
+      //     };
+      // },
     },
     {
       title: "Name",
@@ -51,65 +48,64 @@ const UserListTable = (props) => {
       title: "Email",
       dataIndex: "email",
     },
-    {
-      title: "Contact No.",
-      dataIndex: "contactno",
-    },
-    {
-      title: "Address",
-      dataIndex: "address",
-    },
+
     {
       title: "Actions",
-      render:(record) =>{
+      render: (record) => {
         return (
           <>
             <Link to={`/userlist/${record.id}`}>
-              <EyeOutlined style={{ color:"green", marginRight: 12 }}/>
+              <EyeOutlined style={{ color: "green", marginRight: 12 }} />
             </Link>
-            
+
             <Link to={`/userlist/userform/${record.id}`}>
-              <EditOutlined  style={{ color:"blue"}} />
+              <EditOutlined style={{ color: "blue" }} />
             </Link>
-            
-            
-            <DeleteOutlined onClick={()=>{
-              onDeleteUsers(record.id)
-            }} style={{ color:"red", marginLeft: 12 }}/>
-            
+
+            <DeleteOutlined
+              onClick={() => {
+                onDeleteUsers(record.id);
+              }}
+              style={{ color: "red", marginLeft: 12 }}
+            />
           </>
         );
-      }
-    }
-    
+      },
+    },
   ];
-  
 
-  const onDeleteUsers=async(id) => {
-    await axios.delete(`http://localhost:5000/userlist/${id}`)
-    .then((res) => {
-       console.log('response',res);
-   })
-   .catch((error) => {
-       console.log('error block called',error);
-   })
-  }
+  const onDeleteUsers = async (id) => {
+    Modal.confirm({
+      title: "Are you sure, you want to delete ?",
+      cancelText: "No",
+      okText: "Yes",
+      okType: "danger",
+      onOk: () => {
+        axios
+          .delete(`http://localhost:5000/userlist/${id}`)
+          .then((res) => {
+            console.log("response", res);
+          })
+          .catch((error) => {
+            console.log("error block called", error);
+          });
+      },
+    });
+  };
   return (
     <Fragment>
       <Table
         columns={columns}
         dataSource={props.userListData}
         pagination={true}
-        
         // onRow={(record) => {
         //   return {
         //     onClick: () => {
-              
-              
+
         //       console.log(record);
-              
+
         //     }, // click row
-            
+
         //   };
         // }}
         style={{ marginTop: "1rem" }}
