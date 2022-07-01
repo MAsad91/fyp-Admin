@@ -1,17 +1,23 @@
 import axios from "axios";
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Table, Modal } from "antd";
-import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+  MessageOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
 
 const CrimeTable = (props) => {
   console.log(props);
   let columns = [
-    {
-      title: "ID",
-      dataIndex: "id",
-      // render: (text) => <Link to={'/singledata'}>{text}</Link>,
-    },
+    // {
+    //   title: "ID",
+    //   dataIndex: "id",
+    //   // render: (text) => <Link to={'/singledata'}>{text}</Link>,
+    // },
     {
       title: "Name",
       dataIndex: "name",
@@ -20,6 +26,32 @@ const CrimeTable = (props) => {
       title: "Type",
       dataIndex: "crimetype",
     },
+    {
+      title: "Alert",
+      render: (record) => {
+        return (
+          <>
+            <button
+              style={{ marginRight: 3 }}
+              onClick={() => {
+                onEmailAlert(record.id, record.name, record.email);
+              }}
+            >
+              <MailOutlined />
+            </button>
+
+            <button
+              style={{ marginLeft: 3 }}
+              onClick={() => {
+                onSmsAlert(record.id, record.name, record.email);
+              }}
+            >
+              <MessageOutlined />
+            </button>
+          </>
+        );
+      },
+    },
 
     {
       title: "Actions",
@@ -27,16 +59,18 @@ const CrimeTable = (props) => {
         return (
           <>
             <Link to={`/crimereport/${record.id}`}>
-              <EyeOutlined style={{ color: "green", marginRight: 12 }} />
+              <EyeOutlined
+                style={{ color: "green", marginRight: 12, fontSize: 20 }}
+              />
             </Link>
             <Link to={`/crimereport/editcrimeform/${record.id}`}>
-              <EditOutlined style={{ color: "blue" }} />
+              <EditOutlined style={{ color: "blue", fontSize: 20 }} />
             </Link>
             <DeleteOutlined
               onClick={() => {
                 onDeleteUsers(record.id);
               }}
-              style={{ color: "red", marginLeft: 12 }}
+              style={{ color: "red", marginLeft: 12, fontSize: 20 }}
             />
           </>
         );
@@ -58,6 +92,27 @@ const CrimeTable = (props) => {
           .catch((error) => {
             console.log("error block called", error);
           });
+        Navigate("/crimereport");
+      },
+    });
+  };
+  const onEmailAlert = (id, name, email) => {
+    axios({
+      method: "post",
+      url: `http://localhost:5000/emailalert/${id}`,
+      data: {
+        name: name,
+        email: email,
+      },
+    });
+  };
+  const onSmsAlert = (id, name, email) => {
+    axios({
+      method: "post",
+      url: `http://localhost:5000/smsalert/${id}`,
+      data: {
+        name: name,
+        email: email,
       },
     });
   };

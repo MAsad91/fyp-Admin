@@ -4,3 +4,9 @@ th.column-money,
 td.column-money {
   text-align: right !important;
 }
+.alertbutton {
+  margin-right: 3;
+  font-size: 20px;
+  text-align: "center";
+  padding: 7px 20px;
+}

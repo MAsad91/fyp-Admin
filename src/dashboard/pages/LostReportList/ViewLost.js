@@ -11,6 +11,7 @@ import cx from "classnames";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "../../components/cards/Cards.module.css";
+import ImgCarousel from "../../shared/ImgCarousel";
 
 const ViewUser = () => {
   const [userData, setUserData] = useState({});
@@ -67,14 +68,18 @@ const ViewUser = () => {
             <Typography variant="h5" color="text.secondary">
               Location: {userData?.location}
             </Typography>
-            <Typography variant="h5" color="text.secondary">
-              Images
-            </Typography>
           </CardContent>
+          {/* <ImgCarousel
+            image={userData.images?.map((img) => {
+              return "http://localhost:5000/" + img;
+            })}
+          /> */}
           <CardMedia
             component="img"
-            height="194"
-            image={userData.images}
+            // height="194"
+            image={userData.images?.map((img) => {
+              return "http://localhost:5000/" + img;
+            })}
             alt="Lost Images"
           />
         </Grid>

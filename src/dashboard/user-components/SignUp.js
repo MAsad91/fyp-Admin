@@ -122,8 +122,8 @@ const Signup = () => {
           </div>
           <div className={styles["form-control"]}>
             <Form.Item
-              name="confrimpassword"
-              label="Confrim Password"
+              name="confirmmpassword"
+              label="Confirm Password"
               dependencies={["password"]}
               rules={[
                 {
@@ -145,8 +145,8 @@ const Signup = () => {
             >
               <input
                 type="password"
-                id="confrimpassword"
-                placeholder="Confrim your Password"
+                id="confirmpassword"
+                placeholder="Confirm your Password"
               />
             </Form.Item>
           </div>

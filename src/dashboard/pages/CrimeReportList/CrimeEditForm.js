@@ -7,19 +7,17 @@ import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
 
 const CrimeEditForm = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-  const [crimeName, setCrimeName] = useState('hello');
-  const [userData, setUserData]=useState({
-    defaultValues: {
-      name:'',
-      crimetype:'',
-      details:'',
-      location:''
-    }
+  const [crimeName, setCrimeName] = useState("");
+  const [userData, setUserData] = useState({
+    // name: "",
+    // crimetype: "",
+    // details: "",
+    // location: "",
   });
   const uploadHandle = ({ fileList }) => {
     setImages(fileList);
@@ -33,11 +31,12 @@ const CrimeEditForm = () => {
       const result = await axios.get(
         `http://localhost:5000/crime-report/report/${id}`
       );
+      setCrimeName(result.data.report.name);
       setUserData({
-        name : result.data.report.name,
+        name: result.data.report.name,
         crimetype: result.data.report.crimetype,
         details: result.data.report.details,
-        location: result.data.report.location
+        location: result.data.report.location,
       });
       console.log(result.data.report);
       // setUser(data);
@@ -113,6 +112,7 @@ const CrimeEditForm = () => {
                 type="text"
                 id="name"
                 value={crimeName}
+                // defaultValue={crimeName}
 
                 // defaultValue={userData? userData.name: ''}
                 // initialvalue={userData.name}
@@ -133,9 +133,9 @@ const CrimeEditForm = () => {
               ]}
               hasFeedback
             >
-              <select defaultValue={'crimetype'}>
+              <select defaultValue={"crimetype"}>
                 <option value="">Select</option>
-                <option defaultValue={'crimetype'}></option>
+                <option defaultValue={"crimetype"}></option>
                 <option value="Robbery">Robbery</option>
                 <option defaultValue="Snatching">Snatching</option>
                 <option value="Harassment">Harassment</option>
@@ -185,7 +185,7 @@ const CrimeEditForm = () => {
               <input
                 type="text"
                 id="location"
-                defaultValue={'location'}
+                defaultValue={userData.location}
               />
             </Form.Item>
           </div>

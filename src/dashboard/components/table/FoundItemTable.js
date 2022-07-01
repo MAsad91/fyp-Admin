@@ -2,16 +2,22 @@ import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Table, Modal } from "antd";
-import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+  MessageOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
 
 const FoundItemTable = (props) => {
   console.log(props);
   const columns = [
-    {
-      title: "ID",
-      dataIndex: "id",
-      // render: (text) => <Link to='/singledata'>{text}</Link>,
-    },
+    // {
+    //   title: "ID",
+    //   dataIndex: "id",
+    //   // render: (text) => <Link to='/singledata'>{text}</Link>,
+    // },
     {
       title: "Name",
       dataIndex: "name",
@@ -20,6 +26,33 @@ const FoundItemTable = (props) => {
       title: "Item Type",
       dataIndex: "founditemtype",
     },
+    {
+      title: "Alert",
+      render: (record) => {
+        return (
+          <>
+            <button
+              style={{ marginRight: 3 }}
+              onClick={() => {
+                onEmailAlert(record.id, record.name, record.email);
+              }}
+            >
+              <MailOutlined />
+            </button>
+
+            <button
+              style={{ marginLeft: 3 }}
+              onClick={() => {
+                onSmsAlert(record.id, record.name, record.email);
+              }}
+            >
+              <MessageOutlined />
+            </button>
+          </>
+        );
+      },
+    },
+
     {
       title: "Actions",
       render: (record) => {
@@ -61,6 +94,27 @@ const FoundItemTable = (props) => {
       },
     });
   };
+  const onEmailAlert = (id, name, email) => {
+    axios({
+      method: "post",
+      url: `http://localhost:5000/emailalert/${id}`,
+      data: {
+        name: name,
+        email: email,
+      },
+    });
+  };
+  const onSmsAlert = (id, name, email) => {
+    axios({
+      method: "post",
+      url: `http://localhost:5000/smsalert/${id}`,
+      data: {
+        name: name,
+        email: email,
+      },
+    });
+  };
+
   return (
     <Fragment>
       <Table

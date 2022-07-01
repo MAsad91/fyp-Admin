@@ -11,6 +11,7 @@ import cx from "classnames";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "../../components/cards/Cards.module.css";
+import ImgCarousel from "../../shared/ImgCarousel";
 
 const ViewUser = () => {
   // <<<<<<< HEAD
@@ -33,31 +34,6 @@ const ViewUser = () => {
     LoadUserData();
   }, []);
   console.log(userData?.images);
-  // =======
-  // const [userData, setUserData]=useState({
-  //     name:"",
-  //     type:"",
-  //     detail:"",
-  //     location:""
-  // });
-  // const {id} = useParams();
-  // alert(id);
-  // console.log(id);
-  // // const [userData, setUserData] = useState([]);
-  // const navigate = useNavigate();
-
-  // useEffect(() =>{
-  //     const LoadUserData = async() => {
-  //       const result = await axios.get(`http://localhost:5000/crime-report/${id}`);
-  //       setUserData(result.data[0]);
-  //       console.log(result.data);
-  //       // setUser(data);
-  //     }
-  //     LoadUserData();
-
-  //   },[])
-  //   console.log(userData);
-  // >>>>>>> 4dbad662ff446623b4d0f9b58acf335deca0ca4c
   return (
     <div className={styles.container}>
       <Grid container spacing={10} justify="center">
@@ -82,10 +58,17 @@ const ViewUser = () => {
               Location: {userData?.location}
             </Typography>
           </CardContent>
+          {/* <ImgCarousel
+            image={userData.images?.map((img) => {
+              return "http://localhost:5000/" + img;
+            })}
+          /> */}
           <CardMedia
             component="img"
-            height="194"
-            image={require(userData.images)}
+            // height="194"
+            image={userData.images?.map((img) => {
+              return "http://localhost:5000/" + img;
+            })}
             alt="Crime Images"
           />
         </Grid>
