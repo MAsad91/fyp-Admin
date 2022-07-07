@@ -49,19 +49,22 @@ const UserListTable = (props) => {
     {
       title: "Name",
       dataIndex: "name",
-      // render: (text) => <a>{text}</a>,
+      width: "25%",
     },
     {
       title: "Email",
       dataIndex: "email",
+      width: "25%",
     },
     {
       title: "Alert",
+      width: "25%",
       render: (record) => {
         return (
           <>
             <button
               className="alertbutton"
+              style={{ marginRight: 3 }}
               onClick={() => {
                 onEmailAlert(record.id, record.name, record.email);
               }}

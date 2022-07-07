@@ -6,7 +6,20 @@ td.column-money {
 }
 .alertbutton {
   margin-right: 3;
+  margin-left: 3;
   font-size: 20px;
   text-align: "center";
   padding: 7px 20px;
+}
+.eyeoutlined {
+  color: "green";
+  margin-right: 12;
+  font-size: 20;
+}
+.wholetable {
+  margin-top: "1rem";
+  overflow: "hidden";
+  width: "100%";
+  font-size: 30px;
+  font-style: bold;
 }

@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import cx from "classnames";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styles from "../../components/cards/Cards.module.css";
+import styles from "../../shared/MediaCards.module.css";
 
 const ViewUser = () => {
   const [userData, setUserData] = useState({
@@ -30,7 +30,11 @@ const ViewUser = () => {
   return (
     <div className={styles.container}>
       <Grid container spacing={10} justify="center">
-        <Grid item component={Card} className={cx(styles.card, styles.crime)}>
+        <Grid
+          item
+          component={Card}
+          className={cx(styles.card, styles.bottomcolor)}
+        >
           <CardContent className="card-content">
             <Typography variant="h4" gutterBottom>
               {" "}

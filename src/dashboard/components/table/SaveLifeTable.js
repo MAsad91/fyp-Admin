@@ -9,6 +9,7 @@ import {
   MessageOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import "./Table.css";
 
 const SaveLifeTable = (props) => {
   console.log(props);
@@ -21,32 +22,37 @@ const SaveLifeTable = (props) => {
     {
       title: "Name",
       dataIndex: "name",
+      width: "25%",
     },
     {
       title: "Report Type",
       dataIndex: "reporttype",
+      width: "25%",
     },
     {
       title: "Alert",
+      width: "25%",
       render: (record) => {
         return (
           <>
             <button
+              className="alertbutton"
               style={{ marginRight: 3 }}
               onClick={() => {
                 onEmailAlert(record.id, record.name, record.email);
               }}
             >
-              <MailOutlined />
+              <MailOutlined style={{ color: "skyblue" }} />
             </button>
 
             <button
+              className="alertbutton"
               style={{ marginLeft: 3 }}
               onClick={() => {
                 onSmsAlert(record.id, record.name, record.email);
               }}
             >
-              <MessageOutlined />
+              <MessageOutlined style={{ color: "skyblue" }} />
             </button>
           </>
         );
@@ -58,17 +64,23 @@ const SaveLifeTable = (props) => {
         return (
           <>
             <Link to={`/safelifereport/${record.id}`}>
-              <EyeOutlined style={{ color: "green", marginRight: 12 }} />
+              <EyeOutlined
+                style={{
+                  color: "green",
+                  marginRight: 12,
+                  fontSize: 20,
+                }}
+              />
             </Link>
             <Link to={`/safelifereport/safelifeeditform/${record.id}`}>
-              <EditOutlined style={{ color: "blue" }} />
+              <EditOutlined style={{ color: "blue", fontSize: 20 }} />
             </Link>
 
             <DeleteOutlined
               onClick={() => {
                 onDeleteUsers(record.id);
               }}
-              style={{ color: "red", marginLeft: 12 }}
+              style={{ color: "red", marginLeft: 12, fontSize: 20 }}
             />
           </>
         );

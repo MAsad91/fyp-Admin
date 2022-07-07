@@ -10,6 +10,8 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 
+import "./Table.css";
+
 const CertificateTable = (props) => {
   console.log(props);
   const navigate = useNavigate();
@@ -22,33 +24,37 @@ const CertificateTable = (props) => {
     {
       title: "Name",
       dataIndex: "name",
-      render: (text) => <a>{text}</a>,
+      width: "25%",
     },
     {
       title: "Request Type",
       dataIndex: "requesttype",
+      width: "25%",
     },
     {
       title: "Alert",
+      width: "25%",
       render: (record) => {
         return (
           <>
             <button
+              className="alertbutton"
               style={{ marginRight: 3 }}
               onClick={() => {
                 onEmailAlert(record.id, record.name, record.email);
               }}
             >
-              <MailOutlined />
+              <MailOutlined style={{ color: "skyblue" }} />
             </button>
 
             <button
+              className="alertbutton"
               style={{ marginLeft: 3 }}
               onClick={() => {
                 onSmsAlert(record.id, record.name, record.email);
               }}
             >
-              <MessageOutlined />
+              <MessageOutlined style={{ color: "skyblue" }} />
             </button>
           </>
         );
@@ -60,17 +66,23 @@ const CertificateTable = (props) => {
         return (
           <>
             <Link to={`/certificatepermits/${record.id}`}>
-              <EyeOutlined style={{ color: "green", marginRight: 12 }} />
+              <EyeOutlined
+                style={{
+                  color: "green",
+                  marginRight: 12,
+                  fontSize: 20,
+                }}
+              />
             </Link>
             <Link to={`/certificatepermits/requesteditform/${record.id}`}>
-              <EditOutlined style={{ color: "blue" }} />
+              <EditOutlined style={{ color: "blue", fontSize: 20 }} />
             </Link>
 
             <DeleteOutlined
               onClick={() => {
                 onDeleteUsers(record.id);
               }}
-              style={{ color: "red", marginLeft: 12 }}
+              style={{ color: "red", marginLeft: 12, fontSize: 20 }}
             />
           </>
         );

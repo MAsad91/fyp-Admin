@@ -10,43 +10,46 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 
+import "./Table.css";
+
 const CrimeTable = (props) => {
   console.log(props);
   let columns = [
-    // {
-    //   title: "ID",
-    //   dataIndex: "id",
-    //   // render: (text) => <Link to={'/singledata'}>{text}</Link>,
-    // },
     {
       title: "Name",
       dataIndex: "name",
+      fontSize: "30px",
+      width: "25%",
     },
     {
       title: "Type",
       dataIndex: "crimetype",
+      width: "25%",
     },
     {
       title: "Alert",
+      width: "25%",
       render: (record) => {
         return (
           <>
             <button
+              className="alertbutton"
               style={{ marginRight: 3 }}
               onClick={() => {
                 onEmailAlert(record.id, record.name, record.email);
               }}
             >
-              <MailOutlined />
+              <MailOutlined style={{ color: "skyblue" }} />
             </button>
 
             <button
+              className="alertbutton"
               style={{ marginLeft: 3 }}
               onClick={() => {
                 onSmsAlert(record.id, record.name, record.email);
               }}
             >
-              <MessageOutlined />
+              <MessageOutlined style={{ color: "skyblue" }} />
             </button>
           </>
         );
@@ -60,7 +63,11 @@ const CrimeTable = (props) => {
           <>
             <Link to={`/crimereport/${record.id}`}>
               <EyeOutlined
-                style={{ color: "green", marginRight: 12, fontSize: 20 }}
+                style={{
+                  color: "green",
+                  marginRight: 12,
+                  fontSize: 20,
+                }}
               />
             </Link>
             <Link to={`/crimereport/editcrimeform/${record.id}`}>
@@ -120,10 +127,10 @@ const CrimeTable = (props) => {
   return (
     <Fragment>
       <Table
+        className="wholetable"
         columns={columns}
         dataSource={props.crimeData}
         pagination={true}
-        style={{ marginTop: "1rem" }}
       />
     </Fragment>
   );

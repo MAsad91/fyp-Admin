@@ -10,6 +10,8 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 
+import "./Table.css";
+
 const CommunityServicesTable = (props) => {
   console.log(props);
   const columns = [
@@ -21,33 +23,37 @@ const CommunityServicesTable = (props) => {
     {
       title: "Name",
       dataIndex: "name",
-      // render: (text) => <a>{text}</a>,
+      width: "25%",
     },
     {
       title: "ServiceType",
       dataIndex: "servicetype",
+      width: "25%",
     },
     {
       title: "Alert",
+      width: "25%",
       render: (record) => {
         return (
           <>
             <button
+              className="alertbutton"
               style={{ marginRight: 3 }}
               onClick={() => {
                 onEmailAlert(record.id, record.name, record.email);
               }}
             >
-              <MailOutlined />
+              <MailOutlined style={{ color: "skyblue" }} />
             </button>
 
             <button
+              className="alertbutton"
               style={{ marginLeft: 3 }}
               onClick={() => {
                 onSmsAlert(record.id, record.name, record.email);
               }}
             >
-              <MessageOutlined />
+              <MessageOutlined style={{ color: "skyblue" }} />
             </button>
           </>
         );
@@ -59,16 +65,22 @@ const CommunityServicesTable = (props) => {
         return (
           <>
             <Link to={`/communityservices/${record.id}`}>
-              <EyeOutlined style={{ color: "green", marginRight: 12 }} />
+              <EyeOutlined
+                style={{
+                  color: "green",
+                  marginRight: 12,
+                  fontSize: 20,
+                }}
+              />
             </Link>
             <Link to={`/communityservices/communityeditform/${record.id}`}>
-              <EditOutlined style={{ color: "blue" }} />
+              <EditOutlined style={{ color: "blue", fontSize: 20 }} />
             </Link>
             <DeleteOutlined
               onClick={() => {
                 onDeleteUsers(record.id);
               }}
-              style={{ color: "red", marginLeft: 12 }}
+              style={{ color: "red", marginLeft: 12, fontSize: 20 }}
             />
           </>
         );

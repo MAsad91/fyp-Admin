@@ -127,153 +127,157 @@ function App() {
         logout: logout,
       }}
     >
-      <React.Fragment>
-        {/* {isLoggedIn ? ( */}
-        <Layout>
-          <Navbar />
+      <React.Fragment className="main">
+        {isLoggedIn ? (
           <Layout>
-            <Content style={{ margin: "24px 16px 0" }}>
-              <div
-                className="site-layout-background"
-                style={{ padding: 24, minHeight: 580 }}
-                //before minHeight: 360
-                //minWidth: 1360
-              >
-                <Routes>
-                  {/* <Route path="/login" exact element={<Navigate to="/" />} />
+            <Navbar />
+            <Layout>
+              <Content style={{ margin: "24px 16px 0" }}>
+                <div
+                  className="site-layout-background"
+                  style={{ padding: 24, minHeight: 580 }}
+                  //before minHeight: 360
+                  //minWidth: 1360
+                >
+                  <Routes>
+                    <Route path="/login" exact element={<Navigate to="/" />} />
 
-                    <Route path="/signup" exact element={<Navigate to="/" />} /> */}
+                    <Route path="/signup" exact element={<Navigate to="/" />} />
 
-                  <Route path="/emailalert/:id" />
-                  <Route path="/smsalert/:id" />
+                    <Route path="/emailalert/:id" />
+                    <Route path="/smsalert/:id" />
 
-                  <Route path="/" exact element={<Home />} />
+                    <Route path="/" exact element={<Home />} />
 
-                  <Route path={`/userlist`} exact element={<UserList />} />
-                  <Route
-                    path="/userlist/userform/:id"
-                    exact
-                    element={<UserListEditForm />}
-                  />
-                  <Route path="/userlist/:id" exact element={<ViewUser />} />
+                    <Route path={`/userlist`} exact element={<UserList />} />
+                    <Route
+                      path="/userlist/userform/:id"
+                      exact
+                      element={<UserListEditForm />}
+                    />
+                    <Route path="/userlist/:id" exact element={<ViewUser />} />
 
-                  <Route path={`/crimereport`} exact element={<Crime />} />
-                  <Route
-                    path="/crimereport/editcrimeform/:id"
-                    exact
-                    element={<CrimeEditForm />}
-                  />
-                  <Route
-                    path="/crimereport/:id"
-                    exact
-                    element={<ViewCrime />}
-                  />
+                    <Route path={`/crimereport`} exact element={<Crime />} />
+                    <Route
+                      path="/crimereport/editcrimeform/:id"
+                      exact
+                      element={<CrimeEditForm />}
+                    />
+                    <Route
+                      path="/crimereport/:id"
+                      exact
+                      element={<ViewCrime />}
+                    />
 
-                  <Route
-                    path={`/safelifereport`}
-                    exact
-                    element={<SafeLife />}
-                  />
-                  <Route
-                    path="/safelifereport/safelifeeditform/:id"
-                    exact
-                    element={<SafeLifeEditForm />}
-                  />
-                  <Route
-                    path="/safelifereport/:id"
-                    exact
-                    element={<ViewSafeLife />}
-                  />
+                    <Route
+                      path={`/safelifereport`}
+                      exact
+                      element={<SafeLife />}
+                    />
+                    <Route
+                      path="/safelifereport/safelifeeditform/:id"
+                      exact
+                      element={<SafeLifeEditForm />}
+                    />
+                    <Route
+                      path="/safelifereport/:id"
+                      exact
+                      element={<ViewSafeLife />}
+                    />
 
-                  <Route path={`/lostreport`} exact element={<Lost />} />
-                  <Route
-                    path="/lostreport/losteditform/:id"
-                    exact
-                    element={<LostEditForm />}
-                  />
-                  <Route path="/lostreport/:id" exact element={<ViewLost />} />
+                    <Route path={`/lostreport`} exact element={<Lost />} />
+                    <Route
+                      path="/lostreport/losteditform/:id"
+                      exact
+                      element={<LostEditForm />}
+                    />
+                    <Route
+                      path="/lostreport/:id"
+                      exact
+                      element={<ViewLost />}
+                    />
 
-                  <Route path={`/foundreport`} exact element={<Found />} />
-                  <Route
-                    path="/foundreport/foundeditform/:id"
-                    exact
-                    element={<FoundEditForm />}
-                  />
-                  <Route
-                    path="/foundreport/:id"
-                    exact
-                    element={<ViewFound />}
-                  />
+                    <Route path={`/foundreport`} exact element={<Found />} />
+                    <Route
+                      path="/foundreport/foundeditform/:id"
+                      exact
+                      element={<FoundEditForm />}
+                    />
+                    <Route
+                      path="/foundreport/:id"
+                      exact
+                      element={<ViewFound />}
+                    />
 
-                  <Route
-                    path={`/communityservices`}
-                    exact
-                    element={<CommunityReport />}
-                  />
-                  <Route
-                    path="/communityservices/communityeditform/:id"
-                    exact
-                    element={<CommunityEditForm />}
-                  />
-                  <Route
-                    path="/communityservices/:id"
-                    exact
-                    element={<ViewCommunity />}
-                  />
+                    <Route
+                      path={`/communityservices`}
+                      exact
+                      element={<CommunityReport />}
+                    />
+                    <Route
+                      path="/communityservices/communityeditform/:id"
+                      exact
+                      element={<CommunityEditForm />}
+                    />
+                    <Route
+                      path="/communityservices/:id"
+                      exact
+                      element={<ViewCommunity />}
+                    />
 
-                  <Route
-                    path={`/certificatepermits`}
-                    exact
-                    element={<CertificatesPermits />}
-                  />
-                  <Route
-                    path="/certificatepermits/requesteditform/:id"
-                    exact
-                    element={<CertificatesEditForm />}
-                  />
-                  <Route
-                    path="/certificatepermits/:id"
-                    exact
-                    element={<ViewCertificate />}
-                  />
+                    <Route
+                      path={`/certificatepermits`}
+                      exact
+                      element={<CertificatesPermits />}
+                    />
+                    <Route
+                      path="/certificatepermits/requesteditform/:id"
+                      exact
+                      element={<CertificatesEditForm />}
+                    />
+                    <Route
+                      path="/certificatepermits/:id"
+                      exact
+                      element={<ViewCertificate />}
+                    />
 
-                  <Route path={`/events`} exact element={<Events />} />
-                  <Route
-                    path={`/events/eventform`}
-                    exact
-                    element={<EventsForm />}
-                  />
-                  <Route
-                    path="/events/eventform/:id"
-                    exact
-                    element={<EventEditForm />}
-                  />
-                  <Route path="events/:id" exact element={<ViewEvent />} />
-                  {/* <Route path="*" exact
+                    <Route path={`/events`} exact element={<Events />} />
+                    <Route
+                      path={`/events/eventform`}
+                      exact
+                      element={<EventsForm />}
+                    />
+                    <Route
+                      path="/events/eventform/:id"
+                      exact
+                      element={<EventEditForm />}
+                    />
+                    <Route path="events/:id" exact element={<ViewEvent />} />
+                    {/* <Route path="*" exact
                       element={<Navigate to="/login" />}/> */}
-                </Routes>
-              </div>
-            </Content>
-            <Footer style={{ textAlign: "center" }}>
-              © 2022 Safe City Services.All rights reserved.
-            </Footer>
+                  </Routes>
+                </div>
+              </Content>
+              <Footer style={{ textAlign: "center" }}>
+                © 2022 Safe City Services.All rights reserved.
+              </Footer>
+            </Layout>
           </Layout>
-        </Layout>
-        {/* // ) : (
-        //   <>
-        //     <Routes>
-        //       <Route path="/login" exact element={<LoggedIn />} />
+        ) : (
+          <>
+            <Routes>
+              <Route path="/login" exact element={<LoggedIn />} />
 
-        //       <Route path="/signup" exact element={<SignUp />} />
+              <Route path="/signup" exact element={<SignUp />} />
 
-        //       <Route path="/" exact element={<Navigate to="/login" />} />
+              <Route path="/" exact element={<Navigate to="/login" />} />
 
-        //       <Route path="*" exact>
-        //         <Redirect to="/login" />
-        //       </Route>
-        //     </Routes>
-        //   </>
-        // )} */}
+              {/* <Route path="*" exact>
+                <Redirect to="/login" />
+              </Route> */}
+            </Routes>
+          </>
+        )}
       </React.Fragment>
     </AuthContext.Provider>
   );
