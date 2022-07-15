@@ -52,10 +52,10 @@ const FoundEditForm = () => {
               images.map((image) => {
                 formData.append("images", image.originFileObj);
               });
-              formData.append("creator", id);
+              // formData.append("creator", id);
               const response = await axios({
-                method: "post",
-                url: `http://localhost:5000/found-report/reportform/${id}`,
+                method: "patch",
+                url: `http://localhost:5000/found-report/report/${id}`,
                 data: formData,
                 headers: {
                   "Content-Type": "multipart/form-data",
@@ -63,7 +63,7 @@ const FoundEditForm = () => {
                 },
               });
               console.log(response);
-              if (response.status === 201) {
+              if (response.status === 200) {
                 navigate(`/foundreport`);
               }
             } catch (err) {
@@ -253,7 +253,7 @@ const FoundEditForm = () => {
               name="image"
               rules={[
                 {
-                  required: true,
+                  required: false,
                   message: "Please upload image",
                 },
               ]}

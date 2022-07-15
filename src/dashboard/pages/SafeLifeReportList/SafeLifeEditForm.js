@@ -51,7 +51,7 @@ const SafeLifeEditForm = () => {
               formData.append("creator", id);
               const response = await axios({
                 method: "post",
-                url: "http://localhost:5000/safelife-report/reportform",
+                url: `http://localhost:5000/safelife-report/report/${id}`,
                 data: formData,
                 headers: {
                   "Content-Type": "multipart/form-data",
@@ -59,8 +59,8 @@ const SafeLifeEditForm = () => {
                 },
               });
               console.log(response);
-              if (response.status === 201) {
-                navigate(`/safelife-report/${id}`);
+              if (response.status === 200) {
+                navigate(`/safelifereport`);
               }
             } catch (err) {
               const message = err.response.data.message;
@@ -152,7 +152,7 @@ const SafeLifeEditForm = () => {
               name="image"
               rules={[
                 {
-                  required: true,
+                  required: false,
                   message: "Please upload image",
                 },
               ]}

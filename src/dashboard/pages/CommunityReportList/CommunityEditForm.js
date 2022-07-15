@@ -35,20 +35,19 @@ const RequestServicesForm = () => {
             console.log(value);
             try {
               const response = await axios({
-                method: "post",
-                url: `http://localhost:5000/request-communityservices/requestform/${id}`,
+                method: "patch",
+                url: `http://localhost:5000/request-communityservices/report/${id}`,
                 data: {
                   name: value.name,
                   servicetype: value.servicetype,
                   details: value.details,
-                  creator: id,
                 },
                 headers: {
                   Authorization: "Bearer " + auth.token,
                 },
               });
               console.log(response);
-              if (response.status === 201) {
+              if (response.status === 200) {
                 navigate(`/communityservices`);
               }
             } catch (err) {

@@ -98,7 +98,7 @@ const LostItemTable = (props) => {
       okType: "danger",
       onOk: () => {
         axios
-          .delete(`http://localhost:5000/lost-report/${id}`)
+          .delete(`http://localhost:5000/lost-report/report/${id}`)
           .then((res) => {
             console.log("response", res);
           })

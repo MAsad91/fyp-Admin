@@ -35,20 +35,19 @@ const RequestEditForm = () => {
             console.log(value);
             try {
               const response = await axios({
-                method: "post",
-                url: `http://localhost:5000/request-certificatepermits/requestform/${id}`,
+                method: "patch",
+                url: `http://localhost:5000/request-certificatepermits/report/${id}`,
                 data: {
                   name: value.name,
                   requesttype: value.requesttype,
                   details: value.details,
-                  creator: id,
                 },
                 headers: {
                   Authorization: "Bearer " + auth.token,
                 },
               });
               console.log(response);
-              if (response.status === 201) {
+              if (response.status === 200) {
                 navigate(`/certificatepermits`);
               }
             } catch (err) {
@@ -89,7 +88,7 @@ const RequestEditForm = () => {
               hasFeedback
             >
               <select placeholder="Choose Certificate or Permit">
-                \<option value="">Select</option>
+                <option value="">Select</option>
                 <option value="certificate">Certificate</option>
                 <option value="permit">Permit</option>
               </select>

@@ -67,10 +67,10 @@ const UserEditForm = () => {
               formData.append("Email", value.email);
               formData.append("Contact No.", value.contactno);
               formData.append("Address", value.address);
-              formData.append("creator", auth.userId);
+              // formData.append("creator", auth.userId);
               const response = await axios({
-                method: "PUT",
-                url: "http://localhost:5000/userlist/userform",
+                method: "patch",
+                url: `http://localhost:5000/userlist/user/${id}`,
                 data: formData,
                 headers: {
                   "Content-Type": "multipart/form-data",
@@ -78,7 +78,7 @@ const UserEditForm = () => {
                 },
               });
               console.log(response);
-              if (response.status === 201) {
+              if (response.status === 200) {
                 navigate(`/userlist`);
               }
             } catch (err) {

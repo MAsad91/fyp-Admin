@@ -58,7 +58,14 @@ const CrimeEditForm = () => {
           <h2>Crime Edit Form</h2>
         </div>
         <Form
-          autoComplete="off"
+          initialValues={{
+            name: userData.name,
+            crimetype: userData.crimetype,
+            details: userData.details,
+            location: userData.location,
+          }}
+          
+          autoComplete="off"                                                         
           labelCol={{ span: 10 }}
           onFinish={async (value) => {
             console.log(value);
@@ -71,10 +78,10 @@ const CrimeEditForm = () => {
               images.map((image) => {
                 formData.append("images", image.originFileObj);
               });
-              formData.append("creator", id);
+              // formData.append("creator", id);
               const response = await axios({
-                method: "post",
-                url: "http://localhost:5000/crime-report/reportform",
+                method: "patch",
+                url: `http://localhost:5000/crime-report/report/${id}`,
                 data: formData,
                 headers: {
                   "Content-Type": "multipart/form-data",
@@ -82,8 +89,8 @@ const CrimeEditForm = () => {
                 },
               });
               console.log(response);
-              if (response.status === 201) {
-                navigate(`/crime-report/${id}`);
+              if (response.status === 200) {
+                navigate(`/crimereport`);
               }
             } catch (err) {
               const message = err.response.data.message;
@@ -111,7 +118,7 @@ const CrimeEditForm = () => {
               <input
                 type="text"
                 id="name"
-                value={crimeName}
+              
                 // defaultValue={crimeName}
 
                 // defaultValue={userData? userData.name: ''}
@@ -133,11 +140,10 @@ const CrimeEditForm = () => {
               ]}
               hasFeedback
             >
-              <select defaultValue={"crimetype"}>
+              <select>
                 <option value="">Select</option>
-                <option defaultValue={"crimetype"}></option>
                 <option value="Robbery">Robbery</option>
-                <option defaultValue="Snatching">Snatching</option>
+                <option value="Snatching">Snatching</option>
                 <option value="Harassment">Harassment</option>
                 <option value="Kidnapping">Kidnapping</option>
                 <option value="CyberCrime">CyberCrime</option>
@@ -163,7 +169,7 @@ const CrimeEditForm = () => {
               ]}
               hasFeedback
             >
-              <textarea id="details" defaultValue={userData.details} />
+              <textarea id="details" />
             </Form.Item>
           </div>
 
@@ -177,16 +183,12 @@ const CrimeEditForm = () => {
                   message: "Please enter crime location",
                 },
                 {
-                  min: 3,
+                  min: 5,
                 },
               ]}
               hasFeedback
             >
-              <input
-                type="text"
-                id="location"
-                defaultValue={userData.location}
-              />
+              <input type="text" id="location" />
             </Form.Item>
           </div>
 
@@ -195,7 +197,7 @@ const CrimeEditForm = () => {
               name="image"
               rules={[
                 {
-                  required: true,
+                  required: false,
                   message: "Please upload image",
                 },
               ]}

@@ -13,7 +13,7 @@ function Events() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/events`);
+        const { data } = await axios.get(`http://localhost:5000/events/`);
         console.log(0, data);
         setEventData(data);
         if (data) {

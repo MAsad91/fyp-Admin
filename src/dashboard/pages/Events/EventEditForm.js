@@ -69,10 +69,10 @@ const EventEditForm = () => {
                 formData.append("images", image.originFileObj);
               });
               // formData.append("images", images[0].originFileObj);
-              formData.append("creator", auth.userId);
+              // formData.append("creator", auth.userId);
               const response = await axios({
-                method: "post",
-                url: "http://localhost:5000/events/eventform",
+                method: "patch",
+                url: `http://localhost:5000/events/${id}`,
                 data: formData,
                 headers: {
                   "Content-Type": "multipart/form-data",
@@ -80,7 +80,7 @@ const EventEditForm = () => {
                 },
               });
               console.log(response);
-              if (response.status === 201) {
+              if (response.status === 200) {
                 navigate(`/events`);
               }
             } catch (err) {
@@ -181,7 +181,7 @@ const EventEditForm = () => {
               name="image"
               rules={[
                 {
-                  required: true,
+                  required: false,
                   message: "Please upload image",
                 },
               ]}
