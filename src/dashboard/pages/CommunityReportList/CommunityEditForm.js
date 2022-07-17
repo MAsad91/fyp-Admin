@@ -63,10 +63,6 @@ const RequestServicesForm = () => {
               label="Name"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter your name",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -79,12 +75,6 @@ const RequestServicesForm = () => {
             <Form.Item
               name="servicetype"
               label="Service Type"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter service type",
-                },
-              ]}
               hasFeedback
             >
               <select placeholder="Choose Service Type">
@@ -101,10 +91,6 @@ const RequestServicesForm = () => {
               name="details"
               label="Details"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter details",
-                },
                 {
                   min: 20,
                 },

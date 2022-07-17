@@ -63,10 +63,6 @@ const RequestEditForm = () => {
               label="Name"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter your name",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -79,12 +75,7 @@ const RequestEditForm = () => {
             <Form.Item
               name="requesttype"
               label="Certificate/Permit"
-              rules={[
-                {
-                  required: true,
-                  message: "Please select certificate and permit",
-                },
-              ]}
+
               hasFeedback
             >
               <select placeholder="Choose Certificate or Permit">
@@ -100,10 +91,6 @@ const RequestEditForm = () => {
               name="details"
               label="Details"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter details",
-                },
                 {
                   min: 20,
                 },

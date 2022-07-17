@@ -59,7 +59,7 @@ const LostEditForm = () => {
                 data: formData,
                 headers: {
                   "Content-Type": "multipart/form-data",
-                  Authorization: "Bearer " + auth.token,
+                  // Authorization: "Bearer " + auth.token,
                 },
               });
               console.log(response);
@@ -79,10 +79,6 @@ const LostEditForm = () => {
               label="Reporter Name"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter your name",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -100,10 +96,6 @@ const LostEditForm = () => {
               name="itemname"
               label="Lost Item Name"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter lost item name",
-                },
                 {
                   min: 4,
                 },
@@ -123,10 +115,6 @@ const LostEditForm = () => {
               label="State"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter the state of items",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -143,12 +131,7 @@ const LostEditForm = () => {
             <Form.Item
               name="lostitemtype"
               label="Lost Item Type"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter lost item type",
-                },
-              ]}
+              
               hasFeedback
             >
               <select placeholder="Choose Lost item type">
@@ -170,10 +153,7 @@ const LostEditForm = () => {
               name="color"
               label="Color"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter the color of item",
-                },
+                
                 {
                   min: 3,
                 },
@@ -193,10 +173,6 @@ const LostEditForm = () => {
               label="Location"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter item Lost location",
-                },
-                {
                   min: 4,
                 },
               ]}
@@ -215,10 +191,6 @@ const LostEditForm = () => {
               label="Detail"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter Lost item detail",
-                },
-                {
                   min: 4,
                 },
               ]}
@@ -232,10 +204,6 @@ const LostEditForm = () => {
               name="description"
               label="Description"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter your name",
-                },
                 {
                   min: 15,
                 },
@@ -251,12 +219,6 @@ const LostEditForm = () => {
           <div className={styles["form-control"]}>
             <Form.Item
               name="image"
-              rules={[
-                {
-                  required: false,
-                  message: "Please upload image",
-                },
-              ]}
             >
               <Upload.Dragger
                 multiple

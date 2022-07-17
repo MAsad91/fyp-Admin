@@ -79,10 +79,6 @@ const FoundEditForm = () => {
               label="Reporter Name"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter your name",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -100,10 +96,6 @@ const FoundEditForm = () => {
               name="itemname"
               label="Found Item Name"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter found item name",
-                },
                 {
                   min: 4,
                 },
@@ -123,10 +115,6 @@ const FoundEditForm = () => {
               label="State"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter the state of items",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -143,12 +131,7 @@ const FoundEditForm = () => {
             <Form.Item
               name="founditemtype"
               label="found Item Type"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter found item type",
-                },
-              ]}
+              
               hasFeedback
             >
               <select placeholder="Choose found item type">
@@ -171,10 +154,6 @@ const FoundEditForm = () => {
               label="Color"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter the color of item",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -192,10 +171,6 @@ const FoundEditForm = () => {
               name="location"
               label="Location"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter item found location",
-                },
                 {
                   min: 4,
                 },
@@ -215,10 +190,6 @@ const FoundEditForm = () => {
               label="Detail"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter found item detail",
-                },
-                {
                   min: 4,
                 },
               ]}
@@ -232,10 +203,6 @@ const FoundEditForm = () => {
               name="description"
               label="Description"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter your name",
-                },
                 {
                   min: 15,
                 },
@@ -251,12 +218,6 @@ const FoundEditForm = () => {
           <div className={styles["form-control"]}>
             <Form.Item
               name="image"
-              rules={[
-                {
-                  required: false,
-                  message: "Please upload image",
-                },
-              ]}
             >
               <Upload.Dragger
                 multiple

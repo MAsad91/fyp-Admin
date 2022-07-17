@@ -67,16 +67,21 @@ const UserEditForm = () => {
               formData.append("Email", value.email);
               formData.append("Contact No.", value.contactno);
               formData.append("Address", value.address);
+              let userData = {};
+              formData.forEach(function(value, key){
+                  userData[key] = value;
+              });
               // formData.append("creator", auth.userId);
               const response = await axios({
                 method: "patch",
                 url: `http://localhost:5000/userlist/user/${id}`,
-                data: formData,
+                data: userData,
                 headers: {
                   "Content-Type": "multipart/form-data",
-                  Authorization: "Bearer " + auth.token,
+                  // Authorization: "Bearer " + auth.token,
                 },
               });
+              console.log(userData);
               console.log(response);
               if (response.status === 200) {
                 navigate(`/userlist`);
@@ -94,10 +99,6 @@ const UserEditForm = () => {
               label="Name"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter User Name",
-                },
-                {
                   min: 5,
                 },
               ]}
@@ -112,12 +113,7 @@ const UserEditForm = () => {
             <Form.Item
               name="email"
               label="Email"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter Email",
-                },
-              ]}
+
               hasFeedback
             >
               <input
@@ -134,12 +130,10 @@ const UserEditForm = () => {
               name="contactno"
               label="Contact No."
               rules={[
-                {
-                  required: true,
-                  message: "Please Enter Contact No.",
-                },
+                
                 {
                   min: 11,
+                  max: 11,
                 },
               ]}
               hasFeedback
@@ -159,10 +153,6 @@ const UserEditForm = () => {
               name="address"
               label="User's Address"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter User's Address",
-                },
                 {
                   min: 7,
                 },

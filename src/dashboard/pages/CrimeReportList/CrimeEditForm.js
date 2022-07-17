@@ -106,10 +106,6 @@ const CrimeEditForm = () => {
               // initialValue={userData.name}
               rules={[
                 {
-                  required: true,
-                  message: "Please enter your Name",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -132,12 +128,6 @@ const CrimeEditForm = () => {
             <Form.Item
               name="crimetype"
               label="Crime Type"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter crime type",
-                },
-              ]}
               hasFeedback
             >
               <select>
@@ -160,10 +150,6 @@ const CrimeEditForm = () => {
               label="Crime Details"
               rules={[
                 {
-                  required: true,
-                  message: "Please Enter Crime Details",
-                },
-                {
                   min: 20,
                 },
               ]}
@@ -179,10 +165,6 @@ const CrimeEditForm = () => {
               label="Crime Location"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter crime location",
-                },
-                {
                   min: 5,
                 },
               ]}
@@ -195,12 +177,6 @@ const CrimeEditForm = () => {
           <div className={styles["form-control"]}>
             <Form.Item
               name="image"
-              rules={[
-                {
-                  required: false,
-                  message: "Please upload image",
-                },
-              ]}
             >
               <Upload.Dragger
                 multiple

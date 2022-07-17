@@ -96,10 +96,6 @@ const EventEditForm = () => {
               label="Event Name"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter Event Name",
-                },
-                {
                   min: 5,
                 },
               ]}
@@ -113,12 +109,7 @@ const EventEditForm = () => {
             <Form.Item
               name="eventtype"
               label="Event Type"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter Event type",
-                },
-              ]}
+      
               hasFeedback
             >
               <select defaultValue={userData.eventtype}>
@@ -141,10 +132,6 @@ const EventEditForm = () => {
               label="Event Details"
               rules={[
                 {
-                  required: true,
-                  message: "Please Enter Event Details",
-                },
-                {
                   min: 20,
                 },
               ]}
@@ -159,10 +146,6 @@ const EventEditForm = () => {
               name="location"
               label="Event Location"
               rules={[
-                {
-                  required: true,
-                  message: "Please enter Event location",
-                },
                 {
                   min: 3,
                 },
@@ -179,12 +162,6 @@ const EventEditForm = () => {
           <div className={styles["form-control"]}>
             <Form.Item
               name="image"
-              rules={[
-                {
-                  required: false,
-                  message: "Please upload image",
-                },
-              ]}
             >
               <Upload.Dragger
                 // maxCount={1}

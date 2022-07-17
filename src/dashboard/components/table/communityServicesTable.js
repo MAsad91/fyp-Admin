@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Table, Modal } from "antd";
 import {
   EditOutlined,
@@ -13,6 +13,7 @@ import {
 import "./Table.css";
 
 const CommunityServicesTable = (props) => {
+  const navigate = useNavigate();
   console.log(props);
   const columns = [
     // {
@@ -30,37 +31,38 @@ const CommunityServicesTable = (props) => {
       dataIndex: "servicetype",
       width: "25%",
     },
-    {
-      title: "Alert",
-      width: "25%",
-      render: (record) => {
-        return (
-          <>
-            <button
-              className="alertbutton"
-              style={{ marginRight: 3 }}
-              onClick={() => {
-                onEmailAlert(record.id, record.name, record.email);
-              }}
-            >
-              <MailOutlined style={{ color: "skyblue" }} />
-            </button>
+    // {
+    //   title: "Alert",
+    //   width: "25%",
+    //   render: (record) => {
+    //     return (
+    //       <>
+    //         <button
+    //           className="alertbutton"
+    //           style={{ marginRight: 3 }}
+    //           onClick={() => {
+    //             onEmailAlert(record.id, record.name, record.email);
+    //           }}
+    //         >
+    //           <MailOutlined style={{ color: "skyblue" }} />
+    //         </button>
 
-            <button
-              className="alertbutton"
-              style={{ marginLeft: 3 }}
-              onClick={() => {
-                onSmsAlert(record.id, record.name, record.email);
-              }}
-            >
-              <MessageOutlined style={{ color: "skyblue" }} />
-            </button>
-          </>
-        );
-      },
-    },
+    //         <button
+    //           className="alertbutton"
+    //           style={{ marginLeft: 3 }}
+    //           onClick={() => {
+    //             onSmsAlert(record.id, record.name, record.email);
+    //           }}
+    //         >
+    //           <MessageOutlined style={{ color: "skyblue" }} />
+    //         </button>
+    //       </>
+    //     );
+    //   },
+    // },
     {
       title: "Actions",
+      width: "25%",
       render: (record) => {
         return (
           <>
@@ -94,38 +96,38 @@ const CommunityServicesTable = (props) => {
       cancelText: "No",
       okText: "Yes",
       okType: "danger",
-      onOk: () => {
-        axios
-          .delete(`http://localhost:5000/request-communityservices/${id}`)
-          .then((res) => {
-            console.log("response", res);
-          })
-          .catch((error) => {
-            console.log("error block called", error);
-          });
+      onOk: async() => {
+        const response = await axios.delete(`http://localhost:5000/request-communityservices/${id}`);
+        if(response.status === 200){
+          let currentPath = window.location.pathname;
+              navigate(`${currentPath}/replace`);
+              setTimeout(() => {
+                navigate(currentPath);
+              }, 0);
+        }
       },
     });
   };
-  const onEmailAlert = (id, name, email) => {
-    axios({
-      method: "post",
-      url: `http://localhost:5000/emailalert/${id}`,
-      data: {
-        name: name,
-        email: email,
-      },
-    });
-  };
-  const onSmsAlert = (id, name, email) => {
-    axios({
-      method: "post",
-      url: `http://localhost:5000/smsalert/${id}`,
-      data: {
-        name: name,
-        email: email,
-      },
-    });
-  };
+  // const onEmailAlert = (id, name, email) => {
+  //   axios({
+  //     method: "post",
+  //     url: `http://localhost:5000/emailalert/${id}`,
+  //     data: {
+  //       name: name,
+  //       email: email,
+  //     },
+  //   });
+  // };
+  // const onSmsAlert = (id, name, email) => {
+  //   axios({
+  //     method: "post",
+  //     url: `http://localhost:5000/smsalert/${id}`,
+  //     data: {
+  //       name: name,
+  //       email: email,
+  //     },
+  //   });
+  // };
 
   return (
     <Fragment>

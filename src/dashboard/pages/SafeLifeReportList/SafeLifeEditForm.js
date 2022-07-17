@@ -75,10 +75,6 @@ const SafeLifeEditForm = () => {
               label="Reporter Name"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter your name",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -91,12 +87,7 @@ const SafeLifeEditForm = () => {
             <Form.Item
               name="reporttype"
               label="Report Type"
-              rules={[
-                {
-                  required: true,
-                  message: "please enter report type",
-                },
-              ]}
+
               hasFeedback
             >
               <select placeholder="Choose Report type.">
@@ -117,10 +108,6 @@ const SafeLifeEditForm = () => {
               label="Details"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter the report details",
-                },
-                {
                   min: 20,
                 },
               ]}
@@ -135,10 +122,6 @@ const SafeLifeEditForm = () => {
               label="Location"
               rules={[
                 {
-                  required: true,
-                  message: "Please enter the location",
-                },
-                {
                   min: 3,
                 },
               ]}
@@ -150,12 +133,6 @@ const SafeLifeEditForm = () => {
           <div className={styles["form-control"]}>
             <Form.Item
               name="image"
-              rules={[
-                {
-                  required: false,
-                  message: "Please upload image",
-                },
-              ]}
             >
               <Upload.Dragger
                 multiple
