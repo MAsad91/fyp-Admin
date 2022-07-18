@@ -9,7 +9,7 @@ import axios from "axios";
 const RequestEditForm = () => {
   const {id} = useParams();
   const [error, setError] = useState(false);
-  const auth = useContext(AuthContext);
+  //const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
   const errorHandler = () => {
@@ -43,7 +43,7 @@ const RequestEditForm = () => {
                   details: value.details,
                 },
                 headers: {
-                  Authorization: "Bearer " + auth.token,
+                  // Authorization: "Bearer " + auth.token,
                 },
               });
               console.log(response);

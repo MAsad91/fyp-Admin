@@ -9,6 +9,7 @@ import {
   EyeOutlined,
   MessageOutlined,
   MailOutlined,
+  CheckOutlined 
 } from "@ant-design/icons";
 import "./Table.css";
 
@@ -50,16 +51,16 @@ const UserListTable = (props) => {
     {
       title: "Name",
       dataIndex: "name",
-      width: "25%",
+      width: "20%",
     },
     {
       title: "Email",
       dataIndex: "email",
-      width: "25%",
+      width: "20%",
     },
     // {
     //   title: "Alert",
-    //   width: "25%",
+    //   width: "20%",
     //   render: (record) => {
     //     return (
     //       <>
@@ -86,9 +87,22 @@ const UserListTable = (props) => {
     //     );
     //   },
     // },
+    // {
+    //   title: 'Status',
+    //   width: "20%",
+    //   render:(record) => {
+    //     if(record.status==='checked'){
+    //       return(<CheckOutlined />);
+    //     }
+
+    //   }
+    //   ,
+      
+
+    // },
     {
       title: "Actions",
-      width: "25%",
+      width: "20%",
       render: (record) => {
         return (
           <>
@@ -133,37 +147,58 @@ const UserListTable = (props) => {
                 navigate(currentPath);
               }, 0);
         }
-        // axios
-        //   .delete(`http://localhost:5000/userlist/${id}`)
-        //   .then((res) => {
-        //     console.log("response", res);
-        //     navigate('/userlist');
-        //   })
-        //   .catch((error) => {
-        //     console.log("error block called", error);
-        //   });
+        axios
+          .delete(`http://localhost:5000/userlist/${id}`)
+          .then((res) => {
+            console.log("response", res);
+            navigate('/userlist');
+          })
+          .catch((error) => {
+            console.log("error block called", error);
+          });
           
       },
     });
   };
   // const onEmailAlert = (id, name, email) => {
-  //   axios({
-  //     method: "post",
-  //     url: `http://localhost:5000/emailalert/${id}`,
-  //     data: {
+  //   fetch(`http://localhost:5000/emailalert/${id}`, {
+  //     method: 'POST',
+  //     body: {
+  //       id: id,
   //       name: name,
-  //       email: email,
-  //     },
-  //   });
+  //       // email: email,
+  //     }, // The data
+  //   headers: {
+  //     'Content-type': 'application/json; charset=UTF-8' // The type of data you're sending
+  //   }
+  // });
+  //   // axios({
+  //   //   method: "post",
+  //   //   url: `http://localhost:5000/emailalert/${id}`,
+  //   //   data: {
+  //   //     name: name,
+  //   //     email: email,
+  //   //   },
+  //   // });
   // };
   // const onSmsAlert = (id, name, email) => {
-  //   axios({
-  //     method: "post",
-  //     url: `http://localhost:5000/smsalert/${id}`,
-  //     data: {
+  //   fetch(`http://localhost:5000/smsalert/${id}`, {
+  //     method: 'POST',
+  //     body: {
+  //       id: id,
   //       name: name,
-  //       email: email,
-  //     },
+  //       // email: email,
+  //     }, // The data
+  //   headers: {
+  //     'Content-type': 'application/json; charset=UTF-8' // The type of data you're sending
+  //   }
+  //   // axios({
+  //   //   method: "post",
+  //   //   url: `http://localhost:5000/smsalert/${id}`,
+  //   //   data: {
+  //   //     name: name,
+  //   //     email: email,
+  //   //   },
   //   });
   // };
   return (

@@ -53,15 +53,15 @@ const LostEditForm = () => {
                 formData.append("images", image.originFileObj);
               });
               // formData.append("creator", id);
-              const response = await axios({
-                method: "patch",
-                url: `http://localhost:5000/lost-report/report/${id}`,
-                data: formData,
+              const response = await fetch(`http://localhost:5000/lost-report/report/${id}`,{
+                method: 'PATCH',
+                body: formData ,
                 headers: {
+                  // 'Content-type': 'application/json; charset=UTF-8',
                   "Content-Type": "multipart/form-data",
-                  // Authorization: "Bearer " + auth.token,
-                },
+                }
               });
+           
               console.log(response);
               if (response.status === 200) {
                 navigate(`/lostreport`);

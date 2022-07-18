@@ -27,7 +27,7 @@ const ViewUser = () => {
         `http://localhost:5000/found-report/report/${id}`
       );
       setUserData(result.data.report);
-      console.log(result.data.report);
+      console.log(result.data.report.image);
       // setUser(data);
     };
     LoadUserData();

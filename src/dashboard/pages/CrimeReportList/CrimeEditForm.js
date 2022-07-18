@@ -70,22 +70,27 @@ const CrimeEditForm = () => {
           onFinish={async (value) => {
             console.log(value);
             try {
-              let formData = new FormData();
-              formData.append("name", value.name);
-              formData.append("crimetype", value.crimetype);
-              formData.append("details", value.details);
-              formData.append("location", value.location);
-              images.map((image) => {
-                formData.append("images", image.originFileObj);
-              });
+              // let formData = new FormData();
+              // formData.append("name", value.name);
+              // formData.append("crimetype", value.crimetype);
+              // formData.append("details", value.details);
+              // formData.append("location", value.location);
+              // images.map((image) => {
+              //   formData.append("images", image.originFileObj);
+              // });
               // formData.append("creator", id);
               const response = await axios({
                 method: "patch",
                 url: `http://localhost:5000/crime-report/report/${id}`,
-                data: formData,
+                data: {
+                  name: value.name,
+                  crimetype: value.crimetype,
+                  details: value.details,
+                  location:value.location,
+                },
                 headers: {
-                  "Content-Type": "multipart/form-data",
-                  Authorization: "Bearer " + auth.token,
+                  // "Content-Type": "multipart/form-data",
+                  // Authorization: "Bearer " + auth.token,
                 },
               });
               console.log(response);

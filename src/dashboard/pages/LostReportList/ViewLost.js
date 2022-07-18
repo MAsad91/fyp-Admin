@@ -27,7 +27,7 @@ const ViewUser = () => {
         `http://localhost:5000/lost-report/report/${id}`
       );
       setUserData(result.data.report);
-      console.log(result.data.report);
+      console.log(result.data.report.images[0]);
       // setUser(data);
     };
     LoadUserData();
@@ -73,19 +73,19 @@ const ViewUser = () => {
               Location: {userData?.location}
             </Typography>
           </CardContent>
-          {/* <ImgCarousel
+          <ImgCarousel
             image={userData.images?.map((img) => {
               return "http://localhost:5000/" + img;
             })}
-          /> */}
-          <CardMedia
+          />
+          {/* <CardMedia
             component="img"
             // height="194"
             image={userData.images?.map((img) => {
               return "http://localhost:5000/" + img;
             })}
             alt="Lost Images"
-          />
+          /> */}
         </Grid>
       </Grid>
     </div>
