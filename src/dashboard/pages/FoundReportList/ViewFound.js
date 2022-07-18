@@ -9,17 +9,14 @@ import {
 } from "@material-ui/core";
 import cx from "classnames";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "../../shared/MediaCards.module.css";
 import ImgCarousel from "../../shared/ImgCarousel";
 
 const ViewUser = () => {
   const [userData, setUserData] = useState({});
   const { id } = useParams();
-  // alert(id);
   console.log(id);
-  // const [userData, setUserData] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const LoadUserData = async () => {

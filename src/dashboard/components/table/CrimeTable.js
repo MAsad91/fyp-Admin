@@ -8,32 +8,26 @@ import {
   EyeOutlined,
   MessageOutlined,
   MailOutlined,
-  CheckOutlined,
 } from "@ant-design/icons";
-
 import "./Table.css";
-import { toBeDisabled } from "@testing-library/jest-dom/dist/matchers";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 const CrimeTable = (props) => {
   const navigate = useNavigate();
   console.log(props);
-  let emailCheck ;
   let columns = [
     {
       title: "Name",
       dataIndex: "name",
-      fontSize: "30px",
-      width: "20%",
+      width: "25%",
     },
     {
       title: "Type",
       dataIndex: "crimetype",
-      width: "20%",
+      width: "25%",
     },
     {
       title: "Alert",
-      width: "15%",
+      width: "25%",
       render: (record) => {
         return (
           <>
@@ -59,14 +53,10 @@ const CrimeTable = (props) => {
           </>
         );
       },
-    },
-    {
-      title: 'Status',
-      width: "20%",
     },     
     {
       title: "Actions",
-      width: "20%",
+      width: "25%",
       render: (record) => {
         return (
           <>
@@ -121,16 +111,13 @@ const CrimeTable = (props) => {
           name: name,
         },
       });
-      emailCheck = response.data.checkStatus;
-      console.log(`RESPONSE::::::: ${response.data.message}`);
       if(response.status==200){
-       Modal.success({
-        title: "Email Alert Sent",
-       })
-       emailCheck = true;
-       
-       
-      }
+        Modal.success({
+         title: "Email Alert Sent",
+        })
+       }
+      console.log(`RESPONSE::::::: ${response.data.message}`);
+     
     } catch (err) {
       console.log(err.response.data.message);
     }

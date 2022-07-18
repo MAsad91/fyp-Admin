@@ -53,8 +53,6 @@ import Navbar from "./dashboard/shared/Navbar";
 import LoggedIn from "./dashboard/pages/LoggedIn";
 import SignUp from "./dashboard/pages/SignedUp";
 
-// import EmailAlert from "./dashboard/shared/EmailAlert";
-
 import { AuthContext } from "./dashboard/shared/auth-context";
 
 let logoutTimer;
@@ -136,16 +134,11 @@ function App() {
                 <div
                   className="site-layout-background"
                   style={{ padding: 24, minHeight: 580 }}
-                  //before minHeight: 360
-                  //minWidth: 1360
                 >
                   <Routes>
                     <Route path="/login" exact element={<Navigate to="/" />} />
 
                     <Route path="/signup" exact element={<Navigate to="/" />} />
-
-                    <Route path="/emailalert/:id" />
-                    <Route path="/smsalert/:id" />
 
                     <Route path="/" exact element={<Home />} />
 
@@ -253,8 +246,8 @@ function App() {
                       element={<EventEditForm />}
                     />
                     <Route path="events/:id" exact element={<ViewEvent />} />
-                    {/* <Route path="*" exact
-                      element={<Navigate to="/login" />}/> */}
+                    <Route path="*" exact
+                      element={<Navigate to="/login" />}/>
                   </Routes>
                 </div>
               </Content>
@@ -272,9 +265,9 @@ function App() {
 
               <Route path="/" exact element={<Navigate to="/login" />} />
 
-              {/* <Route path="*" exact>
+              <Route path="*" exact>
                 <Redirect to="/login" />
-              </Route> */}
+              </Route>
             </Routes>
           </>
         )}

@@ -1,21 +1,14 @@
 import React, { Fragment, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Upload } from "antd";
-import { AuthContext } from "../../shared/auth-context";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
 
 const SafeLifeEditForm = () => {
   const {id} = useParams();
-  const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
-  const auth = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const uploadHandle = ({ fileList }) => {
-    setImages(fileList);
-  };
 
   const errorHandler = () => {
     setError(null);
@@ -40,20 +33,18 @@ const SafeLifeEditForm = () => {
           onFinish={async (value) => {
             console.log(value);
             try {
-              let formData = new FormData();
-              formData.append("name", value.name);
-              formData.append("reporttype", value.reporttype);
-              formData.append("details", value.details);
-              formData.append("location", value.location);
-              images.map((image) => {
-                formData.append("images", image.originFileObj);
-              });
-              formData.append("creator", id);
-              const response = await fetch(`http://localhost:5000/safelife-report/report/${id}`,{
-                method: "PATCH",
-                body: formData,
+              
+              const response = await axios({
+                method: "patch",
+                url: `http://localhost:5000/safelife-report/report/${id}`,
+                data:{
+                  name: value.name,
+                  reporttype: value.reporttype,
+                  details: value.details,
+                  location: value.location
+                },
                 headers: {
-                  "Content-Type": "multipart/form-data",
+                  // "Content-Type": "multipart/form-data",
                   // Authorization: "Bearer " + auth.token,
                 },
               });
@@ -127,22 +118,6 @@ const SafeLifeEditForm = () => {
               hasFeedback
             >
               <input type="text" id="location" placeholder="Enter Location" />
-            </Form.Item>
-          </div>
-          <div className={styles["form-control"]}>
-            <Form.Item
-              name="image"
-            >
-              <Upload.Dragger
-                multiple
-                accept=".png,.jpg,.jpeg"
-                onChange={uploadHandle}
-                beforeUpload={() => false}
-              >
-                Drag files here OR
-                <br />
-                <Button>Click Upload</Button>
-              </Upload.Dragger>
             </Form.Item>
           </div>
           <div className={styles["form-actions"]}>

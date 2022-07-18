@@ -17,24 +17,19 @@ const CertificateTable = (props) => {
   console.log(props);
   const navigate = useNavigate();
   const columns = [
-    // {
-    //   title: "ID",
-    //   dataIndex: "id",
-    //   // render: (text) =><Link to='/singledata'>{text}</Link>
-    // },
     {
       title: "Name",
       dataIndex: "name",
-      width: "20%",
+      width: "25%",
     },
     {
       title: "Request Type",
       dataIndex: "requesttype",
-      width: "20%",
+      width: "25%",
     },
     {
       title: "Alert",
-      width: "15%",
+      width: "25%",
       render: (record) => {
         return (
           <>
@@ -62,23 +57,8 @@ const CertificateTable = (props) => {
       },
     },
     {
-      title: 'Status',
-      width: "20%",
-      render:(record) => {
-       const onFlag=(flag)=>{
-          if(flag){
-            return(<CheckOutlined />);
-          }
-        }
-        
-
-      }
-      
-
-    },
-    {
       title: "Actions",
-      width: "20%",
+      width: "25%",
       render: (record) => {
         return (
           <>

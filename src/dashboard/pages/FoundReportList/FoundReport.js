@@ -7,13 +7,9 @@ function FoundReport() {
     const fetchData = async () => {
       try{
         const {data} = await axios.get('http://localhost:5000/found-report');
-        
-
         setFoundData(data);
       } catch (err) {
-
       }
-      
     }
     fetchData();
   },[])

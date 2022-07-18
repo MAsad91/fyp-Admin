@@ -1,49 +1,18 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Upload } from "antd";
-import { AuthContext } from "../../shared/auth-context";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
 
 const CrimeEditForm = () => {
   const { id } = useParams();
-  const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
-  const auth = useContext(AuthContext);
   const navigate = useNavigate();
-  const [crimeName, setCrimeName] = useState("");
-  const [userData, setUserData] = useState({
-    // name: "",
-    // crimetype: "",
-    // details: "",
-    // location: "",
-  });
-  const uploadHandle = ({ fileList }) => {
-    setImages(fileList);
-  };
 
   const errorHandler = () => {
     setError(null);
   };
-  useEffect(() => {
-    const LoadUserData = async () => {
-      const result = await axios.get(
-        `http://localhost:5000/crime-report/report/${id}`
-      );
-      setCrimeName(result.data.report.name);
-      setUserData({
-        name: result.data.report.name,
-        crimetype: result.data.report.crimetype,
-        details: result.data.report.details,
-        location: result.data.report.location,
-      });
-      console.log(result.data.report);
-      // setUser(data);
-    };
-    LoadUserData();
-  }, []);
-  console.log(userData.name);
   return (
     <Fragment>
       {error && (
@@ -58,27 +27,11 @@ const CrimeEditForm = () => {
           <h2>Crime Edit Form</h2>
         </div>
         <Form
-          initialValues={{
-            name: userData.name,
-            crimetype: userData.crimetype,
-            details: userData.details,
-            location: userData.location,
-          }}
-          
           autoComplete="off"                                                         
           labelCol={{ span: 10 }}
           onFinish={async (value) => {
             console.log(value);
             try {
-              // let formData = new FormData();
-              // formData.append("name", value.name);
-              // formData.append("crimetype", value.crimetype);
-              // formData.append("details", value.details);
-              // formData.append("location", value.location);
-              // images.map((image) => {
-              //   formData.append("images", image.originFileObj);
-              // });
-              // formData.append("creator", id);
               const response = await axios({
                 method: "patch",
                 url: `http://localhost:5000/crime-report/report/${id}`,
@@ -108,7 +61,6 @@ const CrimeEditForm = () => {
             <Form.Item
               name="name"
               label="Reporter Name"
-              // initialValue={userData.name}
               rules={[
                 {
                   min: 3,
@@ -119,12 +71,7 @@ const CrimeEditForm = () => {
               <input
                 type="text"
                 id="name"
-              
-                // defaultValue={crimeName}
-
-                // defaultValue={userData? userData.name: ''}
-                // initialvalue={userData.name}
-                // defaultValue={userData.name}
+                placeholder="Enter your Name"
               />
             </Form.Item>
           </div>
@@ -160,7 +107,7 @@ const CrimeEditForm = () => {
               ]}
               hasFeedback
             >
-              <textarea id="details" />
+              <textarea id="details" placeholder="Enter crime details"/>
             </Form.Item>
           </div>
 
@@ -175,24 +122,7 @@ const CrimeEditForm = () => {
               ]}
               hasFeedback
             >
-              <input type="text" id="location" />
-            </Form.Item>
-          </div>
-
-          <div className={styles["form-control"]}>
-            <Form.Item
-              name="image"
-            >
-              <Upload.Dragger
-                multiple
-                accept=".png,.jpg,.jpeg"
-                onChange={uploadHandle}
-                beforeUpload={() => false}
-              >
-                Drag file here OR
-                <br />
-                <Button>Click Upload </Button>
-              </Upload.Dragger>
+              <input type="text" id="location" placeholder="Enter Location"/>
             </Form.Item>
           </div>
 

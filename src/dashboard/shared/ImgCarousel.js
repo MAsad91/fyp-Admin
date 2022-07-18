@@ -6,7 +6,6 @@ const ImgCarousel = (props) => {
   return (
     <Fragment>
       <Carousel>
-        {/* <img src={props?.image} alt="items images" /> */}
         {props.image?.map((img) => {
           return (
             <Carousel.Item>

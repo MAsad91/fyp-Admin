@@ -11,12 +11,6 @@ const Login = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
-  //const [isLogin, setIsLogin] = useState(true);
-
-  // const switchModeHandler = () => {
-  //   setIsLogin((prevMode) => !prevMode);
-  // };
-
   const errorHandler = () => {
     setError(null);
   };
@@ -34,13 +28,10 @@ const Login = () => {
         <div className={styles.title}>
           <h2>Login Required</h2>
         </div>
-
-        {/* {isLogin ? ( */}
         <Form
           autoComplete="off"
           labelCol={{ span: 10 }}
           onFinish={async (value) => {
-            console.log(value);
             try {
               const response = await axios({
                 method: "post",
@@ -112,16 +103,10 @@ const Login = () => {
             </Form.Item>
           </div>
         </Form>
-        {/* ) : (
-          <Signup />
-        )} */}
+
         <div>
           <p>Not a member?</p>
           <Link to="/signup">SignUp</Link>
-
-          {/* <button onClick={switchModeHandler}>
-            Switch To {isLogin ? "SignUp" : "Login"}
-          </button> */}
         </div>
       </div>
     </Fragment>

@@ -9,7 +9,6 @@ import axios from "axios";
 const RequestEditForm = () => {
   const {id} = useParams();
   const [error, setError] = useState(false);
-  //const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
   const errorHandler = () => {

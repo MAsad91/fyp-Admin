@@ -6,8 +6,6 @@ import {
   EditOutlined,
   DeleteOutlined,
   EyeOutlined,
-  MessageOutlined,
-  MailOutlined,
 } from "@ant-design/icons";
 
 import "./Table.css";
@@ -16,11 +14,6 @@ const EventsTable = (props) => {
   const navigate = useNavigate();
   console.log(props);
   let columns = [
-    // {
-    //   title: "ID",
-    //   dataIndex: "id",
-    //   // render: (text) => <Link to={'/singledata'}>{text}</Link>,
-    // },
     {
       title: "Name",
       dataIndex: "name",
@@ -31,40 +24,6 @@ const EventsTable = (props) => {
       dataIndex: "eventtype",
       width: "25%",
     },
-    //
-    //   title: "Location",
-    //   dataIndex: "location",
-    // },
-
-    // {
-    //   title: "Alert",
-    //   width: "25%",
-    //   render: (record) => {
-    //     return (
-    //       <>
-    //         <button
-    //           className="alertbutton"
-    //           style={{ marginRight: 3 }}
-    //           onClick={() => {
-    //             onEmailAlert(record.id, record.name, record.email);
-    //           }}
-    //         >
-    //           <MailOutlined style={{ color: "skyblue" }} />
-    //         </button>
-
-    //         <button
-    //           className="alertbutton"
-    //           style={{ marginLeft: 3 }}
-    //           onClick={() => {
-    //             onSmsAlert(record.id, record.name, record.email);
-    //           }}
-    //         >
-    //           <MessageOutlined style={{ color: "skyblue" }} />
-    //         </button>
-    //       </>
-    //     );
-    //   },
-    // },
     {
       title: "Actions",
       width: "25%",
@@ -115,29 +74,7 @@ const EventsTable = (props) => {
         }
       },
     });
-    navigate("/events");
   };
-  // const onEmailAlert = (id, name, email) => {
-  //   axios({
-  //     method: "post",
-  //     url: `http://localhost:5000/emailalert/${id}`,
-  //     data: {
-  //       name: name,
-  //       email: email,
-  //     },
-  //   });
-  // };
-  // const onSmsAlert = (id, name, email) => {
-  //   axios({
-  //     method: "post",
-  //     url: `http://localhost:5000/smsalert/${id}`,
-  //     data: {
-  //       name: name,
-  //       email: email,
-  //     },
-  //   });
-  // };
-
   return (
     <Fragment>
       <Table

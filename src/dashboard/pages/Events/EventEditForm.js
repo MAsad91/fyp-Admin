@@ -1,46 +1,19 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Upload } from "antd";
-import { AuthContext } from "../../shared/auth-context";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
-import EventsForm from "./EventsForm";
 
 const EventEditForm = () => {
   const {id} = useParams();
-  const [userData, setUserData]=useState({
-    defaultValues: {
-      name:'',
-      crimetype:'',
-      details:'',
-      location:''
-    }});
-  const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
-  const auth = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const uploadHandle = ({ fileList }) => {
-    setImages(fileList);
-  };
 
   const errorHandler = () => {
     setError(null);
   };
 
-  useEffect(() => {
-    const LoadUserData = async () => {
-      const result = await axios.get(
-        `http://localhost:5000/events/${id}`
-      );
-      setUserData(result.data.event);
-      console.log(result.data.event);
-      // setUser(data);
-    };
-    LoadUserData();
-  }, []);
-  console.log(userData.name);
   return (
     <Fragment>
       {error && (
@@ -60,21 +33,17 @@ const EventEditForm = () => {
           onFinish={async (value) => {
             console.log(value);
             try {
-              let formData = new FormData();
-              formData.append("name", value.name);
-              formData.append("eventtype", value.eventtype);
-              formData.append("details", value.details);
-              formData.append("location", value.location);
-              images.map((image) => {
-                formData.append("images", image.originFileObj);
-              });
-              // formData.append("images", images[0].originFileObj);
-              // formData.append("creator", auth.userId);
-              const response = fetch(`http://localhost:5000/events/${id}`,{
-                method: "PATCH",
-                body: formData,
+              const response = await axios({
+                method: "patch",
+                url: `http://localhost:5000/events/${id}`,
+                body: {
+                  name: value.name,
+                  eventtype: value.eventtype,
+                  details: value.details,
+                  location: value.location,
+                },
                 headers: {
-                  "Content-Type": "multipart/form-data",
+                  // "Content-Type": "multipart/form-data",
                   // Authorization: "Bearer " + auth.token,
                 },
               });
@@ -100,7 +69,7 @@ const EventEditForm = () => {
               ]}
               hasFeedback
             >
-              <input type="text" id="name" defaultValue={userData.name} />
+              <input type="text" id="name" placeholder="Enter Event Name" />
             </Form.Item>
           </div>
 
@@ -111,7 +80,7 @@ const EventEditForm = () => {
       
               hasFeedback
             >
-              <select defaultValue={userData.eventtype}>
+              <select>
                 <option value="">Select</option>
                 <option value="concert">Concert</option>
                 <option value="seminar">Seminar</option>
@@ -136,7 +105,7 @@ const EventEditForm = () => {
               ]}
               hasFeedback
             >
-              <textarea id="details" defaultValue={userData.details} />
+              <textarea id="details" placeholder="Event details"/>
             </Form.Item>
           </div>
 
@@ -154,29 +123,10 @@ const EventEditForm = () => {
               <input
                 type="text"
                 id="location"
-                defaultValue={userData.location}
+                placeholder="Enter Location"
               />
             </Form.Item>
           </div>
-          <div className={styles["form-control"]}>
-            <Form.Item
-              name="image"
-            >
-              <Upload.Dragger
-                // maxCount={1}
-                // multiple="false"
-                multiple
-                accept=".png,.jpg,.jpeg"
-                onChange={uploadHandle}
-                beforeUpload={() => false}
-              >
-                Drag file here OR
-                <br />
-                <Button>Click Upload</Button>
-              </Upload.Dragger>
-            </Form.Item>
-          </div>
-
           <div className={styles["form-actions"]}>
             <Form.Item>
               <button style={{ color: "white" }}>Submit</button>

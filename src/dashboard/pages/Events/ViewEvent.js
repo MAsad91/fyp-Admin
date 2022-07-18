@@ -14,20 +14,15 @@ import styles from "../../shared/MediaCards.module.css";
 import ImgCarousel from "../../shared/ImgCarousel";
 
 const ViewUser = () => {
-  // <<<<<<< HEAD
   const [userData, setUserData] = useState({});
   const { id } = useParams();
-  // alert(id);
   console.log(id);
-  // const [userData, setUserData] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const LoadUserData = async () => {
       const result = await axios.get(`http://localhost:5000/events/${id}`);
       setUserData(result.data.event);
       console.log(result.data.event);
-      // setUser(data);
     };
     LoadUserData();
   }, []);

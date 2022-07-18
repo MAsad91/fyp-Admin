@@ -1,22 +1,14 @@
 import React, { Fragment, useContext, useState,  } from "react";
 import {  useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Upload } from "antd";
-import { AuthContext } from "../../shared/auth-context";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
 
 const LostEditForm = () => {
   const {id} = useParams();
-  const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
-  const auth = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const uploadHandle = ({ fileList }) => {
-    setImages(fileList);
-  };
-
   const errorHandler = () => {
     setError(null);
   };
@@ -40,25 +32,22 @@ const LostEditForm = () => {
           onFinish={async (value) => {
             console.log(value);
             try {
-              let formData = new FormData();
-              formData.append("name", value.name);
-              formData.append("itemname", value.itemname);
-              formData.append("state", value.state);
-              formData.append("lostitemtype", value.lostitemtype);
-              formData.append("color", value.color);
-              formData.append("location", value.location);
-              formData.append("details", value.details);
-              formData.append("description", value.description);
-              images.map((image) => {
-                formData.append("images", image.originFileObj);
-              });
-              // formData.append("creator", id);
-              const response = await fetch(`http://localhost:5000/lost-report/report/${id}`,{
-                method: 'PATCH',
-                body: formData ,
+              const response = await axios({
+                method: 'patch',
+                url: `http://localhost:5000/lost-report/report/${id}`,
+                data: {
+                  name:value.name,
+                  itemname:value.itemname,
+                  state:value.state,
+                  lostitemtype:value.lostitemtype,
+                  color:value.color,
+                  location:value.location,
+                  details:value.details,
+                  description:value.description,
+                } ,
                 headers: {
-                  // 'Content-type': 'application/json; charset=UTF-8',
-                  "Content-Type": "multipart/form-data",
+                  
+                  // "Content-Type": "multipart/form-data",
                 }
               });
            
@@ -214,22 +203,6 @@ const LostEditForm = () => {
                 id="description"
                 placeholder="Give as much detail as possible of the Lost item"
               />
-            </Form.Item>
-          </div>
-          <div className={styles["form-control"]}>
-            <Form.Item
-              name="image"
-            >
-              <Upload.Dragger
-                multiple
-                accept=".png,.jpg,.jpeg"
-                onChange={uploadHandle}
-                beforeUpload={() => false}
-              >
-                Drag files here Or
-                <br />
-                <Button>Click Upload</Button>
-              </Upload.Dragger>
             </Form.Item>
           </div>
           <div className={styles["form-actions"]}>

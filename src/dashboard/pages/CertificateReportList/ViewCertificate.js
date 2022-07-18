@@ -9,10 +9,7 @@ import styles from "../../shared/MediaCards.module.css";
 const ViewUser = () => {
   const [userData, setUserData] = useState({});
   const { id } = useParams();
-  // alert(id);
   console.log(id);
-  // const [userData, setUserData] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const LoadUserData = async () => {
@@ -21,7 +18,6 @@ const ViewUser = () => {
       );
       setUserData(result.data.report);
       console.log(result.data.report);
-      // setUser(data);
     };
     LoadUserData();
   }, []);

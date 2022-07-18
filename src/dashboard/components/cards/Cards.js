@@ -1,13 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardContent, CardActionArea, Typography, Grid} from '@material-ui/core';
+import { Card, CardContent, Typography, Grid} from '@material-ui/core';
 import CountUp from 'react-countup';
 import cx from 'classnames';
 import styles from './Cards.module.css';
 const Cards = (props) => {
     console.log(props.crimeCount);
-    
-
     return(
         <div className={styles.container}>
             <Grid container spacing={3} justifyContent='center'>
@@ -15,10 +12,10 @@ const Cards = (props) => {
                 className={cx(styles.card,styles.crime)}>
                     <CardContent className='card-content'>
                         <Typography variant='h5' gutterBottom> Crime </Typography>
-                        <Typography variant='h5' /*color="text.secondary"*/>
+                        <Typography variant='h5'>
                             <CountUp start={0} end={props.crimeCount} duration={2.5} separator="," />   
                         </Typography>
-                        <Typography variant='body2' /*color="text.secondary"*/>Number of Cases Report</Typography>
+                        <Typography variant='body2'>Number of Cases Report</Typography>
                     </CardContent>    
                 </Grid>
                 <Grid item component={Card} 

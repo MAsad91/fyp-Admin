@@ -7,13 +7,10 @@ function LostReport() {
     const fetchData = async () => {
       try{
         const {data} = await axios.get('http://localhost:5000/lost-report');
-        
-
         setLostData(data);
       } catch (err) {
 
-      }
-      
+      } 
     }
     fetchData();
   },[])

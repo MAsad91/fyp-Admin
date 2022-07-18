@@ -1,7 +1,6 @@
 import React, { Fragment, useContext, useState,  } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form } from "antd";
-import { AuthContext } from "../../shared/auth-context";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
@@ -9,7 +8,6 @@ import axios from "axios";
 const RequestServicesForm = () => {
   const {id} = useParams();
   const [error, setError] = useState(false);
-  const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
   const errorHandler = () => {
@@ -43,7 +41,7 @@ const RequestServicesForm = () => {
                   details: value.details,
                 },
                 headers: {
-                  Authorization: "Bearer " + auth.token,
+                  // Authorization: "Bearer " + auth.token,
                 },
               });
               console.log(response);

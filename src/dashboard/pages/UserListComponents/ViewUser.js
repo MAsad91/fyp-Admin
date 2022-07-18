@@ -14,15 +14,11 @@ const ViewUser = () => {
     address: "",
   });
   const { id } = useParams();
-  // const [userData, setUserData] = useState([]);
-  const navigate = useNavigate();
-
   useEffect(() => {
     const LoadUserData = async () => {
       const result = await axios.get(`http://localhost:5000/userlist/${id}`);
       setUserData(result.data[0]);
       console.log(result);
-      // setUser(data);
     };
     LoadUserData();
   }, []);

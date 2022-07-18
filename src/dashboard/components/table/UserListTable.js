@@ -9,7 +9,6 @@ import {
   EyeOutlined,
   MessageOutlined,
   MailOutlined,
-  CheckOutlined 
 } from "@ant-design/icons";
 import "./Table.css";
 
@@ -17,46 +16,15 @@ const UserListTable = (props) => {
   console.log(props);
   const navigate = useNavigate();
   const columns = [
-    // {
-    //   title: "ID",
-    //   dataIndex: "id",
-    // render: (text) => <Link to={`/userdetail`}>{text}</Link>,
-    // render: (text) => <Link to='/singledata'>{text}</Link>,
-    // onRow: (record, rowIndex) => {
-    //   return {
-    //     onClick: (ev) => {
-
-    //       // <Link onClick={<SingleData record={record} />} to='/singledata'> </Link>
-    //       <>
-    //       <p>{record.id}</p>
-    //       </>
-    //       console.log(record);
-    //   }, // click row
-    //   };
-    // },
-    //   onCell: (record) => {
-    //     return {
-    //         onClick: (ev) => {
-
-    //             // <Link onClick={<SingleData record={record} />} to='/singledata'> </Link>
-    //             <>
-    //             <p>{record.id}</p>
-    //             </>
-    //             console.log(record);
-    //         },
-
-    //     };
-    // },
-    // },
     {
       title: "Name",
       dataIndex: "name",
-      width: "20%",
+      width: "25%",
     },
     {
       title: "Email",
       dataIndex: "email",
-      width: "20%",
+      width: "25%",
     },
     // {
     //   title: "Alert",
@@ -87,22 +55,9 @@ const UserListTable = (props) => {
     //     );
     //   },
     // },
-    // {
-    //   title: 'Status',
-    //   width: "20%",
-    //   render:(record) => {
-    //     if(record.status==='checked'){
-    //       return(<CheckOutlined />);
-    //     }
-
-    //   }
-    //   ,
-      
-
-    // },
     {
       title: "Actions",
-      width: "20%",
+      width: "25%",
       render: (record) => {
         return (
           <>

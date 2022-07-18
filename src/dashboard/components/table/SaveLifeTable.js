@@ -8,7 +8,6 @@ import {
   EyeOutlined,
   MessageOutlined,
   MailOutlined,
-  CheckOutlined,
 } from "@ant-design/icons";
 import "./Table.css";
 
@@ -16,24 +15,19 @@ const SaveLifeTable = (props) => {
   const navigate = useNavigate();
   console.log(props);
   const columns = [
-    // {
-    //   title: "ID",
-    //   dataIndex: "id",
-    //   // render: (text) => <Link to='/singledata'>{text}</Link>,
-    // },
     {
       title: "Name",
       dataIndex: "name",
-      width: "20%",
+      width: "25%",
     },
     {
       title: "Report Type",
       dataIndex: "reporttype",
-      width: "20%",
+      width: "25%",
     },
     {
       title: "Alert",
-      width: "15%",
+      width: "25%",
       render: (record) => {
         return (
           <>
@@ -59,22 +53,6 @@ const SaveLifeTable = (props) => {
           </>
         );
       },
-    },
-    {
-      title: 'Status',
-      width: "20%",
-      render:(record) => {
-       const onFlag=(flag)=>{
-          if(flag){
-            return(<CheckOutlined />);
-          }
-        }
-        
-
-      }
-      ,
-      
-
     },
     {
       title: "Actions",
