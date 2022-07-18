@@ -265,8 +265,8 @@ function App() {
 
               <Route path="/" exact element={<Navigate to="/login" />} />
 
-              <Route path="*" exact>
-                <Redirect to="/login" />
+              <Route path="*" exact
+                element={<Navigate to="/login" />}>
               </Route>
             </Routes>
           </>
