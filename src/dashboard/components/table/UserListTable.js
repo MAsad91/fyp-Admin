@@ -96,6 +96,9 @@ const UserListTable = (props) => {
       onOk: async() => {
         const response = await axios.delete(`http://localhost:5000/userlist/${id}`);
         if(response.status === 200){
+          Modal.success({
+            title: "User Report Deleted Successfully!",
+          });
           let currentPath = window.location.pathname;
               navigate(`${currentPath}/replace`);
               setTimeout(() => {

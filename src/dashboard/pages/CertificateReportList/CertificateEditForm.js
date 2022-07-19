@@ -5,6 +5,7 @@ import { AuthContext } from "../../shared/auth-context";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
+import { Modal } from "antd";
 
 const RequestEditForm = () => {
   const {id} = useParams();
@@ -47,6 +48,9 @@ const RequestEditForm = () => {
               });
               console.log(response);
               if (response.status === 200) {
+                Modal.success({
+                  title: "Certificate/Permit Report Submitted Successfully!",
+                });
                 navigate(`/certificatepermits`);
               }
             } catch (err) {

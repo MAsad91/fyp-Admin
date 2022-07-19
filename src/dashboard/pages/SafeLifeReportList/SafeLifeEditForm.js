@@ -4,6 +4,7 @@ import { Form, Button, Upload } from "antd";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
+import { Modal } from "antd";
 
 const SafeLifeEditForm = () => {
   const {id} = useParams();
@@ -50,6 +51,9 @@ const SafeLifeEditForm = () => {
               });
               console.log(response);
               if (response.status === 200) {
+                Modal.success({
+                  title: "SafeLife Report Submitted Successfully!",
+                });
                 navigate(`/safelifereport`);
               }
             } catch (err) {

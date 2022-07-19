@@ -4,6 +4,7 @@ import { Form, Button, Upload } from "antd";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
+import { Modal } from "antd";
 
 const FoundEditForm = () => {
   const {id} = useParams();
@@ -52,6 +53,9 @@ const FoundEditForm = () => {
               });
               console.log(response);
               if (response.status === 200) {
+                Modal.success({
+                  title: "FoundItem Report Submitted Successfully!",
+                });
                 navigate(`/foundreport`);
               }
             } catch (err) {

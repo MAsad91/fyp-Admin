@@ -94,6 +94,9 @@ const SaveLifeTable = (props) => {
       onOk: async() => {
         const response = await axios.delete(`http://localhost:5000/safelife-report/${id}`);
         if(response.status === 200){
+          Modal.success({
+            title: "SafeLife Report Deleted Successfully!",
+          });
           let currentPath = window.location.pathname;
               navigate(`${currentPath}/replace`);
               setTimeout(() => {
@@ -125,15 +128,26 @@ const SaveLifeTable = (props) => {
       console.log(err.response.data.message);
     }
   };
-  // const onSmsAlert = (id, name, email) => {
-  //   axios({
-  //     method: "post",
-  //     url: `http://localhost:5000/smsalert/${id}`,
-  //     data: {
-  //       name: name,
-  //       email: email,
-  //     },
-  //   });
+  // const onSmsAlert = async (id, name) => {
+  //   try {
+  //     const response = await axios({
+  //       method: "post",
+  //       url: `http://localhost:5000/safelife-report/smsalert`,
+  //       data: {
+  //         id: id,
+  //         name: name,
+  //       },
+  //     });
+  //     console.log(`RESPONSE::::: ${response.data.message}`);
+  //     if(response.status==200){
+  //       Modal.success({
+  //        title: "Sms Alert Sent",
+  //       })
+        
+  //      }
+  //   } catch (err) {
+  //     console.log(err.response.data.message);
+  //   }
   // };
 
   return (

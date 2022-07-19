@@ -4,6 +4,7 @@ import { Form, Button, Upload } from "antd";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
+import { Modal } from "antd";
 
 const LostEditForm = () => {
   const {id} = useParams();
@@ -53,6 +54,9 @@ const LostEditForm = () => {
            
               console.log(response);
               if (response.status === 200) {
+                Modal.success({
+                  title: "LostItem Report Submitted Successfully!",
+                });
                 navigate(`/lostreport`);
               }
             } catch (err) {

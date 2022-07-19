@@ -96,6 +96,9 @@ const CertificateTable = (props) => {
       onOk: async() => {
         const response = await axios.delete(`http://localhost:5000/request-certificatepermits/${id}`);
         if(response.status === 200){
+          Modal.success({
+            title: "Certificate/Permit Report Deleted Successfully!",
+          });
           let currentPath = window.location.pathname;
               navigate(`${currentPath}/replace`);
               setTimeout(() => {
@@ -127,16 +130,29 @@ const CertificateTable = (props) => {
       console.log(err.response.data.message);
     }
   };
-  // const onSmsAlert = (id, name, email) => {
-  //   axios({
-  //     method: "post",
-  //     url: `http://localhost:5000/smsalert/${id}`,
-  //     data: {
-  //       name: name,
-  //       email: email,
-  //     },
-  //   });
+
+  // const onSmsAlert = async (id, name) => {
+  //   try {
+  //     const response = await axios({
+  //       method: "post",
+  //       url: `http://localhost:5000/request-certificatepermits/smsalert`,
+  //       data: {
+  //         id: id,
+  //         name: name,
+  //       },
+  //     });
+  //     console.log(`RESPONSE::::: ${response.data.message}`);
+  //     if(response.status==200){
+  //       Modal.success({
+  //        title: "Sms Alert Sent",
+  //       })
+        
+  //      }
+  //   } catch (err) {
+  //     console.log(err.response.data.message);
+  //   }
   // };
+
 
   return (
     <Fragment>

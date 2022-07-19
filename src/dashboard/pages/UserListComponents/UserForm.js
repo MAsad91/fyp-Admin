@@ -5,6 +5,7 @@ import ErrorModal from "../../shared/ErrorModal";
 import { Form, Button, Upload } from "antd";
 import axios from "axios";
 import styles from "../../user-components/FormStyling.module.css";
+import { Modal } from "antd";
 
 const UserEditForm = () => {
 
@@ -53,6 +54,9 @@ const UserEditForm = () => {
               
               console.log(response);
               if (response.status === 200) {
+                Modal.success({
+                  title: "Users Report Submitted Successfully!",
+                });
                 navigate(`/userlist`);
               }
             } catch (err) {

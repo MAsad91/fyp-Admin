@@ -4,6 +4,7 @@ import { Form } from "antd";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
+import {Modal} from 'antd';
 
 const RequestServicesForm = () => {
   const {id} = useParams();
@@ -46,6 +47,9 @@ const RequestServicesForm = () => {
               });
               console.log(response);
               if (response.status === 200) {
+                Modal.success({
+                  title: "Community Report Submitted Successfully!",
+                });
                 navigate(`/communityservices`);
               }
             } catch (err) {

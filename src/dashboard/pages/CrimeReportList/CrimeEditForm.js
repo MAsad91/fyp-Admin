@@ -4,6 +4,7 @@ import { Form, Button, Upload } from "antd";
 import ErrorModal from "../../shared/ErrorModal";
 import styles from "../../user-components/FormStyling.module.css";
 import axios from "axios";
+import {Modal} from 'antd';
 
 const CrimeEditForm = () => {
   const { id } = useParams();
@@ -48,6 +49,9 @@ const CrimeEditForm = () => {
               });
               console.log(response);
               if (response.status === 200) {
+                Modal.success({
+                  title: "Crime Report Submitted Successfully!",
+                });
                 navigate(`/crimereport`);
               }
             } catch (err) {

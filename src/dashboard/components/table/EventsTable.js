@@ -66,6 +66,9 @@ const EventsTable = (props) => {
       onOk: async() => {
         const response = await axios.delete(`http://localhost:5000/events/${id}`);
         if(response.status === 200){
+          Modal.success({
+            title: "Event Report Deleted Successfully!",
+          });
           let currentPath = window.location.pathname;
               navigate(`${currentPath}/replace`);
               setTimeout(() => {
