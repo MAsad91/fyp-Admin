@@ -16,42 +16,16 @@ import { Layout } from "antd";
 import "./App.css";
 
 import Home from "./dashboard/pages/Home";
-import Crime from "./dashboard/pages/CrimeReportList/CrimeReport";
-import CrimeEditForm from "./dashboard/pages/CrimeReportList/CrimeEditForm";
-import ViewCrime from "./dashboard/pages/CrimeReportList/ViewCrime";
-
-import SafeLife from "./dashboard/pages/SafeLifeReportList/SaveLifeReport";
-import SafeLifeEditForm from "./dashboard/pages/SafeLifeReportList/SafeLifeEditForm";
-import ViewSafeLife from "./dashboard/pages/SafeLifeReportList/ViewSafeLife";
-
-import Lost from "./dashboard/pages/LostReportList/LostReport";
-import LostEditForm from "./dashboard/pages/LostReportList/LostEditForm";
-import ViewLost from "./dashboard/pages/LostReportList/ViewLost";
-
-import Found from "./dashboard/pages/FoundReportList/FoundReport";
-import FoundEditForm from "./dashboard/pages/FoundReportList/FoundEditForm";
-import ViewFound from "./dashboard/pages/FoundReportList/ViewFound";
-
-import CommunityReport from "./dashboard/pages/CommunityReportList/CommunityReport";
-import CommunityEditForm from "./dashboard/pages/CommunityReportList/CommunityEditForm";
-import ViewCommunity from "./dashboard/pages/CommunityReportList/ViewCommunity";
-
-import CertificatesPermits from "./dashboard/pages/CertificateReportList/CertificatesReport";
-import CertificatesEditForm from "./dashboard/pages/CertificateReportList/CertificateEditForm";
-import ViewCertificate from "./dashboard/pages/CertificateReportList/ViewCertificate";
-
+import AllProperty from "./dashboard/pages/PropertyList/PropertyTable";
+import PropertyEditForm from "./dashboard/pages/PropertyList/PropertyEditForm";
+import ViewProperty from "./dashboard/pages/PropertyList/ViewProperty";
+import FeaturedProperty from "./dashboard/pages/FeaturedProperty/FeaturedProperty";
+import VerifiedProperty from "./dashboard/pages/VerifiedProperties/VerifiedProperty";
 import UserList from "./dashboard/pages/UserListComponents/UserList";
 import UserListEditForm from "./dashboard/pages/UserListComponents/UserForm";
 import ViewUser from "./dashboard/pages/UserListComponents/ViewUser";
-
-import Events from "./dashboard/pages/Events/Events";
-import EventsForm from "./dashboard/pages/Events/EventsForm";
-import ViewEvent from "./dashboard/pages/Events/ViewEvent";
-import EventEditForm from "./dashboard/pages/Events/EventEditForm";
-
 import Navbar from "./dashboard/shared/Navbar";
-import LoggedIn from "./dashboard/pages/LoggedIn";
-import SignUp from "./dashboard/pages/SignedUp";
+
 
 import { AuthContext } from "./dashboard/shared/auth-context";
 
@@ -116,17 +90,17 @@ function App() {
   }, [login]);
 
   return (
-    <AuthContext.Provider
-      value={{
-        isLoggedIn: isLoggedIn,
-        userId: userId,
-        token: token,
-        login: login,
-        logout: logout,
-      }}
-    >
+    // <AuthContext.Provider
+    //   value={{
+    //     isLoggedIn: isLoggedIn,
+    //     userId: userId,
+    //     token: token,
+    //     login: login,
+    //     logout: logout,
+    //   }}
+    // >
       <React.Fragment className="main">
-        {isLoggedIn ? (
+         {/* {isLoggedIn ? ( */}
           <Layout>
             <Navbar />
             <Layout>
@@ -136,9 +110,9 @@ function App() {
                   style={{ padding: 24, minHeight: 580 }}
                 >
                   <Routes>
-                    <Route path="/login" exact element={<Navigate to="/" />} />
+                    {/* <Route path="/login" exact element={<Navigate to="/" />} />
 
-                    <Route path="/signup" exact element={<Navigate to="/" />} />
+                    <Route path="/signup" exact element={<Navigate to="/" />} /> */}
 
                     <Route path="/" exact element={<Home />} />
 
@@ -150,114 +124,43 @@ function App() {
                     />
                     <Route path="/userlist/:id" exact element={<ViewUser />} />
 
-                    <Route path={`/crimereport`} exact element={<Crime />} />
+                    <Route path={`/propertylist`} exact element={<AllProperty />} />
                     <Route
-                      path="/crimereport/editcrimeform/:id"
+                      path="/propertyreport/editpropertyform/:id"
                       exact
-                      element={<CrimeEditForm />}
+                      element={<PropertyEditForm />}
                     />
                     <Route
-                      path="/crimereport/:id"
+                      path="/viewproperty/:id"
                       exact
-                      element={<ViewCrime />}
-                    />
-
-                    <Route
-                      path={`/safelifereport`}
-                      exact
-                      element={<SafeLife />}
-                    />
-                    <Route
-                      path="/safelifereport/safelifeeditform/:id"
-                      exact
-                      element={<SafeLifeEditForm />}
-                    />
-                    <Route
-                      path="/safelifereport/:id"
-                      exact
-                      element={<ViewSafeLife />}
-                    />
-
-                    <Route path={`/lostreport`} exact element={<Lost />} />
-                    <Route
-                      path="/lostreport/losteditform/:id"
-                      exact
-                      element={<LostEditForm />}
-                    />
-                    <Route
-                      path="/lostreport/:id"
-                      exact
-                      element={<ViewLost />}
-                    />
-
-                    <Route path={`/foundreport`} exact element={<Found />} />
-                    <Route
-                      path="/foundreport/foundeditform/:id"
-                      exact
-                      element={<FoundEditForm />}
-                    />
-                    <Route
-                      path="/foundreport/:id"
-                      exact
-                      element={<ViewFound />}
+                      element={<ViewProperty />}
                     />
 
                     <Route
-                      path={`/communityservices`}
+                      path="/featuredproperties"
                       exact
-                      element={<CommunityReport />}
+                      element={<FeaturedProperty />}
                     />
-                    <Route
-                      path="/communityservices/communityeditform/:id"
-                      exact
-                      element={<CommunityEditForm />}
-                    />
-                    <Route
-                      path="/communityservices/:id"
-                      exact
-                      element={<ViewCommunity />}
-                    />
+                    
 
-                    <Route
-                      path={`/certificatepermits`}
-                      exact
-                      element={<CertificatesPermits />}
-                    />
-                    <Route
-                      path="/certificatepermits/requesteditform/:id"
-                      exact
-                      element={<CertificatesEditForm />}
-                    />
-                    <Route
-                      path="/certificatepermits/:id"
-                      exact
-                      element={<ViewCertificate />}
-                    />
+                    <Route path={`/verifiedproperties`} exact element={<VerifiedProperty />} />
+                   
 
-                    <Route path={`/events`} exact element={<Events />} />
-                    <Route
-                      path={`/events/eventform`}
-                      exact
-                      element={<EventsForm />}
-                    />
-                    <Route
-                      path="/events/eventform/:id"
-                      exact
-                      element={<EventEditForm />}
-                    />
-                    <Route path="events/:id" exact element={<ViewEvent />} />
+                    
+                    
+                    
                     <Route path="*" exact
                       element={<Navigate to="/login" />}/>
                   </Routes>
                 </div>
               </Content>
               <Footer style={{ textAlign: "center" }}>
-                © 2022 Safe City Services.All rights reserved.
+                © 2022 TariSoft.All rights reserved.
               </Footer>
             </Layout>
           </Layout>
-        ) : (
-          <>
+         {/* ) : ( */}
+          {/* <>
             <Routes>
               <Route path="/login" exact element={<LoggedIn />} />
 
@@ -269,10 +172,10 @@ function App() {
                 element={<Navigate to="/login" />}>
               </Route>
             </Routes>
-          </>
-        )}
+          </> */}
+        {/* )} */}
       </React.Fragment>
-    </AuthContext.Provider>
+    // </AuthContext.Provider>
   );
 }
 

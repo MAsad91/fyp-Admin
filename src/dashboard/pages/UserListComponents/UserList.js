@@ -7,7 +7,7 @@ function UserList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/userlist");
+        const { data } = await axios.get("http://localhost:5000/property");
 
         setUserListData(data);
       } catch (err) {}

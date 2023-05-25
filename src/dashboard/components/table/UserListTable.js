@@ -1,184 +1,167 @@
+import React, { useEffect, useState } from "react";
+import { MDBDataTable } from "mdbreact";
+import { Link } from "react-router-dom";
+import { EyeOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import "datatables.net-dt/css/jquery.dataTables.css";
 import axios from "axios";
-import React, { Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Table, Modal } from "antd";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  EyeOutlined,
-  MessageOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
-import "./Table.css";
+import { Modal, message } from 'antd';
 
-const UserListTable = (props) => {
-  console.log(props);
-  const navigate = useNavigate();
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      width: "25%",
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      width: "25%",
-    },
-    // {
-    //   title: "Alert",
-    //   width: "20%",
-    //   render: (record) => {
-    //     return (
-    //       <>
-    //         <button
-    //           className="alertbutton"
-    //           style={{ marginRight: 3 }}
-    //           onClick={() => {
-    //             onEmailAlert(record.id, record.name, record.email);
-    //           }}
-    //         >
-    //           <MailOutlined style={{ color: "skyblue" }} />
-    //         </button>
+const MyDataTable = () => {
+  const [user, setUser] = useState([]);
+  const [editItemId, setEditItemId] = useState(null);
+  const [name, setName] = useState('');
+  const [phoneno, setPhoneNo] = useState('');
 
-    //         <button
-    //           className="alertbutton"
-    //           style={{ marginLeft: 3 }}
-    //           onClick={() => {
-    //             onSmsAlert(record.id, record.name, record.email);
-    //           }}
-    //         >
-    //           <MessageOutlined style={{ color: "skyblue" }} />
-    //         </button>
-    //       </>
-    //     );
-    //   },
-    // },
-    {
-      title: "Actions",
-      width: "25%",
-      render: (record) => {
-        return (
-          <>
-            <Link to={`/userlist/${record.id}`}>
-              <EyeOutlined
-                style={{
-                  color: "green",
-                  marginRight: 12,
-                  fontSize: 20,
-                }}
-              />
-            </Link>
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get("http://localhost:5000/auth/user");
+      console.log(data);
+      setUser(data);
+    };
+    fetchData();
+  }, []);
 
-            <Link to={`/userlist/userform/${record.id}`}>
-              <EditOutlined style={{ color: "blue", fontSize: 20 }} />
-            </Link>
-
-            <DeleteOutlined
-              onClick={() => {
-                onDeleteUsers(record.id);
-              }}
-              style={{ color: "red", marginLeft: 12, fontSize: 20 }}
-            />
-          </>
-        );
-      },
-    },
-  ];
-
-  const onDeleteUsers = async (id) => {
-    Modal.confirm({
-      title: "Are you sure, you want to delete ?",
-      cancelText: "No",
-      okText: "Yes",
-      okType: "danger",
-      onOk: async() => {
-        const response = await axios.delete(`http://localhost:5000/userlist/${id}`);
-        if(response.status === 200){
-          Modal.success({
-            title: "User Report Deleted Successfully!",
-          });
-          let currentPath = window.location.pathname;
-              navigate(`${currentPath}/replace`);
-              setTimeout(() => {
-                navigate(currentPath);
-              }, 0);
-        }
-        axios
-          .delete(`http://localhost:5000/userlist/${id}`)
-          .then((res) => {
-            console.log("response", res);
-            navigate('/userlist');
-          })
-          .catch((error) => {
-            console.log("error block called", error);
-          });
-          
-      },
-    });
+  const handleEdit = (itemId, itemName, itemPhoneNo) => {
+    setEditItemId(itemId);
+    setName(itemName);
+    setPhoneNo(itemPhoneNo);
   };
-  // const onEmailAlert = (id, name, email) => {
-  //   fetch(`http://localhost:5000/emailalert/${id}`, {
-  //     method: 'POST',
-  //     body: {
-  //       id: id,
-  //       name: name,
-  //       // email: email,
-  //     }, // The data
-  //   headers: {
-  //     'Content-type': 'application/json; charset=UTF-8' // The type of data you're sending
-  //   }
-  // });
-  //   // axios({
-  //   //   method: "post",
-  //   //   url: `http://localhost:5000/emailalert/${id}`,
-  //   //   data: {
-  //   //     name: name,
-  //   //     email: email,
-  //   //   },
-  //   // });
-  // };
-  // const onSmsAlert = (id, name, email) => {
-  //   fetch(`http://localhost:5000/smsalert/${id}`, {
-  //     method: 'POST',
-  //     body: {
-  //       id: id,
-  //       name: name,
-  //       // email: email,
-  //     }, // The data
-  //   headers: {
-  //     'Content-type': 'application/json; charset=UTF-8' // The type of data you're sending
-  //   }
-  //   // axios({
-  //   //   method: "post",
-  //   //   url: `http://localhost:5000/smsalert/${id}`,
-  //   //   data: {
-  //   //     name: name,
-  //   //     email: email,
-  //   //   },
-  //   });
-  // };
+  const handleSave = (itemId) => {
+    try {
+      Modal.confirm({
+        title: 'Update user',
+        content: 'Do you want to update this user?',
+        okText: "Yes",
+        cancelText:"No",
+        onOk: async () => {
+          // Perform the user verification
+          const response = await axios.patch(
+            `http://localhost:5000/auth/update/${itemId}`,
+            { name,phoneno }
+          );
+  
+          if (response.status === 200) {
+            Modal.success({
+              title: 'User Updated Successfully!',
+              content: response.data.message,
+              onOk: () => {
+                console.log(response.data);
+                setEditItemId(null);
+              },
+            });
+          }
+        },
+      });
+    } catch (err) {
+      const message =
+        err.response.data.message || 'Something went wrong, please try again!';
+      Error(message);
+      console.log(err.response.data.message, err.response.status);
+    }
+    setEditItemId(null);
+  };
+  
+
+  if (user.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  const data = {
+    columns: [
+      {
+        label: "ID",
+        field: "id",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "Name",
+        field: "name",
+        sort: "asc",
+        width: 270,
+      },
+      {
+        label: "Phone No.",
+        field: "phoneno",
+        sort: "asc",
+        width: 200,
+      },
+      {
+        label: "Action",
+        field: "action",
+        sort: "disabled",
+        width: "150px",
+      },
+    ],
+    rows: user.map((item) => ({
+      id: item.id,
+      name:
+        editItemId === item.id ? (
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        ) : (
+          item.name
+        ),
+      phoneno:
+        editItemId === item.id ? (
+          <input type="text" value={phoneno} onChange={(e) => setPhoneNo(e.target.value)} />
+        ) : (
+          item.phoneno
+        ),
+      action: (
+        <div className="action-buttons">
+          {editItemId === item.id ? (
+            <button onClick={() => handleSave(item.id)}>Save</button>
+          ) : (
+            <EditOutlined
+              style={{ color: "blue", fontSize: 24 }}
+              onClick={() => handleEdit(item.id, item.name, item.phoneno)}
+            />
+          )}
+          <DeleteOutlined
+            // onClick={() => handleDelete(item)}
+            style={{ color: "red", marginLeft: 12, fontSize: 24 }}
+          />
+        </div>
+      ),
+    })),
+  };
+
+  const options = {
+    searchBox: true, // Enable the search box
+    searchBoxClass: "form-control", // Set the class for the search box
+    searchLabel: "Search", // Set the label for the search box
+    searchText: "", // Set the initial search text
+    filterText: "Filter", // Set the label for the filter dropdown
+    responsive: true, // Enable responsive mode
+    responsiveSm: true,
+    responsiveMd: true,
+    responsiveLg: true,
+    responsiveXl: true,
+    rowsPerPage: 10, // Set the number of rows per page
+    paginationLabel: ["Previous", "Next"], // Set the labels for pagination
+  };
+
   return (
-    <Fragment>
-      <Table
-        columns={columns}
-        dataSource={props.userListData}
-        pagination={true}
-        // onRow={(record) => {
-        //   return {
-        //     onClick: () => {
-
-        //       console.log(record);
-
-        //     }, // click row
-
-        //   };
-        // }}
-        style={{ marginTop: "1rem" }}
+    <div
+      style={{
+        width: "100%",
+        overflowX: "auto",
+        fontSize: "18px",
+        whiteSpace: "nowrap",
+      }}
+    >
+      <MDBDataTable
+        id="myDataTable"
+        data={data}
+        options={options}
+        searching={true}
+        sortable={true}
+        striped
+        bordered
+        noBottomColumns={true}
       />
-    </Fragment>
+    </div>
   );
 };
 
-export default UserListTable;
+export default MyDataTable;

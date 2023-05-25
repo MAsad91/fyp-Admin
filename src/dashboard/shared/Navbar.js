@@ -27,7 +27,7 @@ function Navbar() {
           }}
         >
           <div className="logo">
-            <h5>Safe City Services</h5>
+            <h5>Tari Marketing</h5>
           </div>
           <Menu theme="dark" mode="inline">
             <Menu.Item key='1'>
@@ -37,15 +37,15 @@ function Navbar() {
                 <Link to={`/userlist`}>UserList</Link>
             </Menu.Item>
             <Menu.Item key='3'>
-                <Link to={`/crimereport`}>Crime Reports</Link>
+                <Link to={`/propertylist`}>PropertyList</Link>
             </Menu.Item >
             <Menu.Item key='4'>
-                <Link to={`/safelifereport`}>Save Life Reports</Link>
+                <Link to={`/featuredproperties`}>Featured Property</Link>
             </Menu.Item>
             <Menu.Item key='5'>
-                <Link to={`/lostreport`}>Lost Item Reports</Link>
+                <Link to={`/verifiedproperties`}>Verified Property</Link>
             </Menu.Item>
-            <Menu.Item key='6'>
+            {/* <Menu.Item key='6'>
                 <Link to={`/foundreport`}>Found Item Reports</Link>
             </Menu.Item>
             <Menu.Item key='7'>
@@ -57,12 +57,12 @@ function Navbar() {
               <Link to={`/certificatepermits`}>
                 Certificate & Permits
               </Link>
-            </Menu.Item>
-            <Menu.Item key='9'>
+            </Menu.Item> */}
+            {/* <Menu.Item key='9'>
               <Link to={`/events`}>
                 Events
               </Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key='10'>
               <Link to onClick={logoutHandler}>LogOut</Link>
             </Menu.Item>

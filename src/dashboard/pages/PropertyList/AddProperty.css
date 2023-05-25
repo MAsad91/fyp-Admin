@@ -1,0 +1,127 @@
+
+/* /head */
+  .edit_property {
+    width: 50%;
+    /* margin: auto; */
+    text-align: left;
+  }
+  
+  .form-field {
+    margin-bottom: 20px;
+  }
+  
+  .form-field label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .form-field select,
+  .form-field input[type="number"],
+  .form-field input[type="text"],
+  .form-field textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+  }
+  
+  .propertytype,
+  .propertysubtype,
+  .propertyprice,
+  .propertytitle,
+  .propertydescription,
+  .propertylocation,
+  .simpledetails {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .propertytype select,
+  .propertysubtype select,
+  .propertyprice input[type="number"],
+  .propertytitle input[type="text"],
+  .propertydescription textarea,
+  .propertylocation input[type="text"],
+  .simpledetails select {
+    margin-bottom: 10px;
+  }
+  
+  .propertysize {
+    display: flex;
+  }
+  
+  .propertysize input[type="number"] {
+    width: 80%;
+  }
+  
+  .propertysize select {
+    width: 20%;
+    margin-left: 5px;
+  }
+  
+  .simpledetails div {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .simpledetails div label {
+    margin-bottom: 5px;
+  }
+  
+  .simpledetails div select {
+    margin-top: 5px;
+  }
+  .thumbnail-wrapper {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .thumbnail-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    transition: all 0.3s;
+  }
+ 
+  .primarydetails {
+    margin-top: 20px;
+  }
+  .select-row {
+    display: flex;
+  }
+  
+  .select-half-width {
+    width: 40%;
+    margin-right: 10px;
+    height: 36px;
+  }
+  .select-half-width1 {
+    width: 100%;
+    margin-right: 10px;
+    height: 36px;
+  }
+  
+  .details {
+    padding: 0px;
+    width: 20%;
+    height: 36px;
+  }
+  
+  
+  .Submit {
+    margin-top: 20px;
+  }
+  
+  .action_submit_buttons {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .action_submit_buttons:hover {
+    background-color: #2e307d;
+    color: #fff;
+  }
+  

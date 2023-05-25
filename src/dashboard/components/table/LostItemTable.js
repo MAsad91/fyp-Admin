@@ -93,7 +93,7 @@ const LostItemTable = (props) => {
       okText: "Yes",
       okType: "danger",
       onOk: async() => {
-        const response = await axios.delete(`http://localhost:5000/lost-report/report/${id}`);
+        const response = await axios.delete(`http://localhost:5000/lost-report/${id}`);
         if(response.status === 200){
           Modal.success({
             title: "LostItem Report Deleted Successfully!",
